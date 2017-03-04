@@ -1,0 +1,31 @@
+body {
+    font-family:"Myriad Pro", "Lucida Grande", "Helvetica Neue";
+    color: #4A4A4A;
+    line-height:2;
+    font-size: 18px;
+}
+
+
+/* MEDIUM devices have green background */
+@media screen and (max-width: 1200px) {
+    body {
+        /*background-color: red;*/
+        font-size: 10px;
+    }
+}
+
+
+
+body h1 {
+    font-family: "Myriad Pro Squezed";
+}
+
+h1 img {
+    height: 40px;
+}
+
+
+.btn-lg {
+    padding: 0px 0px;
+    font-size: 18px;
+}

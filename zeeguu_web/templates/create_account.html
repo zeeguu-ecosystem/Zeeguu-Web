@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% set tab = "create_account" %}
+
+{% block body %}
+
+{% assets filters="cssmin", output="instance/create_account.css", "css/create_account.css"-%}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets -%}
+
+
+<div class="container">
+
+    <form id="create_account" class="form-horizontal" action="" method="post" class="input-group">
+        <fieldset>
+            <div class="outer-block">
+
+                <div class="inner-center authentification-box">
+
+                    <p id="authentification-box-title">Create Account</p>
+
+
+                    {{ flash_messages () }}
+
+                    <div class="input-group ">
+                      <label for="code" class="control-label">Invite Code
+                      <small>(contact <a href="mail:zeeguu.team@gmail.com">zeeguu.team@gmail.com</a> for code)</small></label>
+                      <input id="code" name="code" type="code" placeholder="Code" class="form-control input-lg" />
+                    </div>
+
+                    <hr/>
+
+                    <div class="input-group ">
+                      <label class="control-label">Name</label>
+                      <input type="text" name="name" id="name" placeholder="Name" class="form-control input-lg" rel="popover" />
+                    </div>
+
+                    <div class="input-group ">
+                      <label class="control-label">Email</label>
+                      <input type="email" name="email" id="email" placeholder="Email address" class="form-control input-lg" rel="popover" />
+                    </div>
+
+                    <div class="input-group ">
+                      <label class="control-label">Choose a Password</label>
+                      <input id="password" name="password" type="password" placeholder="Password" class="form-control input-lg" />
+                    </div>
+
+                    <hr/>
+
+                    <div class="input-group" >
+                        <label class="control-label">The language you are learning</label>
+                            <select autofocus id="language" required name="language" class="form-control input-lg">
+                                {% for l in languages %}
+                                    <option {% if l.id == default_learned.id %} selected {% endif %} value="{{l.id}}">{{l.name}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+
+                    <div class="input-group" >
+                        <label class="control-label">Your base language</label>
+                            <select autofocus id="native_language" required name="native_language" class="form-control input-lg">
+                                {% for l in native_languages %}
+                                    <option value="{{l.id}}">{{l.name}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+
+                    <div class="bg-warning hide" id="register-error">
+                    This email address is already in use.
+                    </div>
+
+                    <!--<br/>-->
+                    <div class="input-group">
+                        <input type="submit" name="create_account" value="Create Account" class="btn btn-success green-button" />
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

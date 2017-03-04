@@ -1,0 +1,83 @@
+#zeeguu-logo {
+  height: 65px;
+  margin-left: 20px; }
+
+.navbar-nav li {
+  font-size: 20px; }
+
+.navbar-right li {
+  font-size: 20px; }
+
+@media screen and (max-width: 992px) {
+  .menu-cassette {
+    height: 85px; }
+
+  .navbar-nav li {
+    font-size: 24px; }
+
+  .navbar-right li {
+    font-size: 24px; }
+
+  #zeeguu-logo {
+    height: 80px;
+    margin-left: 20px; }
+
+  #login {
+    font-size: 35px; } }
+.navbar-brand, .navbar-nav li a, .navbar-nav li a:visited, .navbar-nav li a:hover {
+  line-height: 75px;
+  height: 75px;
+  padding-top: 0px; }
+
+.navbar-default {
+  background-color: #505a64;
+  border-color: rgba(255, 255, 255, 0.2); }
+  .navbar-default .navbar-brand {
+    color: white; }
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+      color: white; }
+  .navbar-default .navbar-text {
+    color: white; }
+  .navbar-default .navbar-nav > li > a {
+    color: white; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: white; }
+  .navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #505a64; }
+    .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+      color: white; }
+      .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover, .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.2); }
+    .navbar-default .navbar-nav > li > .dropdown-menu .divider {
+      background-color: rgba(255, 255, 255, 0.2); }
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); }
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); }
+  .navbar-default .navbar-toggle {
+    border-color: rgba(255, 255, 255, 0.2); }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+      background-color: rgba(255, 255, 255, 0.2); }
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: white; }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: white; }
+  .navbar-default .navbar-link {
+    color: white; }
+    .navbar-default .navbar-link:hover {
+      color: white; }
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: white; }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: white; }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); } }
+
+/*# sourceMappingURL=layout.css.map */

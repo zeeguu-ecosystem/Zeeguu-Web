@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% set tab = "login" %}
+
+{% block body %}
+
+{% assets filters="cssmin", output="instance/login.css", "css/login.css"-%}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets -%}
+
+
+        <div class="col-md-offset-3 col-md-6">
+            <div class="centered-inner-div">
+
+            <form id="login" class="form-horizontal" action="" method="post" role="form" >
+
+                    <div class="outer-block">
+
+                        <div class="inner-center authentification-box">
+
+                            <p id="authentification-box-title">Sign In</p>
+                            <div class="input-group">
+                                <label>Email</label>
+                                <!--<div class="col-s`email" name="email" class="form-control " id="email" placeholder="Email">-->
+                                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Email">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
+                            </div>
+
+
+                            <div class="input-group">
+                                <button type="submit" name="login" value="Login" class="btn btn-success green-button sign-in-button"> Sign In </button>
+                            </div>
+                            <br/>
+                            <div>
+                                <small>Or <a href="create_account">create an account</a> or <a href="/reset_pass">reset your password</a></small>
+                            </div>
+
+
+
+                        </div>
+                        <br/>
+                        {{ flash_messages() }}
+
+
+                    </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

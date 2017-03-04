@@ -1,0 +1,110 @@
+@import "variables"
+
+$menu-bar-height: 75px
+
+#zeeguu-logo
+  height: 65px
+  margin-left: 20px
+
+
+.navbar-nav li
+  font-size: 20px
+
+.navbar-right li
+  font-size: 20px
+
+
+@media screen and (max-width: $SMALL_SCREEN)
+
+  .menu-cassette
+    height: $sm-menu-bar-height
+
+  .navbar-nav li
+    font-size: 24px
+
+  .navbar-right li
+    font-size: 24px
+
+  #zeeguu-logo
+    height: 80px
+    margin-left: 20px
+
+  #login
+    font-size: $sm-h3-size
+
+
+// Custom Height
+// http://stackoverflow.com/questions/19837444/custom-height-bootstraps-navbar
+.navbar-brand, .navbar-nav li a, .navbar-nav li a:visited, .navbar-nav li a:hover
+  line-height: $menu-bar-height
+  height: $menu-bar-height
+  padding-top: 0px
+
+// Generated from:
+// http://work.smarchal.com/twbscolor/
+$bgDefault      : rgb(80, 90, 100)
+$bgHighlight    : rgba(255, 255, 255, 0.2)
+$colDefault     : white
+$colHighlight   : white
+$dropDown       : true
+.navbar-default
+  background-color: $bgDefault
+  border-color: $bgHighlight
+  .navbar-brand
+    color: $colDefault
+    &:hover, &:focus
+      color: $colHighlight
+  .navbar-text
+    color: $colDefault
+  .navbar-nav
+    > li
+      > a
+        color: $colDefault
+        &:hover, &:focus
+          color: $colHighlight
+      @if $dropDown
+        > .dropdown-menu
+          background-color: $bgDefault
+          > li > a
+            color: $colDefault
+            &:hover, &:focus
+              color: $colHighlight
+              background-color: $bgHighlight
+          .divider
+            background-color: $bgHighlight
+    > .active
+      > a, > a:hover, > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+    > .open
+      > a, > a:hover, > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+  .navbar-toggle
+    border-color: $bgHighlight
+    &:hover, &:focus
+      background-color: $bgHighlight
+    .icon-bar
+      background-color: $colDefault
+  .navbar-collapse,
+  .navbar-form
+    border-color: $colDefault
+  .navbar-link
+    color: $colDefault
+    &:hover
+      color: $colHighlight
+@media (max-width: 767px)
+  .navbar-default .navbar-nav .open .dropdown-menu
+    > li > a
+      color: $colDefault
+      &:hover, &:focus
+        color: $colHighlight
+    > .active
+      > a, > a:hover, > a:focus
+        color: $colHighlight
+        background-color: $bgHighlight
+
+
+
+
+

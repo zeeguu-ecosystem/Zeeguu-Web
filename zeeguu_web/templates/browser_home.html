@@ -1,0 +1,68 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+{% extends "layout.html" %}
+
+{% set tab = "m_home" %}
+
+{% block body %}
+
+    <h3>Search the Web</h3>
+
+    <form method="get" action="https://www.google.com/search">
+
+        &nbsp; &nbsp; <input type="text" name="q"  class="input-sm" value=""/>
+        <input class="input-sm" type="submit" value="Go!" />
+
+    </form>
+
+
+    {% if recent_domains_and_times %}
+        <h3>Recently Visited</h3>
+            {% for domain_and_time in recent_domains_and_times[:item_count] %}
+            <h4>
+                    &nbsp;<a href="{{domain_and_time[0]}} ">
+                         {{domain_and_time[0]}}
+                            <small>
+                                ({{domain_and_time[1].date().strftime("%d %b")}})                            </small>
+                    </a>
+            </h4>
+            {% endfor %}
+    {% endif %}
+
+
+    {% if domain_and_frequency_map %}
+        <h3>Frequently Visited</h3>
+            {% for domain_and_frequency in domain_and_frequency_map[:item_count] %}
+            <h4>
+                    &nbsp;<a href="{{domain_and_frequency[0]}} ">
+                         {{domain_and_frequency[0]}}
+                            <small>({{domain_and_frequency[1]}})</small>
+                    </a>
+            </h4>
+            {% endfor %}
+    {% endif %}
+
+
+    {% if recommendations %}
+        <h3>Recommended</h3>
+            {% for r in recommendations[:item_count] %}
+
+                <h4>
+                    &nbsp; <a href="{{r[1]}}">{{r[1]}}</a> <small>({{r[2]}})</small>
+                </h4>
+
+            {% endfor %}
+    {% endif %}
+
+
+    <h4>
+        {% if item_count < recent_domains_and_times_count or item_count <  domain_and_frequency_map_size %}
+                <a href="/browser_home/expanded/">Show more...</a>
+        {% endif %}
+    </h4>
+
+
+
+
+{% endblock %}

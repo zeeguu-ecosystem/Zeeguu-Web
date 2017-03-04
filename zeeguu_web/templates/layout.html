@@ -1,0 +1,82 @@
+<!------------------------------------>
+<!-- Jinja Macros Used on this Page -->
+<!------------------------------------>
+
+    {% macro menu_item(tab_name, url, text) -%}
+        <li class="{% if tab == tab_name %} active {% endif %}"><a href="{{ url_for(url) }}">{{ text }}</a></li>
+    {%- endmacro %}
+
+    {% macro flash_messages() -%}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning">
+        <button class="close" data-dismiss="alert">×</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {%- endmacro %}
+
+<!------------------------------------>
+<!-- Macros Used on this Page       -->
+<!------------------------------------>
+
+<html>
+    <head>
+        <title>Zeeguu</title>
+        {% assets filters="cssmin", output="instance/style.css", "css/bootstrap/bootstrap.css", "css/libs/select2.css", "css/libs/font-awesome.css", "css/special-fonts.css", "css/libs/flippant.css", "css/style.css",  "css/homepage.css", "css/recognize.css", "css/layout.css"-%}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets -%}
+
+        {% assets "js/jquery.js", "js/jquery.validate.js", "js/bootstrap.js", "js/flippant.js", "js/select2.js", "js/sla.js" -%}
+            <script src="{{ ASSET_URL }}"></script>
+        {% endassets -%}
+        <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">
+    </head>
+
+    <body>
+
+    {% if not mobile %}
+
+    <nav class="navbar navbar-default menu-cassette">
+        <div class="container-fluid">
+            <!-- The Menu Options on the Left -->
+            <ul class="nav navbar-nav">
+                <!-- The Icon -->
+                {% if tab != "home" %}
+                    <li><a href="{{ url_for('account.my_account') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>
+                {% endif %}
+
+                {% if g.user and tab != "install" %}
+                    {{ menu_item ("bookmarks", "gym.bookmarks", "My Words") }}
+                    {{ menu_item ("recognize", "gym.recognize", "Exercises") }}
+                {% endif %}
+
+            </ul>
+
+            <!-- The menu options on the right... -->
+            <ul class="nav navbar-nav navbar-right" >
+                {% if g.user %}
+                    <!-- When user logged in, show the dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('account.my_account') }}">My Account</a></li>
+                            <li><a href="{{ url_for('gym.logout') }}">Sign Out</a></li>
+                        </ul>
+                    </li>
+                {% elif tab != "login" and tab != "create_account" %}
+                    <!-- Don't show login on the login and create_account page :) -->
+                    <li id="login"><a href="{{ url_for('gym.login') }}">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% endif %}
+
+    {% block body %}{% endblock %}
+
+    </body>
+</html>
