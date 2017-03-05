@@ -35,6 +35,8 @@ print ("---> instance path follows: ")
 print (instance_path(app))
 app.config.from_object("zeeguu_web.default_config") # this means the default_config file from the zeeguu_web module
 app.config.from_pyfile("config.cfg", silent=False) #config.cfg is in the instance folder;
+# instance folder: 
+# http://flask.pocoo.org/docs/0.11/config/#instance-folders
 # since for the tests the config.cfg is not found, they run only with the default_config; silent = True is useful
 # so the program does not stop if the config file is not found
 
