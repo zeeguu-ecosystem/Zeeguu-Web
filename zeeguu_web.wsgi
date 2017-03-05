@@ -1,5 +1,10 @@
 #!/bin/env python
-import zeeguu_web
-zeeguu_web.app.logger.debug (zeeguu_web.app.instance_path)
-zeeguu_web.app.logger.debug (zeeguu_web.app.config.get("SQLALCHEMY_DATABASE_URI"))
-from zeeguu_web import app as application
+from zeeguu_web.app import app as application
+application.logger.debug (application.instance_path)
+application.logger.debug (application.config.get("SQLALCHEMY_DATABASE_URI"))
+
+# Uncomment following lines if you want to try it out w/o wsgi
+# application.run(
+#     host=application.config.get("HOST", "localhost"),
+#     port=application.config.get("PORT", 9000)
+# )
