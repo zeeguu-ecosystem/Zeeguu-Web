@@ -1,15 +1,10 @@
-import flask_sqlalchemy
-import zeeguu
-zeeguu.db = flask_sqlalchemy.SQLAlchemy()
+#!/bin/env python
+from zeeguu_web.app import app as application
+application.logger.debug (application.instance_path)
+application.logger.debug (application.config.get("SQLALCHEMY_DATABASE_URI"))
 
-from zeeguu_web import app
-import zeeguu_web
-
-zeeguu.db.init_app(app)
-zeeguu.db.create_all(app=app)
-
-from zeeguu.model.user import User
-
-with zeeguu_web.app.app_context():
-	mir = User.find("i@mir.lu")
-	print mir
+# Uncomment following lines if you want to try it out w/o wsgi
+application.run(
+     host=application.config.get("HOST", "localhost"),
+     port=application.config.get("PORT", 9000)
+)
