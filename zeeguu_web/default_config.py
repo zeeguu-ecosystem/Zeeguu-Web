@@ -3,7 +3,8 @@
 HOST = "127.0.0.1"
 PORT = 9000
 DEBUG = True
-SECRET_KEY = 'debuggingkey'
 
-SQLALCHEMY_DATABASE_URI = ("mysql://root:password@localhost/zeeguu_performance_test")
-MAX_SESSION=99999999
+SECRET_KEY = 'debuggingkey'
+# http://flask.pocoo.org/docs/0.12/quickstart/#sessions
+
+SQLALCHEMY_DATABASE_URI = ("mysql://test:test@localhost/zeeguu_performance_test")
