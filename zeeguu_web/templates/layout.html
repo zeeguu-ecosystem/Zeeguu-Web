@@ -50,8 +50,10 @@
                 {% endif %}
 
                 {% if g.user and tab != "install" %}
-                    {{ menu_item ("bookmarks", "gym.bookmarks", "My Words") }}
+                    {{ menu_item ("bookmarks", "gym.bookmarks", "My Activity") }}
                     {{ menu_item ("recognize", "gym.recognize", "Exercises") }}
+{#                    {{ menu_item ("readingroom", "gym.reading", "Reading Room") }}#}
+{#                    {{ menu_item ("exercises", "gym.exercises", "Exercises") }}#}
                 {% endif %}
 
             </ul>

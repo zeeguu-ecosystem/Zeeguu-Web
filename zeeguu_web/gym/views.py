@@ -146,6 +146,21 @@ def recognize():
     except UserVisibleException as e:
         return flask.render_template("message.html",message = e.value)
 
+
+@gym.route("/exercises")
+@login_first
+def exercises():
+    return flask.render_template(
+            "exercises.html",
+            user=flask.g.user)
+
+
+@gym.route("/reading")
+@login_first
+def reading():
+    return flask.render_template("readingroom.html", user=flask.g.user)
+
+
 @gym.route("/m_recognize")
 @login_first
 def m_recognize():
