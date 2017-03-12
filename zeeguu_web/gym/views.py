@@ -104,9 +104,11 @@ def logged_in():
 def bookmarks():
     bookmarks_list,dates = flask.g.user.bookmarks_by_date()
 
+    most_recent_seven_days = dates[0:6]
+
     urls_by_date = {}
     bookmarks_by_url = {}
-    for date in dates:
+    for date in most_recent_seven_days:
         for bookmark in bookmarks_list[date]:
             urls_by_date.setdefault(date, set()).add(bookmark.text.url)
             bookmarks_by_url.setdefault(bookmark.text.url,[]).append(bookmark)
@@ -116,7 +118,7 @@ def bookmarks():
     return flask.render_template("bookmarks.html",
                                  bookmarks_by_url=bookmarks_by_url,
                                  urls_by_date=urls_by_date,
-                                 sorted_dates=dates,
+                                 sorted_dates=most_recent_seven_days,
                                  bookmark_counts_by_date=bookmark_counts_by_date,
                                  user=flask.g.user)
 
