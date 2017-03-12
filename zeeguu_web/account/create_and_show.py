@@ -76,7 +76,6 @@ def my_account():
     # get learner_stats_data for the line_graph
     learner_stats_data = flask.g.user.learner_stats_data()
 
-
     s = Session.find_for_user(flask.g.user)
     zeeguu.db.session.add(s)
     zeeguu.db.session.commit()

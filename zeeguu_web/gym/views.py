@@ -22,7 +22,7 @@ import zeeguu
 @gym.route("/")
 def home():
     if "user" in flask.session:
-        return flask.redirect(flask.url_for("account.my_account"))
+        return flask.redirect(flask.url_for("gym.bookmarks"))
     return flask.render_template("index.html")
 
 
@@ -51,7 +51,7 @@ def login():
             else:
                 flask.session["user"] = user.id
                 flask.session.permanent = True
-                return flask.redirect(flask.request.args.get("next") or flask.url_for("account.my_account"))
+                return flask.redirect(flask.request.args.get("next") or flask.url_for("gym.bookmarks"))
     return flask.render_template("login.html")
 
 
