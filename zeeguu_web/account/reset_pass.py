@@ -124,7 +124,7 @@ def generate_code_and_send_email(user_email):
     db.session.commit()
 
     # Send email
-    server = SMTP('smtp.gmail.com:587')
+    server = SMTP(zeeguu.app.config.get('SMTP_SERVER'))
     server.ehlo()
     server.starttls()
     team_email = zeeguu.app.config.get("TEAM_EMAIL")
