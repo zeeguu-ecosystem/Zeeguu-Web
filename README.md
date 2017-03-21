@@ -16,4 +16,4 @@ The API is available at https://zeeguu.unibe.ch.
 # Installation
 
 1. Make sure to have the [Zeeguu-Core](https://github.com/mircealungu/Zeeguu-Web/) installed as a module in your system. 
-1. modify accordingly the `default_config.cfg` and copy it to the `./config/` folder
+1. modify accordingly the `default_config.cfg` and copy it to the `./config/zeeguu/web.cfg` file
