@@ -33,7 +33,7 @@ instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app
 
 print ("---> instance path: " + instance_path(app))
 app.config.from_object("zeeguu_web.default_config") # this means the default_config file from the zeeguu_web module
-app.config.from_pyfile(os.path.expanduser('~/.zeeguu/zeeguu_web.cfg'), silent=False)
+app.config.from_pyfile(os.path.expanduser('~/.config/zeeguu/web.cfg'), silent=False)
 # here we used to use the instance folder [1], but eventually decided to go for the ./zeeguu/folder:
 # http://flask.pocoo.org/docs/0.11/config/#instance-folders
 
