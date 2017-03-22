@@ -51,7 +51,7 @@ zeeguu.app.config = app.config
 
 
 assert_configs(app.config, ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
-                            'SQLALCHEMY_DATABASE_URI', 'SMTP_SERVER', 'TEAM_EMAIL', 'TEAM_PASS'])
+                            'SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD'])
 
 # Important... let's initialize the models with a db object
 db = flask_sqlalchemy.SQLAlchemy()

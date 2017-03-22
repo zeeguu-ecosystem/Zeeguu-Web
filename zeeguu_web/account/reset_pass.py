@@ -124,9 +124,9 @@ def generate_code_and_send_email(user_email):
     db.session.commit()
 
     # Fetch SMTP info
-    smtp_server = zeeguu.app.config.get('SMTP_SERVER')
-    smtp_email = zeeguu.app.config.get('TEAM_EMAIL')
-    smtp_password = zeeguu.app.config.get('TEAM_PASS')
+    smtp_server = zeeguu.app.config.get('SMTP_HOST')
+    smtp_email = zeeguu.app.config.get('SMTP_USERNAME')
+    smtp_password = zeeguu.app.config.get('SMTP_PASSWORD')
 
     # Construct message
     message = content_of_email_with_code(from_email=smtp_email, to_email=user_email, code=code)
