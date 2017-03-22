@@ -26,6 +26,13 @@ def instance_path(app):
             raise
     return path
 
+
+def assert_configs(config, required_keys):
+    for key in required_keys:
+        config_value = config.get(key)
+        assert config_value, "Please define the {key} key in the config file!".format(key=key)
+
+
 # *** Starting the App *** #
 app = CrossDomainApp(__name__, instance_relative_config=True)
 
@@ -41,6 +48,10 @@ app.config.from_pyfile(os.path.expanduser('~/.config/zeeguu/web.cfg'), silent=Fa
 import zeeguu
 zeeguu.app = app
 zeeguu.app.config = app.config
+
+
+assert_configs(app.config, ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
+                            'SQLALCHEMY_DATABASE_URI', 'SMTP_SERVER', 'TEAM_EMAIL', 'TEAM_PASS'])
 
 # Important... let's initialize the models with a db object
 db = flask_sqlalchemy.SQLAlchemy()
