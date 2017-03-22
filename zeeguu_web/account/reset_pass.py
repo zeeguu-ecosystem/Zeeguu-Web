@@ -54,24 +54,24 @@ def reset_password():
     return flask.render_template("reset_pass.html")
 
 
-def content_of_email_with_code(team_email, email, code):
-    """
-    :param team_email: string
-    :param email: string
-    :param code: string
-    :return:
-    """
-    return "\r\n".join([
-          "From: " + team_email,
-          "To: " + email,
-          "Subject: Password Reset Code",
-          "Hi there,",
-          " ",
-          "Please use this code to reset your password: " + str(code) + ".",
-          " ",
-          "Cheers,",
-          "The Zeeguu Team"
+def content_of_email_with_code(from_email, to_email, code):
+    from email.mime.text import MIMEText
+
+    body = "\r\n".join([
+              "Hi there,",
+              " ",
+              "Please use this code to reset your password: " + str(code) + ".",
+              " ",
+              "Cheers,",
+              "The Zeeguu Team"
           ])
+
+    message = MIMEText(body)
+    message['From'] = from_email
+    message['To'] = to_email
+    message['Subject'] = 'Reset your password'
+
+    return message.as_string()
 
 
 def change_password_if_code_is_correct(code, email, password):
@@ -123,12 +123,18 @@ def generate_code_and_send_email(user_email):
     db.session.add(code)
     db.session.commit()
 
+    # Fetch SMTP info
+    smtp_server = zeeguu.app.config.get('SMTP_SERVER')
+    smtp_email = zeeguu.app.config.get('TEAM_EMAIL')
+    smtp_password = zeeguu.app.config.get('TEAM_PASS')
+
+    # Construct message
+    message = content_of_email_with_code(from_email=smtp_email, to_email=user_email, code=code)
+
     # Send email
-    server = SMTP(zeeguu.app.config.get('SMTP_SERVER'))
+    server = SMTP(host=smtp_server, port=25)
     server.ehlo()
     server.starttls()
-    team_email = zeeguu.app.config.get("TEAM_EMAIL")
-    team_pass = zeeguu.app.config.get("TEAM_PASS")
-    server.login(team_email, team_pass)
-    server.sendmail(team_email, user_email, content_of_email_with_code(team_email, user_email, code))
+    server.login(user=smtp_email, password=smtp_password)
+    server.sendmail(from_addr=smtp_email, to_addrs=user_email, msg=message)
     server.quit()
