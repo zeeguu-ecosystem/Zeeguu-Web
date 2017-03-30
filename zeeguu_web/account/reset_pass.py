@@ -110,31 +110,23 @@ def change_password_if_code_is_correct(code, email, password):
 
 
 def generate_code_and_send_email(user_email):
-    """
-    Hardcoded for Gmail
-    Assumes TEAM_EMAIL and TEAM_PASS are present in config.cfg
-
-    :param user_email: string
-    :return:
-    """
-
     # Generate one-time code
     code = UniqueCode(user_email)
     db.session.add(code)
     db.session.commit()
 
     # Fetch SMTP info
-    smtp_server = zeeguu.app.config.get('SMTP_HOST')
-    smtp_email = zeeguu.app.config.get('SMTP_USERNAME')
-    smtp_password = zeeguu.app.config.get('SMTP_PASSWORD')
+    server_name = zeeguu.app.config.get('SMTP_SERVER')
+    email = zeeguu.app.config.get('SMTP_USERNAME')
+    password = zeeguu.app.config.get('SMTP_PASSWORD')
 
     # Construct message
-    message = content_of_email_with_code(from_email=smtp_email, to_email=user_email, code=code)
+    message = content_of_email_with_code(from_email=email, to_email=user_email, code=code)
 
     # Send email
-    server = SMTP(host=smtp_server, port=25)
+    server = SMTP(server_name)
     server.ehlo()
     server.starttls()
-    server.login(user=smtp_email, password=smtp_password)
-    server.sendmail(from_addr=smtp_email, to_addrs=user_email, msg=message)
+    server.login(user=email, password=password)
+    server.sendmail(from_addr=email, to_addrs=user_email, msg=message)
     server.quit()

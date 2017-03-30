@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-from zeeguu.model.knowledge_estimator import SethiKnowledgeEstimator
+from zeeguu.model import SimpleKnowledgeEstimator
 from zeeguu.model.session import Session
 
 __author__ = 'mir.lu'
@@ -71,7 +71,7 @@ def my_account():
     if not flask.g.user:
         return flask.redirect(flask.url_for("gym.login"))
 
-    estimator = SethiKnowledgeEstimator(flask.g.user, flask.g.user.learned_language_id)
+    estimator = SimpleKnowledgeEstimator(flask.g.user, flask.g.user.learned_language_id)
 
     # get learner_stats_data for the line_graph
     learner_stats_data = flask.g.user.learner_stats_data()

@@ -33,13 +33,30 @@ def assert_configs(config, required_keys):
         assert config_value, "Please define the {key} key in the config file!".format(key=key)
 
 
+def select_config_file():
+    # Default config
+    # app.config.from_object("default_config")
+
+    # Loading the default user configuration
+    config_file = os.path.expanduser('~/.config/zeeguu/web.cfg')
+
+    # The default config files could be overwritten by the os.environ variable
+    if os.environ.has_key("CONFIG_FILE"):
+        config_file = os.environ["CONFIG_FILE"]
+
+    print ('running with config file: ' + config_file)
+
+    return config_file
+
 # *** Starting the App *** #
-app = CrossDomainApp(__name__, instance_relative_config=True)
+app = CrossDomainApp(__name__, instance_relative_config=False)
+
+app.config.from_pyfile(os.path.expanduser(select_config_file()), silent=False)
 
 instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app))
 
-print ("---> instance path: " + instance_path(app))
-app.config.from_pyfile(os.path.expanduser('~/.config/zeeguu/web.cfg'), silent=False)
+print ('DB is: ' + app.config["SQLALCHEMY_DATABASE_URI"])
+
 # here we used to use the instance folder [1], but eventually decided to go for the ./zeeguu/folder:
 # http://flask.pocoo.org/docs/0.11/config/#instance-folders
 
@@ -49,9 +66,8 @@ import zeeguu
 zeeguu.app = app
 zeeguu.app.config = app.config
 
-
 assert_configs(app.config, ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
-                            'SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD'])
+                            'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD'])
 
 # Important... let's initialize the models with a db object
 db = flask_sqlalchemy.SQLAlchemy()

@@ -13,7 +13,9 @@
                 src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
                 charset="utf-8"></script>
         <activity_graph></activity_graph>
-        <script>activity_graph({{ bookmark_counts_by_date|safe }}, "activity_graph");</script>
+        <script type="text/javascript">
+            activity_graph({{ bookmark_counts_by_date|safe }}, "activity_graph");
+        </script>
 
         <br/><br/><br/>
         <br/><br/><br/>

@@ -12,7 +12,7 @@
 
     var not_encountered = {{ estimator.get_not_encountered_words_count() }};
     var known = {{ estimator.get_not_looked_up_words_count() }};
-    var learned = {{ estimator.get_known_bookmarks_count() + estimator.get_probably_known_words_count() }};
+    var learned = {{ estimator.get_known_bookmarks_count() }};
     var learning = {{ user.bookmark_count() }};
 
     var words_unlocked = +known + learned;
