@@ -44,7 +44,7 @@ def select_config_file():
     if os.environ.has_key("CONFIG_FILE"):
         config_file = os.environ["CONFIG_FILE"]
 
-    print ('running with config file: ' + config_file)
+    print ('zeeguu_web: running with config file: ' + config_file)
 
     return config_file
 
@@ -87,9 +87,7 @@ db.init_app(app)
 db.create_all(app=app)
 
 
-from gym import gym
 from account import account
 
 app.register_blueprint(instance)
-app.register_blueprint(gym)
 app.register_blueprint(account)

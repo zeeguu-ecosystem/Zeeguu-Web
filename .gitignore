@@ -1,8 +1,9 @@
 instance
-
+.cache
 *.pyc
 *.egg-info
-
+build
+dist
 .idea/
 *~
 *.orig

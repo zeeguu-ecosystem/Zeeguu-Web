@@ -66,25 +66,3 @@ def create_account():
     return flask.render_template("create_account.html", **template_arguments)
 
 
-@account.route("/my_account", methods=["GET"])
-def my_account():
-    if not flask.g.user:
-        return flask.redirect(flask.url_for("gym.login"))
-
-    estimator = SimpleKnowledgeEstimator(flask.g.user, flask.g.user.learned_language_id)
-
-    # get learner_stats_data for the line_graph
-    learner_stats_data = flask.g.user.learner_stats_data()
-
-    s = Session.find_for_user(flask.g.user)
-    zeeguu.db.session.add(s)
-    zeeguu.db.session.commit()
-
-    session_id = str(s.id).zfill(8)
-    smartwatch_login_code = session_id[:4] + "-" + session_id[4:]
-
-    return flask.render_template("my_account.html",
-                                 user=flask.g.user,
-                                 estimator=estimator,
-                                 learner_stats_data=learner_stats_data,
-                                 smartwatch_login_code=smartwatch_login_code)
