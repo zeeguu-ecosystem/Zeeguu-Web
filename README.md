@@ -4,17 +4,13 @@ Basic Web Client for the Zeeguu Platform
 
 ## About
 
-Zeeguu is an open API that allows tracking and modeling the progress of a learner in a foreign language with the goal of recommending paths to accelerate vocabulary acquisition.
+The Zeeguu ecosystem aims to develop an open API that allows tracking and modeling the progress of a learner in a foreign language with the goal of recommending paths to accelerate vocabulary acquisition.
 
-The API offers translations for the words that a learner encounters in his readings. The history of the translated words and their context is saved and used to build a dynamic model of the user knowledge. The context is used to extract the words the user knows and their topics of interest.
+The API will offers translations for the words that a learner encounters in his readings. The history of the translated words and their context is saved and used to build a dynamic model of the user knowledge. The context is used to extract the words the user knows and their topics of interest.
 
-A teacher agent recommends the most important words to be studied next in order for the learner to accelerate his vocabulary retention. This information can be used as input by language exercise applications, for example interactive games.
+Reader recommendations and micro-learning based exercises will help one accelerate vocabulary acquisition.
 
-A text recommender agent crawls websites of interest to the user and recommend materials to read which are in the zone of proximal development.
+This project represents a simple web interface mainlly for account management.  
 
-The API is available at https://zeeguu.unibe.ch.
+A deployment of the current state of the system is available online at [https://zeeguu.unibe.ch](https://zeeguu.unibe.ch)
 
-## Installation
-
-1. Make sure to have the [Zeeguu-Core](https://github.com/mircealungu/Zeeguu-Web/) installed as a module in your system. 
-1. modify accordingly the `default_config.cfg` and copy it to the `./config/zeeguu/web.cfg` file

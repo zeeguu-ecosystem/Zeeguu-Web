@@ -14,8 +14,8 @@ app = CrossDomainApp(__name__)
 
 load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
-                             'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD']
-                            )
+                             'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD',
+                             'INVITATION_CODES'])
 
 
 # The zeeguu.model  module relies on an app being injected from outside
