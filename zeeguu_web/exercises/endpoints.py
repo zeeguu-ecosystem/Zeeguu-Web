@@ -1,8 +1,8 @@
-from . import account, login_first
+from . import exercises, login_first
 import flask
 
 
-@account.route("/exercises")
+@exercises.route("/exercises")
 @login_first
 def exercises():
     return flask.render_template("exercises.html", user=flask.g.user)
