@@ -12,4 +12,4 @@ python:
 
 install: "python setup.py develop"
 
-script: "python -m zeeguu_web.app "
+script: "export ZEEGUU_WEB_CONFIG=`pwd`/default_web.cfg && python -m zeeguu_web.app"
