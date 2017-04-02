@@ -28,5 +28,6 @@ setuptools.setup(
                       "MySQL-python",
                       "regex",
                       "beautifulsoup4",
-                      "feedparser")
+                      "feedparser",
+                      "zeeguu")
 )
