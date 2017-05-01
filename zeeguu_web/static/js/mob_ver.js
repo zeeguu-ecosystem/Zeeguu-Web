@@ -20,12 +20,12 @@ function resize() {
         var autoresize = zeeguu_graph.getAttribute("autoresize");
         if(autoresize == "true"){
             // resize the graph
-            var append_to = "#" + zeeguu_graph.getAttribute("id");
+            var append_to = zeeguu_graph.getAttribute("id");
             // line graph resizing (1200 px for full year , 100 px per month)
-            var months_to_show = Math.min(12, Math.round(width / 100));
-            zeeguu_graph.setAttribute("months_to_show", months_to_show);
-            var temp_input_data = zeeguu_graph.getAttribute("input_data");
-            display_months(months_to_show, append_to, window[temp_input_data]);
+            var months_to_show = zeeguu_graph.getAttribute("months_to_show");
+            months_to_show = Math.min(Math.min(12, Math.round(width / 100)), months_to_show);
+            var input_data = zeeguu_graph.getAttribute("input_data");
+            display_months(months_to_show, append_to, window[input_data]);
         }
     }
     // end of line graph resizing
@@ -35,8 +35,9 @@ function resize() {
 function display_months(months_to_show, append_to, input_data){
     var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-    d3.selectAll(append_to + ' > svg').remove();
-    line_graph(input_data, append_to, width, months_to_show);
+    d3.selectAll("#" + append_to + ' > svg').remove();
+    //document.getElementById(append_to).setAttribute("months_to_show", months_to_show);
+    line_graph(input_data, "#" + append_to, width, months_to_show);
 }
 
 // increasing/decreasing month amount displayed
