@@ -36,7 +36,7 @@ def login():
                 zeeguu.db.session.commit()
 
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
-                response.set_cookie('sessionID', str(session.id))
+                response.set_cookie('sessionID', str(session.id), max_age=31536000)
                 return response
 
     return flask.render_template("login.html")
