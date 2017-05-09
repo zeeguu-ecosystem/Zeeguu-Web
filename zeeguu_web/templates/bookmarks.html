@@ -121,11 +121,14 @@
 
             </div>
         {% else %}
-            <p>Hi {{ g.user.name }}! You didn't look up any words yet. </p>
-            <br/>
-            <h1>What next?</h1>
-            <p>Make sure to <a href="i">install the Chrome extension and Android App</a><br/>
-                and start enriching your vocabulary.
-            </p>
+            <div class="col-md-offset-1 col-md-10">
+                <h2>What next?</h2>
+                <br/>
+                <h4>- Head to the <a href="/reading">reading room</a> for news and blogs</h4>
+                <br/>
+                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install the Zeeguu Chrome extension and Android App</a><br/>
+                    and start translating words on any website you visit.
+                </h4>
+            </div>
         {% endif %}
 {% endblock %}

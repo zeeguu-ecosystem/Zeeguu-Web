@@ -1,3 +1,6 @@
+import zeeguu
+from flask import make_response, redirect
+
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
@@ -5,6 +8,15 @@ from zeeguu.model import User, Session
 
 @account.route("/login", methods=("GET", "POST"))
 def login():
+    """
+    
+        check user credentials 
+        
+        if it contains the ?next=... parameter, it will redirect
+        to there on success 
+        
+    :return: 
+    """
     form = flask.request.form
     if flask.request.method == "POST" and form.get("login", False):
         password = form.get("password", None)
@@ -18,7 +30,15 @@ def login():
             else:
                 flask.session["user"] = user.id
                 flask.session.permanent = True
-                return flask.redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks"))
+
+                session = Session.for_user(user)
+                zeeguu.db.session.add(session)
+                zeeguu.db.session.commit()
+
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
+                response.set_cookie('sessionID', str(session.id), max_age=31536000)
+                return response
+
     return flask.render_template("login.html")
 
 
