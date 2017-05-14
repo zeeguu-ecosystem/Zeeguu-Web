@@ -4,7 +4,7 @@ import os.path
 import flask
 import flask_assets
 import flask_sqlalchemy
-from cross_domain_app import CrossDomainApp
+from .cross_domain_app import CrossDomainApp
 from zeeguu.util.configuration import load_configuration_or_abort
 
 
@@ -26,10 +26,10 @@ import zeeguu.model
 assert zeeguu.model
 # -----------------
 
-from account import account
+from .account import account
 app.register_blueprint(account)
 
-from exercises import exercises
+from .exercises import exercises
 app.register_blueprint(exercises)
 
 
@@ -48,7 +48,7 @@ def instance_path(app):
     try:
         os.makedirs(path)
     except Exception as e:
-        print ("exception" + str(e))
+        print(("exception" + str(e)))
         if not os.path.isdir(path):
             raise
     return path

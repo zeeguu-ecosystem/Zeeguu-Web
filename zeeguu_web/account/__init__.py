@@ -41,13 +41,13 @@ def login_first(fun):
     return decorated_function
 
 
-import bookmarks
-import creation
-import home
-import login
-import reading
-import reset_pass
-import static_pages
-import user_stats
+from . import bookmarks
+from . import creation
+from . import home
+from . import login
+from . import reading
+from . import reset_pass
+from . import static_pages
+from . import user_stats
 
 

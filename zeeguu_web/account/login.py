@@ -63,8 +63,8 @@ def login_with_session():
         flask.g.user = user
         flask.session["user"] = user.id
     else:
-        print "somebody tried to login_with_session but failed. " \
-              "however we are still keeping the current session if it exists"
+        print("somebody tried to login_with_session but failed. " \
+              "however we are still keeping the current session if it exists")
         return "FAIL"
 
     return "OK"
