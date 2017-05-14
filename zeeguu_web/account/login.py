@@ -75,7 +75,10 @@ def login_with_session():
 def logout():
     # Note, that there is also an API endpoint for logout called logout_session
     flask.session.pop("user", None)
-    return flask.redirect(flask.url_for("account.home"))
+    response = make_response(redirect(flask.url_for("account.home")))
+    response.set_cookie('sessionID', '', expires=0)
+
+    return response
 
 
 @account.route("/logged_in")
