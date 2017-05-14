@@ -52,4 +52,4 @@ def login_first(fun):
 
     return decorated_function
 
-import endpoints
+from . import endpoints
