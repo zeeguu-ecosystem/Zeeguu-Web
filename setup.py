@@ -20,14 +20,6 @@ setuptools.setup(
     install_requires=("flask>=0.10.1",
                       "Flask-SQLAlchemy",
                       "Flask-Assets",
-                      "goose-extractor",
                       "cssmin",
-                      "jsmin",
-                      "flask-wtf",
-                      "goslate",
-                      "MySQL-python",
-                      "regex",
-                      "beautifulsoup4",
-                      "feedparser",
                       "zeeguu")
 )

@@ -70,5 +70,5 @@ def unstarred_word(word_id,user_id):
     user = User.find_by_id(user_id)
     user.starred_words.remove(word)
     zeeguu.db.session.commit()
-    print str(word) + " is now *unstarred* for user " + user.name
+    print(str(word) + " is now *unstarred* for user " + user.name)
     return "OK"
