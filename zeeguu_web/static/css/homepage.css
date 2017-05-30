@@ -129,21 +129,24 @@
   padding-top: 20px;
   display: block;
   margin: 0 auto;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 100px; }
 
 #eleph-carrier2 {
   width: 220px;
   padding-top: 20px;
   display: block;
   margin: 0 auto;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 100px; }
 
 #eleph-redpants2 {
   padding-top: 30px;
   width: 280px;
   display: block;
   margin: 0 auto;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 100px; }
 
 #text-below-eleph-booklover2 {
   text-align: center; }
