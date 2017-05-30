@@ -7,20 +7,6 @@
     <div class="container welcome-message">
         <!--<h2>Hi {{ user.name }}!</h2>-->
 
-        {% if user.bookmark_count() == 0 %}
-
-            <div class="col-md-offset-1 col-md-10">
-                <h2>What next?</h2>
-                <br/>
-                <h4>- Head to the <a href="/reading">reading room</a> for news and blogs</h4>
-                <br/>
-                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install the Zeeguu Chrome extension and Android App</a><br/>
-                    and start translating words on any website you visit.
-                </h4>
-            </div>
-
-        {% else %}
-
             <script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
             <script type="text/javascript"
                     src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
@@ -41,7 +27,6 @@
 
             <hr/>
 
-        {% endif %}
 
         <br/>
         <h4>Smartwatch code: {{ smartwatch_login_code }}</h4>

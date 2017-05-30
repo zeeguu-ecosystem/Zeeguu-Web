@@ -37,7 +37,7 @@ def login():
             if user is None:
                 flask.flash("Invalid email and password combination")
             else:
-                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
                 _set_session_data(user, response)
 

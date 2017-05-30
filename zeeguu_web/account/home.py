@@ -10,7 +10,7 @@ import zeeguu
 @account.route("/")
 def home():
     if "user_id" in flask.session:
-        return flask.redirect(flask.url_for("account.bookmarks"))
+        return flask.redirect(flask.url_for("account.whatnext"))
     return flask.render_template("index.html")
 
 
