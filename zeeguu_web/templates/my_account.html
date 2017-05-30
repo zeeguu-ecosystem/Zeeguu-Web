@@ -4,49 +4,32 @@
 
 {% block body %}
 
-    <div class="container welcome-message">
-        <!--<h2>Hi {{ user.name }}!</h2>-->
 
-        {% if user.bookmark_count() == 0 %}
+<script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}" charset="utf-8"></script>
 
-            <div class="col-md-offset-1 col-md-10">
-                <h2>What next?</h2>
-                <br/>
-                <h4>- Head to the <a href="/reading">reading room</a> for news and blogs</h4>
-                <br/>
-                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install the Zeeguu Chrome extension and Android App</a><br/>
-                    and start translating words on any website you visit.
-                </h4>
-            </div>
+<div class="container welcome-message">
 
-        {% else %}
+    <hr/>
 
-            <script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
-            <script type="text/javascript"
-                    src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
-                    charset="utf-8"></script>
+    <line_graph></line_graph>
 
-            <hr/>
+    <script>
+        var learner_stats_data = JSON.parse({{ learner_stats_data|safe }});
+        line_graph(learner_stats_data, "line_graph");
+    </script>
 
-            <line_graph></line_graph>
+    <h3>Vocabulary Statistics</h3>
 
-            <script>
-                var learner_stats_data = JSON.parse({{ learner_stats_data|safe }});
-                line_graph(learner_stats_data, "line_graph");
-            </script>
+    {% include "gamification/piechart_gamification.html" %}
 
-            <h3>Vocabulary Statistics</h3>
+    <hr/>
 
-            {% include "gamification/piechart_gamification.html" %}
 
-            <hr/>
+    <br/>
+    <h4>Smartwatch code: {{ smartwatch_login_code }}</h4>
 
-        {% endif %}
-
-        <br/>
-        <h4>Smartwatch code: {{ smartwatch_login_code }}</h4>
-
-    </div>
+</div>
 
 
 

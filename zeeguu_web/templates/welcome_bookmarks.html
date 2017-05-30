@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% set tab = "bookmarks" %}
+
+{% block body %}
+
+    <div class="col-md-offset-1 col-md-10">
+        <h1>Welcome, {{ username }}! </h1>
+
+        <h3>
+            Here you find a list of the translations you looked up in the past.
+        </h3>
+
+
+        <script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
+        {#<activity_graph>  {% include "graphs/activity_graph/activity_graph.html" %}  </activity_graph>#}
+
+        <script type="text/javascript"
+                src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
+                charset="utf-8"></script>
+        <activity_graph></activity_graph>
+        <script type="text/javascript">
+            activity_graph({{ bookmark_counts_by_date|safe }}, "activity_graph");
+        </script>
+
+
+
+
+    </div>
+
+{% endblock %}

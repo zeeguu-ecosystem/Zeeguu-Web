@@ -20,13 +20,15 @@ def bookmarks():
 
     bookmark_counts_by_date = flask.g.user.bookmark_counts_by_date()
 
-    return flask.render_template("bookmarks.html",
-                                 bookmarks_by_url=bookmarks_by_url,
-                                 urls_by_date=urls_by_date,
-                                 sorted_dates=most_recent_seven_days,
-                                 bookmark_counts_by_date=bookmark_counts_by_date,
-                                 user=flask.g.user)
+    if most_recent_seven_days:
+        return flask.render_template("bookmarks.html",
+                                     bookmarks_by_url=bookmarks_by_url,
+                                     urls_by_date=urls_by_date,
+                                     sorted_dates=most_recent_seven_days,
+                                     bookmark_counts_by_date=bookmark_counts_by_date,
+                                     user=flask.g.user)
 
+    return flask.render_template("welcome_bookmarks.html", username=flask.g.user.name, bookmark_counts_by_date=bookmark_counts_by_date)
 
 # These following endpoints are invoked via ajax calls from the bookmarks page
 

@@ -6,4 +6,5 @@ import flask
 @login_first
 def reading():
     # inform everybody that this is deprecated
-    return flask.redirect(flask.url_for("umrblue.articles"))
+    # return flask.redirect(flask.url_for("umrblue.articles"))
+    return flask.render_template("readingroom.html")

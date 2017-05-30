@@ -43,41 +43,90 @@
 
     {% if not mobile %}
 
-    <nav class="navbar navbar-default menu-cassette">
-        <div class="container-fluid">
-            <!-- The Menu Options on the Left -->
-            <ul class="nav navbar-nav">
-                <!-- The Icon -->
-                {% if tab != "home" %}
-                    <li><a href="{{ url_for('account.my_account') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>
-                {% endif %}
 
-                {% if g.user and tab != "install" %}
-                    {{ menu_item ("bookmarks", "account.bookmarks", "My Activity") }}
-                    {{ menu_item ("readingroom", "umrblue.articles", "Newsroom") }}
-                    {{ menu_item ("exercises", "exercises.exercises", "Exercises") }}
-                {% endif %}
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('account.my_account') }}">
+          <img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" />
+      </a>
+    </div>
 
-            </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
 
-            <!-- The menu options on the right... -->
-            <ul class="nav navbar-nav navbar-right" >
-                {% if g.user %}
-                    <!-- When user logged in, show the dropdown -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('account.my_account') }}">My Account</a></li>
-                            <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
-                        </ul>
-                    </li>
-                {% elif tab != "login" and tab != "create_account" %}
-                    <!-- Don't show login on the login and create_account page :) -->
-                    <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+            {{ menu_item ("bookmarks", "account.bookmarks", "Translations") }}
+            {{ menu_item ("readingroom", "account.reading", "Reading") }}
+            {{ menu_item ("exercises", "exercises.exercises", "Exercises") }}
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+          <!--<li><a href="#">Help</a></li>-->
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              {{ g.user.name }} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('account.my_account') }}">My Account</a></li>
+            <li><a href="{{ url_for('account.logout') }}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <!--<nav class="navbar navbar-default menu-cassette">-->
+        <!--<div class="container-fluid">-->
+            <!--&lt;!&ndash; The Menu Options on the Left &ndash;&gt;-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--&lt;!&ndash; The Icon &ndash;&gt;-->
+                <!--{% if tab != "home" %}-->
+                    <!--<li><a href="{{ url_for('account.my_account') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>-->
+                <!--{% endif %}-->
+
+                <!--{% if g.user and tab != "install" %}-->
+                    <!--{{ menu_item ("bookmarks", "account.bookmarks", "Translations") }}-->
+                    <!--{{ menu_item ("readingroom", "account.reading", "Reading") }}-->
+                    <!--{{ menu_item ("exercises", "exercises.exercises", "Exercises") }}-->
+                <!--{% endif %}-->
+
+            <!--</ul>-->
+
+
+            <!--&lt;!&ndash; The menu options on the right... &ndash;&gt;-->
+            <!--<ul class="nav navbar-nav navbar-right" >-->
+                <!--<li>-->
+                    <!--<a href="#">Help</a>-->
+                <!--</li>-->
+                <!--{% if g.user %}-->
+                    <!--&lt;!&ndash; When user logged in, show the dropdown &ndash;&gt;-->
+                    <!--<li class="dropdown">-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a href="{{ url_for('account.my_account') }}">My Account</a></li>-->
+                            <!--<li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                <!--{% elif tab != "login" and tab != "create_account" %}-->
+                    <!--&lt;!&ndash; Don't show login on the login and create_account page :) &ndash;&gt;-->
+                    <!--<li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>-->
+                <!--{% endif %}-->
+
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
     {% endif %}
 
     {% block body %}{% endblock %}

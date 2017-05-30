@@ -21,8 +21,11 @@ def my_account():
     session_id = str(s.id).zfill(8)
     smartwatch_login_code = session_id[:4] + "-" + session_id[4:]
 
-    return flask.render_template("my_account.html",
+    if flask.g.user.bookmark_count():
+        return flask.render_template("my_account.html",
                                  user=flask.g.user,
                                  estimator=estimator,
                                  learner_stats_data=learner_stats_data,
                                  smartwatch_login_code=smartwatch_login_code)
+
+    return flask.render_template("welcome_page.html", username=flask.g.user.name, current_tab="my_account")
