@@ -28,55 +28,53 @@ def login():
             if user is None:
                 flask.flash("Invalid email and password combination")
             else:
-                flask.session["user"] = user.id
+                flask.session["user_id"] = user.id
+                flask.session["name"] = user.name
                 flask.session.permanent = True
 
-                session = Session.for_user(user)
-                zeeguu.db.session.add(session)
-                zeeguu.db.session.commit()
-
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
-                response.set_cookie('sessionID', str(session.id), max_age=31536000)
                 return response
 
     return flask.render_template("login.html")
 
 
-@account.route("/login_with_session", methods=["POST"])
-def login_with_session():
-    """
-    Call this with a post parameter session_id
-    The server will remember that the user is logged in,
-    so you can display pages w/o being redirected to the
-    login screen.
-
-    Mainly designed with the mobile apps in mind, apps which
-    might want to display exercises in a webview. 
-    :return:
-    """
-    form = flask.request.form
-    session_string = form.get("session_id", 0)
-    session = Session.find_for_id(session_string)
-
-    if session:
-        user = session.user
-        flask.g.user = user
-        flask.session["user"] = user.id
-    else:
-        print("somebody tried to login_with_session but failed. " \
-              "however we are still keeping the current session if it exists")
-        return "FAIL"
-
-    return "OK"
+# @account.route("/login_with_session", methods=["POST"])
+# def login_with_session():
+#     """
+#     Call this with a post parameter session_id
+#     The server will remember that the user is logged in,
+#     so you can display pages w/o being redirected to the
+#     login screen.
+#
+#     Mainly designed with the mobile apps in mind, apps which
+#     might want to display exercises in a webview.
+#     :return:
+#     """
+#     form = flask.request.form
+#     session_string = form.get("session_id", 0)
+#     session = Session.find_for_id(session_string)
+#
+#     if session:
+#         user = session.user
+#         flask.g.user = user
+#         flask.session["user_id"] = user.id
+#     else:
+#         print("somebody tried to login_with_session but failed. " \
+#               "however we are still keeping the current session if it exists")
+#         return "FAIL"
+#
+#     return "OK"
 
 
 @account.route("/logout")
 @login_first
 def logout():
     # Note, that there is also an API endpoint for logout called logout_session
-    flask.session.pop("user", None)
+    flask.session.pop("user_id", None)
+    flask.session.pop("name", None)
+
     response = make_response(redirect(flask.url_for("account.home")))
-    response.set_cookie('sessionID', '', expires=0)
+    # response.set_cookie('sessionID', '', expires=0)
 
     return response
 
@@ -84,6 +82,6 @@ def logout():
 @account.route("/logged_in")
 @login_first
 def logged_in():
-    if flask.session.get("user", None):
+    if flask.session.get("user_id", None):
         return "YES"
     return "NO"
