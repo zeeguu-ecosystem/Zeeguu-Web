@@ -11,8 +11,8 @@ account = flask.Blueprint("account", __name__)
 
 @account.before_request
 def setup():
-    if "user" in flask.session:
-        flask.g.user = User.query.get(flask.session["user"])
+    if "user_id" in flask.session:
+        flask.g.user = User.query.get(flask.session["user_id"])
     else:
         flask.g.user = None
 
@@ -27,8 +27,8 @@ def login_first(fun):
     """
     @wraps(fun)
     def decorated_function(*args, **kwargs):
-        if "user" in flask.session:
-            flask.g.user = User.query.get(flask.session["user"])
+        if "user_id" in flask.session:
+            flask.g.user = User.query.get(flask.session["user_id"])
         else:
             flask.g.user = None
 
@@ -42,7 +42,6 @@ def login_first(fun):
 
 
 from . import bookmarks
-from . import creation
 from . import home
 from . import login
 from . import reading

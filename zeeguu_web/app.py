@@ -8,6 +8,8 @@ from .cross_domain_app import CrossDomainApp
 from zeeguu.util.configuration import load_configuration_or_abort
 
 
+
+
 # *** Starting the App *** #
 app = CrossDomainApp(__name__)
 
@@ -32,7 +34,6 @@ app.register_blueprint(account)
 from .exercises import exercises
 app.register_blueprint(exercises)
 
-from zeeguu_exercises import ex_blueprint
 app.register_blueprint(ex_blueprint, url_prefix="/practice") 
 
 from umr import umrblue
@@ -61,4 +62,5 @@ def instance_path(app):
 
 instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app))
 app.register_blueprint(instance)
+
 
