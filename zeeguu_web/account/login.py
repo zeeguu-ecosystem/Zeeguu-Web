@@ -12,9 +12,8 @@ import sqlalchemy.exc
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
-KEY_API_SESSION_ID = "api_session_id"
 
-SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME, KEY_API_SESSION_ID]
+SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME]
 
 
 @account.route("/login", methods=("GET", "POST"))
@@ -38,8 +37,11 @@ def login():
             if user is None:
                 flask.flash("Invalid email and password combination")
             else:
-                _set_session_data(user)
-                return make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
+
+                _set_session_data(user, response)
+
+                return response
 
     return flask.render_template("login.html")
 
@@ -81,9 +83,10 @@ def create_account():
 
             user = User.authorize(email, password)
 
-            _set_session_data(user)
+            response = make_response(flask.redirect(flask.url_for("account.my_account")))
+            _set_session_data(user, response)
 
-            return flask.redirect(flask.url_for("account.my_account"))
+            return response
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
@@ -115,7 +118,7 @@ def logged_in():
     return "NO"
 
 
-def _set_session_data(user: User):
+def _set_session_data(user: User, response):
     """
     
         extracted to its own function, since it's duplicated between login and create_account 
@@ -128,11 +131,10 @@ def _set_session_data(user: User):
 
     flask.session[KEY_USER_ID] = user.id
     flask.session[KEY_USER_NAME] = user.name
-    flask.session[KEY_API_SESSION_ID] = api_session.id
 
     flask.session.permanent = True
 
-
+    response.set_cookie('sessionID', str(api_session.id), max_age=31536000)
 
 
 # @account.route("/login_with_session", methods=["POST"])
