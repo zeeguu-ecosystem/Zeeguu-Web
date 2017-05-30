@@ -126,7 +126,7 @@ def _set_session_data(user: User, response):
     """
 
     api_session = Session.find_for_user(user)
-    zeeguu.db.session.add(api_session.id)
+    zeeguu.db.session.add(api_session)
     zeeguu.db.session.commit()
 
     flask.session[KEY_USER_ID] = user.id
