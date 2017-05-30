@@ -34,6 +34,9 @@ app.register_blueprint(account)
 from .exercises import exercises
 app.register_blueprint(exercises)
 
+from zeeguu_exercises import ex_blueprint
+app.register_blueprint(ex_blueprint, url_prefix="/practice")
+
 from umr import umrblue
 app.register_blueprint(umrblue, url_prefix="/read")
 
