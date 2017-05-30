@@ -8,6 +8,8 @@ from .cross_domain_app import CrossDomainApp
 from zeeguu.util.configuration import load_configuration_or_abort
 
 
+
+
 # *** Starting the App *** #
 app = CrossDomainApp(__name__)
 
@@ -58,3 +60,9 @@ def instance_path(app):
 instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app))
 app.register_blueprint(instance)
 
+
+
+import dashboard
+dashboard.config.from_file('/Users/mircea/my/projects/zeeguu/server/http/web/dash_config.cfg')
+dashboard.bind(app=app)
+print ("after dash board config")

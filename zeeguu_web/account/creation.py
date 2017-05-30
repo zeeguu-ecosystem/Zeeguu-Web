@@ -51,7 +51,10 @@ def create_account():
             zeeguu.db.session.add(User(email, name, password, language, native_language))
             zeeguu.db.session.commit()
             user = User.authorize(email, password)
-            flask.session["user"] = user.id
+            flask.session["user_id"] = user.id
+            flask.session["name"] = user.name
+            flask.session.permanent = True
+
             return flask.redirect(flask.url_for("account.my_account"))
 
         except ValueError:
