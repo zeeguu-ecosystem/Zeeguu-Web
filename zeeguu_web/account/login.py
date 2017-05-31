@@ -83,7 +83,7 @@ def create_account():
 
             user = User.authorize(email, password)
 
-            response = make_response(flask.redirect(flask.url_for("account.my_account")))
+            response = make_response(flask.redirect(flask.url_for("account.whatnext")))
             _set_session_data(user, response)
 
             return response
