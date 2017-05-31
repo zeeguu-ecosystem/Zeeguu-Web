@@ -51,7 +51,7 @@ def create_account():
 
     # A cool way of passing the arguments to the flask template
     template_arguments = dict (
-         languages= Language.all(),
+         languages= Language.available_languages(),
          native_languages = Language.native_languages(),
          default_learned= Language.default_learned()
     )
