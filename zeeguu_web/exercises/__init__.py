@@ -21,8 +21,8 @@ exercises = flask.Blueprint("exercises", __name__)
 
 @exercises.before_request
 def setup():
-    if "user" in flask.session:
-        flask.g.user = User.query.get(flask.session["user"])
+    if "user_id" in flask.session:
+        flask.g.user = User.query.get(flask.session["user_id"])
     else:
         flask.g.user = None
 
@@ -38,8 +38,8 @@ def login_first(fun):
 
     @wraps(fun)
     def decorated_function(*args, **kwargs):
-        if "user" in flask.session:
-            flask.g.user = User.query.get(flask.session["user"])
+        if "user_id" in flask.session:
+            flask.g.user = User.query.get(flask.session["user_id"])
         else:
             flask.g.user = None
 
@@ -52,4 +52,4 @@ def login_first(fun):
 
     return decorated_function
 
-import endpoints
+from . import endpoints

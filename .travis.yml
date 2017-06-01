@@ -4,11 +4,12 @@ services:
 before_install:
   - mysql -e "create database IF NOT EXISTS zeeguu_test;" -uroot
   - mysql -e "grant all on zeeguu_test.* to 'zeeguu_test'@'localhost' identified by 'zeeguu_test';" -uroot
-
+  - pip3 install jieba3k
+  - pip install coveralls
 
 language: python
 python:
-  - "2.7"
+  - "3.6"
 
 install: "python setup.py develop"
 
