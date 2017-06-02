@@ -1,0 +1,48 @@
+{% extends "layout2.html" %}
+
+{% block body %}
+
+    <div class="container welcome-message">
+
+            <!--<h1>Welcome, {{ user.name }}! </h1>-->
+            <!--<p>-->
+                <!--What do you want to do?-->
+            <!--</p>-->
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <a href="{{ url_for('umrblue.articles') }}">
+                        <h1 id="text-below-eleph-booklover2">Read Articles</h1>
+                        <img id="eleph-booklover2" src="../static/img/eleph-reader-lover.png" />
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="{{ url_for('ex_blueprint.index') }}">
+                        <h1 id="text-below-eleph-redpants2">Practice Vocabulary</h1>
+                        <img id="eleph-redpants2" src="../static/img/eleph-sport-dessert.png"/>
+                    </a>
+                </div>
+
+                <div class="col-md-4 ">
+                    <a href="{{ url_for('account.bookmarks') }}">
+                        <h1 id="text-below-eleph-carrier2">See Your Words </h1>
+                        <img id="eleph-carrier2" src="../static/img/eleph-carrier-words.png">
+                    </a>
+                </div>
+
+            </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

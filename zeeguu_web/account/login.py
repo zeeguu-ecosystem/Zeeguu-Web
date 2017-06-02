@@ -37,7 +37,7 @@ def login():
             if user is None:
                 flask.flash("Invalid email and password combination")
             else:
-                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.bookmarks")))
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
                 _set_session_data(user, response)
 
@@ -51,7 +51,7 @@ def create_account():
 
     # A cool way of passing the arguments to the flask template
     template_arguments = dict (
-         languages= Language.all(),
+         languages= Language.available_languages(),
          native_languages = Language.native_languages(),
          default_learned= Language.default_learned()
     )
@@ -83,7 +83,7 @@ def create_account():
 
             user = User.authorize(email, password)
 
-            response = make_response(flask.redirect(flask.url_for("account.my_account")))
+            response = make_response(flask.redirect(flask.url_for("account.whatnext")))
             _set_session_data(user, response)
 
             return response

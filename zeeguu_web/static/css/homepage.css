@@ -113,7 +113,8 @@
 
 #eleph-booklover {
   width: 260px;
-  margin-left: 20px; }
+  margin-left: 20px;
+  margin-top: 10px; }
 
 #eleph-carrier {
   width: 260px;
@@ -122,6 +123,39 @@
 #eleph-redpants {
   width: 340px;
   padding-bottom: 20px; }
+
+#eleph-booklover2 {
+  width: 230px;
+  padding-top: 20px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  margin-bottom: 100px; }
+
+#eleph-carrier2 {
+  width: 220px;
+  padding-top: 20px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  margin-bottom: 100px; }
+
+#eleph-redpants2 {
+  padding-top: 30px;
+  width: 280px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  margin-bottom: 100px; }
+
+#text-below-eleph-booklover2 {
+  text-align: center; }
+
+#text-below-eleph-carrier2 {
+  text-align: center; }
+
+#text-below-eleph-redpants2 {
+  text-align: center; }
 
 /* SMALL Devices */
 @media screen and (max-width: 992px) {

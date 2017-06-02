@@ -47,15 +47,7 @@
         <div class="container-fluid">
             <!-- The Menu Options on the Left -->
             <ul class="nav navbar-nav">
-                <!-- The Icon -->
-                {% if tab != "home" %}
-                    <li><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>
-                {% endif %}
-
-                {% if g.user and tab != "install"%}
-                    {{ menu_item ("home", "account.whatnext", "↞ Home") }}
-                {% endif %}
-
+                    <!--<li><a href="{{ url_for('account.my_account') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>-->
             </ul>
 
             <!-- The menu options on the right... -->
