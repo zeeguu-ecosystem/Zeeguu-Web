@@ -4,45 +4,31 @@
 
 {% block body %}
 
-    <div class="col-md-offset-1 col-md-10">
+    <div class="col-md-offset-2 col-md-8">
 
-        <script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
-        {#<activity_graph>  {% include "graphs/activity_graph/activity_graph.html" %}  </activity_graph>#}
+        <!--&lt;!&ndash;<script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>&ndash;&gt;-->
+        <!--&lt;!&ndash;{#<activity_graph>  {% include "graphs/activity_graph/activity_graph.html" %}  </activity_graph>#}&ndash;&gt;-->
 
-        <script type="text/javascript"
-                src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
-                charset="utf-8"></script>
-        <activity_graph></activity_graph>
-        <script type="text/javascript">
-            activity_graph({{ bookmark_counts_by_date|safe }}, "activity_graph");
-        </script>
+        <!--&lt;!&ndash;<script type="text/javascript"&ndash;&gt;-->
+                <!--&lt;!&ndash;src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"&ndash;&gt;-->
+                <!--&lt;!&ndash;charset="utf-8"></script>&ndash;&gt;-->
+        <!--&lt;!&ndash;<activity_graph></activity_graph>&ndash;&gt;-->
+        <!--&lt;!&ndash;<script type="text/javascript">&ndash;&gt;-->
+            <!--&lt;!&ndash;activity_graph({{ bookmark_counts_by_date|safe }}, "activity_graph");&ndash;&gt;-->
+        <!--&lt;!&ndash;</script>&ndash;&gt;-->
 
-        <br/><br/><br/>
-        <br/><br/><br/>
+        <!--<br/><br/><br/>-->
+        <!--<br/><br/><br/>-->
         <!--<h3>Words</h3>-->
 
         {% if sorted_dates %}
             <!--<p>{{ g.user.name}}, these are the <b>{{ g.user.all_bookmarks()|length }}</b> words you are currently learning.<br/>-->
             <!--Context and importance are listed when available.</p>-->
 
-            <table class="table table-striped table-no-borders">
-                <tr>
-                    <th>Date</th>
-                    <th></th>
-                    <th>Word/Context</th>
-                    <th>Translation</th>
-                    <th style="text-align: right">Importance</th>
-                    <th style="text-align: right;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
-                </tr>
+        {% for date in sorted_dates %}
+        {{ date.strftime("%A %B %d, %Y") }}
 
-                {% for date in sorted_dates %}
-                    <tr>
-                        <td style="border:0px solid white;background-color:white;">
-                            <small>{{ date.strftime("%A %B %d, %Y") }}</small>
-                        </td>
-                        <td style="border:0px solid white;background-color:white;">
-                        <td style="border:0px solid green;background-color:white;">
-                    </tr>
+            <table class="table table-striped table-no-borders">
 
                     {% for url in urls_by_date.get(date) %}
                         <tr>
@@ -80,10 +66,12 @@
                                         </div>
 
                                     </td>
-                                    <td class="word-details-td">
+                                    <td colspan="2" class="word-details-td">
                                         <div class="impression">
 
-                                            {{ bookmark.origin.word }}
+                                            <b>{{ bookmark.origin.word }}</b>
+                                            -
+                                            <b>{{ bookmark.translation.word }}</b>
                                             <br/>
                                             <small>{{ bookmark.text.shorten_word_context(bookmark.origin.word, 42) }}
                                                 <br/>
@@ -96,7 +84,7 @@
                                             </small>
                                         </div>
                                     </td>
-                                    <td class="translation">{{ bookmark.translation.word }}</td>
+
                                     <td style="text-align: right">
                                         <small>{{ bookmark.origin.importance_level_string() }}</small>
                                     </td>
