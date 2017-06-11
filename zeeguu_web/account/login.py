@@ -78,7 +78,7 @@ def create_account():
     else:
         try:
 
-            zeeguu.db.session.add(User(email, name, password, language, native_language))
+            zeeguu.db.session.add(User(email, name, password, language, native_language, code))
             zeeguu.db.session.commit()
 
             user = User.authorize(email, password)
