@@ -47,17 +47,17 @@
                                     <td class="word-action-buttons-td">
                                         <div class="word-action-buttons">
 
-                                            <div id="star{{ bookmark.origin.id }}">
-                                                {% if bookmark.origin in g.user.starred_words %}
+                                            <div id="star{{ bookmark.id }}">
+                                                {% if bookmark.starred %}
 
                                                     <a href="javascript:void(0);"
-                                                       onclick="unstarBookmark({{ bookmark.origin.id }},{{ g.user.id }})">
+                                                       onclick="unstarBookmark({{ bookmark.id }},{{ g.user.id }})">
                                                         <i style="color:gold" class="icon-star"></i>
                                                     </a>
 
                                                 {% else %}
                                                     <a href="javascript:void(0);"
-                                                       onclick="starBookmark({{ bookmark.origin.id }},{{ g.user.id }})">
+                                                       onclick="starBookmark({{ bookmark.id }},{{ g.user.id }})">
                                                         <i style="color:lightgray" class="icon-star-empty"></i>
                                                     </a>
                                                 {% endif %}

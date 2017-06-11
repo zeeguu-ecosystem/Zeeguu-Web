@@ -58,22 +58,21 @@ def delete(bookmark_id):
     return "OK"
 
 
-@account.route("/starred_word/<word_id>/<user_id>", methods=("POST",))
+@account.route("/starred_bookmark/<bookmark_id>/<user_id>", methods=("POST",))
 @login_first
-def starred_word(word_id,user_id):
-    word = UserWord.query.get(word_id)
-    user = User.find_by_id(user_id)
-    user.star(word)
+def starred_word(bookmark_id, user_id):
+    bookmark = Bookmark.query.get(bookmark_id)
+    bookmark.starred = True
+    zeeguu.db.session.add(bookmark)
     zeeguu.db.session.commit()
     return "OK"
 
 
-@account.route("/unstarred_word/<word_id>/<user_id>", methods=("POST",))
+@account.route("/unstarred_bookmark/<bookmark_id>/<user_id>", methods=("POST",))
 @login_first
-def unstarred_word(word_id,user_id):
-    word = UserWord.query.get(word_id)
-    user = User.find_by_id(user_id)
-    user.starred_words.remove(word)
+def unstarred_word(bookmark_id, user_id):
+    bookmark = Bookmark.query.get(bookmark_id)
+    bookmark.starred = False
+    zeeguu.db.session.add(bookmark)
     zeeguu.db.session.commit()
-    print(str(word) + " is now *unstarred* for user " + user.name)
     return "OK"
