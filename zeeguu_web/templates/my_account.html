@@ -16,6 +16,13 @@
 
             <hr/>
 
+            <zeeguu_graph id="activity_graph"></zeeguu_graph>
+            <br/><br/><br/>
+
+            <script type="text/javascript">
+                activity_graph({{ bookmark_counts_by_date|safe }}, "#activity_graph", 12);
+            </script>
+
             <zeeguu_graph id="line_graph" autoresize="true"></zeeguu_graph>
 
             <script>

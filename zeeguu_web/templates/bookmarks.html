@@ -4,45 +4,18 @@
 
 {% block body %}
 
-    <div class="col-md-offset-1 col-md-10">
+    <div class="col-md-offset-2 col-md-8">
 
-        <script src="{{ url_for('static', filename='../static/js/d3.v3.min.js') }}" charset="utf-8"></script>
-        {#<activity_graph>  {% include "graphs/activity_graph/activity_graph.html" %}  </activity_graph>#}
-
-        <script type="text/javascript"
-                src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
-                charset="utf-8"></script>
-        <zeeguu_graph id="activity_graph"></zeeguu_graph>
-        <script type="text/javascript">
-            activity_graph({{ bookmark_counts_by_date|safe }}, "#activity_graph");
-        </script>
-
-        <br/><br/><br/>
-        <br/><br/><br/>
         <!--<h3>Words</h3>-->
 
         {% if sorted_dates %}
             <!--<p>{{ g.user.name}}, these are the <b>{{ g.user.all_bookmarks()|length }}</b> words you are currently learning.<br/>-->
             <!--Context and importance are listed when available.</p>-->
 
-            <table class="table table-striped table-no-borders">
-                <tr>
-                    <th>Date</th>
-                    <th></th>
-                    <th>Word/Context</th>
-                    <th>Translation</th>
-                    <th style="text-align: right">Importance</th>
-                    <th style="text-align: right;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </th>
-                </tr>
+        {% for date in sorted_dates %}
+        {{ date.strftime("%A %B %d, %Y") }}
 
-                {% for date in sorted_dates %}
-                    <tr>
-                        <td style="border:0px solid white;background-color:white;">
-                            <small>{{ date.strftime("%A %B %d, %Y") }}</small>
-                        </td>
-                        <td style="border:0px solid white;background-color:white;">
-                        <td style="border:0px solid green;background-color:white;">
-                    </tr>
+            <table class="table table-striped table-no-borders">
 
                     {% for url in urls_by_date.get(date) %}
                         <tr>
@@ -61,17 +34,17 @@
                                     <td class="word-action-buttons-td">
                                         <div class="word-action-buttons">
 
-                                            <div id="star{{ bookmark.origin.id }}">
-                                                {% if bookmark.origin in g.user.starred_words %}
+                                            <div id="star{{ bookmark.id }}">
+                                                {% if bookmark.starred %}
 
                                                     <a href="javascript:void(0);"
-                                                       onclick="unstarBookmark({{ bookmark.origin.id }},{{ g.user.id }})">
+                                                       onclick="unstarBookmark({{ bookmark.id }},{{ g.user.id }})">
                                                         <i style="color:gold" class="icon-star"></i>
                                                     </a>
 
                                                 {% else %}
                                                     <a href="javascript:void(0);"
-                                                       onclick="starBookmark({{ bookmark.origin.id }},{{ g.user.id }})">
+                                                       onclick="starBookmark({{ bookmark.id }},{{ g.user.id }})">
                                                         <i style="color:lightgray" class="icon-star-empty"></i>
                                                     </a>
                                                 {% endif %}
@@ -80,10 +53,12 @@
                                         </div>
 
                                     </td>
-                                    <td class="word-details-td">
+                                    <td colspan="2" class="word-details-td">
                                         <div class="impression">
 
-                                            {{ bookmark.origin.word }}
+                                            <b>{{ bookmark.origin.word }}</b>
+                                            -
+                                            <b>{{ bookmark.translation.word }}</b>
                                             <br/>
                                             <small>{{ bookmark.text.shorten_word_context(bookmark.origin.word, 42) }}
                                                 <br/>
@@ -96,7 +71,7 @@
                                             </small>
                                         </div>
                                     </td>
-                                    <td class="translation">{{ bookmark.translations_rendered_as_text() }}</td>
+
                                     <td style="text-align: right">
                                         <small>{{ bookmark.origin.importance_level_string() }}</small>
                                     </td>

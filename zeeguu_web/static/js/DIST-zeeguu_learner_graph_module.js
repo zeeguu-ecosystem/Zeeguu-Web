@@ -1,6 +1,6 @@
 
 /**
-* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 01.05.2017
+* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 09.06.2017
 */
 
 
@@ -20,6 +20,7 @@ function append_css_for_piechart_graph(appendTo){
 
 var cellSize = 20; // cell size
 var width = 60 * cellSize;
+var max_width = 1200;
 var height = 9 * cellSize;
 
 var months_in_year = 12;
@@ -143,7 +144,17 @@ function day_or_days(num) {
     }
 }
 
-function draw_activity_graph(input_data_a, appendTo) {
+function draw_activity_graph(input_data_a, appendTo, months_to_show) {
+
+    if (isNaN(months_to_show)) {
+        var months_to_show = 12;
+    }
+
+    // needed offset for calculating right positions for draw elements
+    var months_offset = 12 - months_to_show;
+    // recalculating width
+    width = months_to_show * 5 * cellSize + 100;
+
 
     input_data = input_data_a;
 
@@ -156,7 +167,7 @@ function draw_activity_graph(input_data_a, appendTo) {
             return "q" + index + "-5";
         }));
 
-    var graph_table_x = (width - cellSize * week_count_in_year) / 2;
+    var graph_table_x = (max_width - cellSize * week_count_in_year) / 2; //edited
     var graph_table_y = height - cellSize * day_count_in_week - 1;
 
     var activity_graph = d3.select(appendTo).selectAll("svg")
@@ -168,16 +179,21 @@ function draw_activity_graph(input_data_a, appendTo) {
         .append("g")
         .attr("transform", "translate(" + graph_table_x + "," + graph_table_y + ")");
 
+    var starting_date = new Date(year-1 , month + months_offset, day + 1);
+    var week_offset = week_number(starting_date);
+
     var day_rectangles = activity_graph.selectAll(".day")
         .data(function (year) {
-            return d3.time.days(new Date(year - 1, month, day + 1), new Date(year, month, day + 1));
+            // time period of squares
+            // new Date(year-1 , month, day + 1)
+            return d3.time.days(starting_date, new Date(year, month, day + 1));
         })
         .enter().append("rect")
         .attr("class", "day")
         .attr("width", cellSize)
         .attr("height", cellSize)
         .attr("x", function (date) {
-            return week_number(date);
+            return week_number(date) - week_offset; // edited
         })
         .attr("y", function (date) {
             return convert_day_of_week_from_sun_to_mon(date) * cellSize;
@@ -193,7 +209,7 @@ function draw_activity_graph(input_data_a, appendTo) {
     // text adding
 
     // adding month names to the graph
-    for (var index = 0; index < months_in_year; index++) {
+    for (var index = 0 + months_offset; index < months_in_year+1; index++) { // edited
         var temp_year = year;
         var temp_month = month;
         var left_offset_of_matrix = 45;
@@ -204,7 +220,7 @@ function draw_activity_graph(input_data_a, appendTo) {
         temp_month = (index + temp_month + 1) % months_in_year; // calculating correct index of the month name in the month_names array
 
         activity_graph.append("text")
-            .attr("transform", "translate(" + (week_number(new Date(temp_year, temp_month, 4)) + left_offset_of_matrix) + ",0)")
+            .attr("transform", "translate(" + (week_number(new Date(temp_year, temp_month, 4)) - week_offset + left_offset_of_matrix) + ",0)") // edited
             .style("text-anchor", "end")
             .attr("dy", "-.25em")
             .text(month_names[temp_month] + " " + temp_year);
@@ -578,9 +594,9 @@ $("head").append('<link href="https://fonts.googleapis.com/css?family=PT+Sans" r
 // initialization function for activity graph
 // input json entry format should be :
 // [{"date": "2016-05-28", "count": "123"}]
-function activity_graph(input_data, appendTo){
+function activity_graph(input_data, appendTo, months_to_show){
     append_css_for_activity_graph(appendTo);
-    draw_activity_graph(input_data, appendTo);
+    draw_activity_graph(input_data, appendTo, months_to_show);
 }
 
 // initialization function for line graph
