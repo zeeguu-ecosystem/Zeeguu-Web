@@ -9,3 +9,4 @@ dist
 .DS_Store
 *.map
 wordinfo.db
+default_web.cfg
