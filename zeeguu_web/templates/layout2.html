@@ -60,7 +60,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url_for('account.my_account') }}">My Account</a></li>
+
+                            {% if is_teacher %}
+                                <li><a href="{{ url_for('account.cohorts') }}">My Students</a></li>
+                            {% endif %}
+
                             <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
+
                         </ul>
                     </li>
                 {% elif tab != "login" and tab != "create_account" %}

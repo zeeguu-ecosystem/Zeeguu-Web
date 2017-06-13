@@ -57,6 +57,11 @@
                     {{ menu_item ("home", "account.whatnext", "↞ Home") }}
                 {% endif %}
 
+                {% if cohorts or students %}
+                    {{ menu_item ("my_groups", "account.cohorts", " My Groups") }}
+                {% endif %}
+
+
             </ul>
 
             <!-- The menu options on the right... -->

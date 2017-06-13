@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% import "bookmark_history.html" as bh %}
+
+{% set tab = "students" %}
+
+{% block body %}
+
+    <div id="container" class="col-md-offset-2 col-md-8">
+
+        <h1>Students in {{ cohort.name }}</h1>
+
+        {% for student in students %}
+            <div class="row">
+
+                <h3>{{ student.name }}</h3>
+
+                {{ bh.bookmark_history(student) }}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
