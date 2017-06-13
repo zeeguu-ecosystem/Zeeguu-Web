@@ -3,11 +3,6 @@ import flask
 from zeeguu.model import UserWord, User, Bookmark, Text
 import zeeguu
 
-@account.route("/whatnext")
-@login_first
-def whatnext():
-    return flask.render_template("whatnext.html", user=flask.g.user)
-
 
 @account.route("/bookmarks")
 @login_first
