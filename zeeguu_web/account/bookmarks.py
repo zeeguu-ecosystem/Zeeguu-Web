@@ -1,13 +1,13 @@
 from . import account, login_first
 import flask
-from zeeguu.model import UserWord, User, Bookmark, Text
+from zeeguu.model import Bookmark, Text
 import zeeguu
 
 
 @account.route("/bookmarks")
 @login_first
 def bookmarks():
-    bookmarks_list,dates = flask.g.user.bookmarks_by_date()
+    bookmarks_list, dates = flask.g.user.bookmarks_by_date()
 
     most_recent_seven_days = dates[0:6]
 
@@ -16,7 +16,7 @@ def bookmarks():
     for date in most_recent_seven_days:
         for bookmark in bookmarks_list[date]:
             urls_by_date.setdefault(date, set()).add(bookmark.text.url)
-            bookmarks_by_url.setdefault(bookmark.text.url,[]).append(bookmark)
+            bookmarks_by_url.setdefault(bookmark.text.url, []).append(bookmark)
 
     bookmark_counts_by_date = flask.g.user.bookmark_counts_by_date()
 
@@ -33,7 +33,6 @@ def bookmarks():
 @account.route("/delete_bookmark/<bookmark_id>", methods=("POST",))
 @login_first
 def delete(bookmark_id):
-
     # Beware, the there is another delete_bookmark in the zeeguu API!!!
     bookmark = Bookmark.query.get(bookmark_id)
     if not bookmark:
