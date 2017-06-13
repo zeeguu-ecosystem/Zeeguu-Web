@@ -4,12 +4,13 @@
     {% set dates, urls_by_date, texts_by_url = user.bookmarks_by_url_by_date() %}
 
     {% for date in dates %}
-
+            <div class="row col-md-offset-0 col-md-10">
+                <b>{{ date.strftime("%A, %d %B %Y") }}</b>
+            </div>
         {% for url in urls_by_date[date] %}
 
             <div class="row col-md-offset-1 col-md-10">
                 <h4><a href="{{ url.as_string() }}">{{ url.title_if_available() }} </a></h4>
-                <b>{{ date.strftime("%A, %d %B %Y") }}</b>
 
                 <table class="table table-striped table-no-borders">
 
@@ -38,7 +39,10 @@
 
                                 {% endfor %}
 
-                                &nbsp;&nbsp;&nbsp;&nbsp; {{ text.content }}
+                                <div style="padding-left: 20px;">
+                                     {{ text.content }}
+                                </div>
+
 
                         </td></tr>
 
