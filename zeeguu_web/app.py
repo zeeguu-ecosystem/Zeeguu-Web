@@ -7,7 +7,9 @@ import flask_sqlalchemy
 from .cross_domain_app import CrossDomainApp
 from zeeguu.util.configuration import load_configuration_or_abort
 
-
+import sys
+if sys.version_info[0] < 3:
+    raise "Must be using Python 3"
 
 
 # *** Starting the App *** #
