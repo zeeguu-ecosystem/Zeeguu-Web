@@ -26,6 +26,7 @@
 <html>
     <head>
         <title>Zeeguu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
@@ -55,6 +56,11 @@
                 {% if g.user and tab != "install"%}
                     {{ menu_item ("home", "account.whatnext", "↞ Home") }}
                 {% endif %}
+
+                {% if cohorts or students %}
+                    {{ menu_item ("my_groups", "account.cohorts", " My Groups") }}
+                {% endif %}
+
 
             </ul>
 

@@ -48,5 +48,6 @@ from . import reading
 from . import reset_pass
 from . import static_pages
 from . import user_stats
+from . import teacher
 
 

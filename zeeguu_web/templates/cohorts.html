@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% set tab = "my_groups" %}
+
+{% block body %}
+
+    <div id="container" class="col-md-offset-2 col-md-8">
+
+        <h1>Student Groups</h1>
+
+        <ul>
+            {% for cohort in cohorts %}
+                <li><a href="{{ url_for('account.students', cohort_id=cohort.id) }}">
+                    {{ cohort.name }}
+                </a></li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+{% endblock %}
