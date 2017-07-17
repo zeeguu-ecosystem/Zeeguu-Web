@@ -1,45 +1,8 @@
-<!------------------------------------>
-<!-- Jinja Macros Used on this Page -->
-<!------------------------------------>
-
-    {% macro menu_item(tab_name, url, text) -%}
-        <li class="{% if tab == tab_name %} active {% endif %}"><a href="{{ url_for(url) }}">{{ text }}</a></li>
-    {%- endmacro %}
-
-    {% macro flash_messages() -%}
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-warning">
-        <button class="close" data-dismiss="alert">×</button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    {%- endmacro %}
-
-<!------------------------------------>
-<!-- Macros Used on this Page       -->
-<!------------------------------------>
+{% from "common_layout.html" import menu_item, flash_messages, header %}
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Zeeguu</title>
-
-        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-
-        {% assets filters="cssmin", output="instance/style.css", "css/bootstrap/bootstrap.css", "css/libs/select2.css", "css/libs/font-awesome.css", "css/special-fonts.css", "css/libs/flippant.css", "css/style.css",  "css/homepage.css", "css/recognize.css", "css/layout.css"-%}
-            <link rel="stylesheet" href="{{ ASSET_URL }}" />
-        {% endassets -%}
-
-        {% assets "js/jquery.js", "js/jquery.validate.js", "js/bootstrap.js", "js/flippant.js", "js/select2.js", "js/sla.js" -%}
-            <script src="{{ ASSET_URL }}"></script>
-        {% endassets -%}
-        <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">
-    </head>
+    {{ header() }}
 
     <body>
 
@@ -47,11 +10,6 @@
 
     <nav class="navbar navbar-default menu-cassette">
         <div class="container-fluid">
-            <!-- The Menu Options on the Left -->
-            <ul class="nav navbar-nav">
-                    <!--<li><a href="{{ url_for('account.my_account') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>-->
-            </ul>
-
             <!-- The menu options on the right... -->
             <ul class="nav navbar-nav navbar-right" >
                 {% if g.user %}
@@ -59,7 +17,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('account.my_account') }}">My Account</a></li>
+                            <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
 
                             {% if is_teacher %}
                                 <li><a href="{{ url_for('account.cohorts') }}">My Students</a></li>
