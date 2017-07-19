@@ -16,22 +16,21 @@
 
             <hr/>
 
-            <zeeguu_graph id="activity_graph"></zeeguu_graph>
+            <zeeguu_graph id="activity_graph" autoresize="true"></zeeguu_graph>
             <br/><br/><br/>
 
             <script type="text/javascript">
-                activity_graph({{ bookmark_counts_by_date|safe }}, "#activity_graph", 12);
+                var activity_graph_input_data = {{ bookmark_counts_by_date|safe }};
+                activity_graph(activity_graph_input_data, "#activity_graph", 12);
+                document.getElementById("activity_graph").setAttribute("input_data", "activity_graph_input_data");
             </script>
 
             <zeeguu_graph id="line_graph" autoresize="true"></zeeguu_graph>
 
             <script>
                 var learner_stats_data = JSON.parse({{ learner_stats_data|safe }});
-                var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-                line_graph(learner_stats_data, "#line_graph", window_width);
-                // save pointer to the input data for resizing purposes
+                line_graph(learner_stats_data, "#line_graph", 12);
                 document.getElementById("line_graph").setAttribute("input_data", "learner_stats_data");
-                document.getElementById("line_graph").setAttribute("months_to_show", 12);
             </script>
 
             <h3>Vocabulary Statistics</h3>

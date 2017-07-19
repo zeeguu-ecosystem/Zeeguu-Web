@@ -24,9 +24,17 @@ function resize() {
             var element_id = zeeguu_graph.getAttribute("id");
             // line graph resizing (1200 px for full year , 100 px per month)
             var months_to_show = zeeguu_graph.getAttribute("months_to_show");
-            months_to_show = Math.min(Math.min(12, Math.round(width / 100)), months_to_show);
             var input_data = zeeguu_graph.getAttribute("input_data");
-            redraw_line_graph(months_to_show, element_id, window[input_data]);
+            var type = zeeguu_graph.getAttribute("type");
+            if (type == "line") {
+                months_to_show = Math.min(12, Math.round(width / 100));
+                redraw_line_graph(months_to_show, element_id, window[input_data]);
+            } else if (type == "activity"){
+                months_to_show = Math.min(12, Math.round((width-55) / 100));
+                redraw_activity_graph(months_to_show, element_id, window[input_data]);
+            } else if (type == "line_month"){
+                redraw_line_graph(months_to_show, element_id, window[input_data]);
+            }
         }
     }
     // end of line graph resizing
@@ -35,8 +43,15 @@ function resize() {
 // function for redrawing line graph
 // element_id is the ID of the zeeguu_graph tag
 function redraw_line_graph(months_to_show, element_id, input_data){
-    var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     d3.selectAll("#" + element_id + ' > svg').remove();
-    line_graph(input_data, "#" + element_id, width, months_to_show);
+    line_graph(input_data, "#" + element_id, months_to_show);
 }
+
+// function for redrawing line graph
+// element_id is the ID of the zeeguu_graph tag
+function redraw_activity_graph(months_to_show, element_id, input_data){
+    d3.selectAll("#" + element_id).selectAll("*").remove();
+    activity_graph(input_data, "#" + element_id, months_to_show);
+}
+
 

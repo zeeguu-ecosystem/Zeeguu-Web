@@ -1,6 +1,6 @@
 
 /**
-* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 09.06.2017
+* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 19.07.2017
 */
 
 
@@ -150,10 +150,22 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
         var months_to_show = 12;
     }
 
+    // get client window size (-55px is reserved space for names of week days on left side)
+    var win_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 55;
+
+    // check months limits
+    months_to_show = Math.max(3, months_to_show);
+    months_to_show = Math.min(months_to_show, Math.round(win_width / 100));
+
+    // add attribute to the graph of how many months to show for resize functionality
+    d3.select(appendTo).attr("months_to_show", months_to_show);
+    // add attribute type to the graph for resize functionality
+    d3.select(appendTo).attr("type", "activity");
+
     // needed offset for calculating right positions for draw elements
     var months_offset = 12 - months_to_show;
-    // recalculating width
-    width = months_to_show * 5 * cellSize + 100;
+    // recalculating width + 55px offset for error
+    width = months_to_show * 5 * cellSize + 55;
 
 
     input_data = input_data_a;
@@ -209,7 +221,7 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
     // text adding
 
     // adding month names to the graph
-    for (var index = 0 + months_offset; index < months_in_year+1; index++) { // edited
+    for (var index = 0 + months_offset; index < months_in_year; index++) { // edited
         var temp_year = year;
         var temp_month = month;
         var left_offset_of_matrix = 45;
@@ -262,7 +274,7 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
     input_data.sort(compare_dates_strings); // sort array based on the dates
 
     var html = "<br/><br/><br/>";
-    html += '<div class="row" style="width: 850px;height: 80px; padding: 0px 50px;">';
+    html += '<div class="row" style="height: 80px; padding: 0px 50px;">';
     html += '<div class="col-xs-4 col-md-4">';
     html += "<h4>Translations in this period</h4> <h3>" + total_bookmarks_per_displayed_period() + " Total" + "</h3>";
     html += "</div>";
@@ -279,11 +291,14 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
 
     html += "</div>";
 
-    $(html).appendTo( document.getElementsByTagName(appendTo)[0] );
+    $(html).appendTo( document.getElementById(appendTo.substring(1)) );
 
 }
 
-function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
+function draw_line_graph(input_data, appendTo, months_to_show) {
+
+    // get size of th client window width
+    var win_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     // fetching learner_stats_data from the server and parsing(nesting) it for d3js library
     var input_data_nested = d3.nest()
@@ -297,11 +312,7 @@ function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
     // setting up graph and its parameters
     // graph's width adjusts based on the client window size
     // max graph width is 1200px and min is 500px
-    if (!isNaN(win_width)) {
-        var WIDTH = Math.max(500 ,Math.min(1200, win_width));
-    }else{
-        var WIDTH = 1200;
-    }
+    var WIDTH = Math.max(500 ,Math.min(1200, win_width));
     var HEIGHT = 500;
 
     // how many months to show
@@ -312,14 +323,24 @@ function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
     var extraHeight = 0;
     // check if 1 month was requested
     if (months_to_show != 1) {
-        months_to_show = Math.max(5, months_to_show);
+        // check months limits
+        months_to_show = Math.min(months_to_show, Math.round(win_width / 100));
+        months_to_show = Math.max(5, Math.min(12,months_to_show));
+
         // slice array and take only part we need based on how many months to show
         input_data_nested.forEach(function (element) {
             element.values = element.values.slice(-months_to_show - 1, element.values.length);
         });
+        // add attribute type to the graph for resize functionality
+        d3.select(appendTo).attr("type", "line");
     }else{
         extraHeight = 55; // added extraHeight for better displaying date names for month
+        // add attribute type to the graph for resize functionality
+        d3.select(appendTo).attr("type", "line_month");
     }
+
+    // add attribute to the graph of how many months to show for resize functionality
+    d3.select(appendTo).attr("months_to_show", months_to_show);
 
 
     var line_graph = d3.select(appendTo)
