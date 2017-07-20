@@ -1,11 +1,11 @@
 
 /**
-* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 01.04.2017
+* Created by A.Lukjanenkovs on 21.06.2016. This DIST version generated on 19.07.2017
 */
 
 
 function append_css_for_activity_graph(appendTo){
-    $(appendTo).append('<style> body {    font: 10px sans-serif;    shape-rendering: crispEdges;}.wday {    box-sizing: border-box;    display: block;    text-anchor: middle;    font: 11px sans-serif;    padding: 2px 0px 4px;}.day {    fill: #eeeeee;    stroke: #ffffff;}.month {    fill: none;    stroke: #A6A6A6;    stroke-width: 1px;}/* 1 - 9 */.RdYlGn .q0-5 {    fill: #d6e685}/* 10 - 19 */.RdYlGn .q1-5 {    fill: #8cc665}/* 20 - 29 */.RdYlGn .q2-5 {    fill: #44a340}/* 30 - 39 */.RdYlGn .q3-5 {    fill: #1e6823}/* 40+ */.RdYlGn .q4-5 {    fill: #304030}/*stylesheet style.css?e51a6469*/a {    background-color: transparent;}a:active, a:hover {    outline: 0px;}small {    font-size: 80%;}svg:not(:root) {    overflow: hidden;}* {    box-sizing: border-box;}h3, h4 {    font-family: sans-serif;    font-weight: 500;    line-height: 20px;    color: #4A4A4A;}h3 {    margin-top: 20px;    margin-bottom: 10px;}h4 {    margin-top: 10px;    margin-bottom: 10px;}h3 {    font-size: 24px;}h4 {    font-size: 18px;}.row {    margin-right: -15px;    margin-left: -15px;}.col-xs-4, .col-md-4, .col-xs-6, .col-md-10 {    position: relative;    min-height: 1px;    padding-right: 15px;    padding-left: 15px;}.col-xs-4, .col-xs-6 {    float: left;}.col-xs-6 {    width: 50%;}.col-xs-4 {    width: 33.3333%;} </style>');
+    $(appendTo).append('<style> body {    font: 10px sans-serif;    shape-rendering: crispEdges;}.wday {    box-sizing: border-box;    display: block;    text-anchor: middle;    font: 11px sans-serif;    padding: 2px 0px 4px;}.day {    fill: #dddddd;    stroke: #ffffff;}.month {    fill: none;    stroke: #A6A6A6;    stroke-width: 1px;}/* 1 - 9 */.RdYlGn .q0-5 {    fill: #d6e685}/* 10 - 19 */.RdYlGn .q1-5 {    fill: #8cc665}/* 20 - 29 */.RdYlGn .q2-5 {    fill: #44a340}/* 30 - 39 */.RdYlGn .q3-5 {    fill: #1e6823}/* 40+ */.RdYlGn .q4-5 {    fill: #304030}/*stylesheet style.css?e51a6469*/a {    background-color: transparent;}a:active, a:hover {    outline: 0px;}small {    font-size: 80%;}svg:not(:root) {    overflow: hidden;}* {    box-sizing: border-box;}h3, h4 {    font-family: sans-serif;    font-weight: 500;    line-height: 20px;    color: #4A4A4A;}h3 {    margin-top: 20px;    margin-bottom: 10px;}h4 {    margin-top: 10px;    margin-bottom: 10px;}h3 {    font-size: 24px;}h4 {    font-size: 18px;}.row {    margin-right: -15px;    margin-left: -15px;}.col-xs-4, .col-md-4, .col-xs-6, .col-md-10 {    position: relative;    min-height: 1px;    padding-right: 15px;    padding-left: 15px;}.col-xs-4, .col-xs-6 {    float: left;}.col-xs-6 {    width: 50%;}.col-xs-4 {    width: 33.3333%;} </style>');
 }
 
 function append_css_for_line_graph(appendTo){
@@ -20,6 +20,7 @@ function append_css_for_piechart_graph(appendTo){
 
 var cellSize = 20; // cell size
 var width = 60 * cellSize;
+var max_width = 1200;
 var height = 9 * cellSize;
 
 var months_in_year = 12;
@@ -143,7 +144,29 @@ function day_or_days(num) {
     }
 }
 
-function draw_activity_graph(input_data_a, appendTo) {
+function draw_activity_graph(input_data_a, appendTo, months_to_show) {
+
+    if (isNaN(months_to_show)) {
+        var months_to_show = 12;
+    }
+
+    // get client window size (-55px is reserved space for names of week days on left side)
+    var win_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) - 55;
+
+    // check months limits
+    months_to_show = Math.max(3, months_to_show);
+    months_to_show = Math.min(months_to_show, Math.round(win_width / 100));
+
+    // add attribute to the graph of how many months to show for resize functionality
+    d3.select(appendTo).attr("months_to_show", months_to_show);
+    // add attribute type to the graph for resize functionality
+    d3.select(appendTo).attr("type", "activity");
+
+    // needed offset for calculating right positions for draw elements
+    var months_offset = 12 - months_to_show;
+    // recalculating width + 55px offset for error
+    width = months_to_show * 5 * cellSize + 55;
+
 
     input_data = input_data_a;
 
@@ -156,7 +179,7 @@ function draw_activity_graph(input_data_a, appendTo) {
             return "q" + index + "-5";
         }));
 
-    var graph_table_x = (width - cellSize * week_count_in_year) / 2;
+    var graph_table_x = (max_width - cellSize * week_count_in_year) / 2; //edited
     var graph_table_y = height - cellSize * day_count_in_week - 1;
 
     var activity_graph = d3.select(appendTo).selectAll("svg")
@@ -168,16 +191,21 @@ function draw_activity_graph(input_data_a, appendTo) {
         .append("g")
         .attr("transform", "translate(" + graph_table_x + "," + graph_table_y + ")");
 
+    var starting_date = new Date(year-1 , month + months_offset, day + 1);
+    var week_offset = week_number(starting_date);
+
     var day_rectangles = activity_graph.selectAll(".day")
         .data(function (year) {
-            return d3.time.days(new Date(year - 1, month, day + 1), new Date(year, month, day + 1));
+            // time period of squares
+            // new Date(year-1 , month, day + 1)
+            return d3.time.days(starting_date, new Date(year, month, day + 1));
         })
         .enter().append("rect")
         .attr("class", "day")
         .attr("width", cellSize)
         .attr("height", cellSize)
         .attr("x", function (date) {
-            return week_number(date);
+            return week_number(date) - week_offset; // edited
         })
         .attr("y", function (date) {
             return convert_day_of_week_from_sun_to_mon(date) * cellSize;
@@ -193,7 +221,7 @@ function draw_activity_graph(input_data_a, appendTo) {
     // text adding
 
     // adding month names to the graph
-    for (var index = 0; index < months_in_year; index++) {
+    for (var index = 0 + months_offset; index < months_in_year; index++) { // edited
         var temp_year = year;
         var temp_month = month;
         var left_offset_of_matrix = 45;
@@ -204,7 +232,7 @@ function draw_activity_graph(input_data_a, appendTo) {
         temp_month = (index + temp_month + 1) % months_in_year; // calculating correct index of the month name in the month_names array
 
         activity_graph.append("text")
-            .attr("transform", "translate(" + (week_number(new Date(temp_year, temp_month, 4)) + left_offset_of_matrix) + ",0)")
+            .attr("transform", "translate(" + (week_number(new Date(temp_year, temp_month, 4)) - week_offset + left_offset_of_matrix) + ",0)") // edited
             .style("text-anchor", "end")
             .attr("dy", "-.25em")
             .text(month_names[temp_month] + " " + temp_year);
@@ -246,7 +274,7 @@ function draw_activity_graph(input_data_a, appendTo) {
     input_data.sort(compare_dates_strings); // sort array based on the dates
 
     var html = "<br/><br/><br/>";
-    html += '<div class="row" style="width: 850px;height: 80px; padding: 0px 50px;">';
+    html += '<div class="row" style="height: 80px; padding: 0px 50px;">';
     html += '<div class="col-xs-4 col-md-4">';
     html += "<h4>Translations in this period</h4> <h3>" + total_bookmarks_per_displayed_period() + " Total" + "</h3>";
     html += "</div>";
@@ -263,11 +291,14 @@ function draw_activity_graph(input_data_a, appendTo) {
 
     html += "</div>";
 
-    $(html).appendTo( document.getElementsByTagName(appendTo)[0] );
+    $(html).appendTo( document.getElementById(appendTo.substring(1)) );
 
 }
 
-function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
+function draw_line_graph(input_data, appendTo, months_to_show) {
+
+    // get size of th client window width
+    var win_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     // fetching learner_stats_data from the server and parsing(nesting) it for d3js library
     var input_data_nested = d3.nest()
@@ -281,11 +312,7 @@ function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
     // setting up graph and its parameters
     // graph's width adjusts based on the client window size
     // max graph width is 1200px and min is 500px
-    if (!isNaN(win_width)) {
-        var WIDTH = Math.max(500 ,Math.min(1200, win_width));
-    }else{
-        var WIDTH = 1200;
-    }
+    var WIDTH = Math.max(500 ,Math.min(1200, win_width));
     var HEIGHT = 500;
 
     // how many months to show
@@ -296,14 +323,24 @@ function draw_line_graph(input_data, appendTo, win_width, months_to_show) {
     var extraHeight = 0;
     // check if 1 month was requested
     if (months_to_show != 1) {
-        months_to_show = Math.max(5, months_to_show);
+        // check months limits
+        months_to_show = Math.min(months_to_show, Math.round(win_width / 100));
+        months_to_show = Math.max(5, Math.min(12,months_to_show));
+
         // slice array and take only part we need based on how many months to show
         input_data_nested.forEach(function (element) {
             element.values = element.values.slice(-months_to_show - 1, element.values.length);
         });
+        // add attribute type to the graph for resize functionality
+        d3.select(appendTo).attr("type", "line");
     }else{
         extraHeight = 55; // added extraHeight for better displaying date names for month
+        // add attribute type to the graph for resize functionality
+        d3.select(appendTo).attr("type", "line_month");
     }
+
+    // add attribute to the graph of how many months to show for resize functionality
+    d3.select(appendTo).attr("months_to_show", months_to_show);
 
 
     var line_graph = d3.select(appendTo)
@@ -578,9 +615,9 @@ $("head").append('<link href="https://fonts.googleapis.com/css?family=PT+Sans" r
 // initialization function for activity graph
 // input json entry format should be :
 // [{"date": "2016-05-28", "count": "123"}]
-function activity_graph(input_data, appendTo){
+function activity_graph(input_data, appendTo, months_to_show){
     append_css_for_activity_graph(appendTo);
-    draw_activity_graph(input_data, appendTo);
+    draw_activity_graph(input_data, appendTo, months_to_show);
 }
 
 // initialization function for line graph

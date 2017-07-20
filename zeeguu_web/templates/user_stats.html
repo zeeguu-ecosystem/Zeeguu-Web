@@ -11,14 +11,26 @@
             <script type="text/javascript"
                     src="{{ url_for('static', filename='../static/js/DIST-zeeguu_learner_graph_module.js') }}"
                     charset="utf-8"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='../static/js/auto_resize_feature.js') }}"
+                    charset="utf-8"></script>
 
             <hr/>
 
-            <line_graph></line_graph>
+            <zeeguu_graph id="activity_graph" autoresize="true"></zeeguu_graph>
+            <br/><br/><br/>
+
+            <script type="text/javascript">
+                var activity_graph_input_data = {{ bookmark_counts_by_date|safe }};
+                activity_graph(activity_graph_input_data, "#activity_graph", 12);
+                document.getElementById("activity_graph").setAttribute("input_data", "activity_graph_input_data");
+            </script>
+
+            <zeeguu_graph id="line_graph" autoresize="true"></zeeguu_graph>
 
             <script>
                 var learner_stats_data = JSON.parse({{ learner_stats_data|safe }});
-                line_graph(learner_stats_data, "line_graph");
+                line_graph(learner_stats_data, "#line_graph", 12);
+                document.getElementById("line_graph").setAttribute("input_data", "learner_stats_data");
             </script>
 
             <h3>Vocabulary Statistics</h3>
