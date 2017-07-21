@@ -617,15 +617,17 @@ $("head").append('<link href="https://fonts.googleapis.com/css?family=PT+Sans" r
 // [{"date": "2016-05-28", "count": "123"}]
 function activity_graph(input_data, appendTo, months_to_show){
     append_css_for_activity_graph(appendTo);
-    draw_activity_graph(input_data, appendTo, months_to_show);
+    d3.select(appendTo).attr("input_data", input_data);     // save pointer to the input data for resizing purposes
+    draw_activity_graph(window[input_data], appendTo, months_to_show);
 }
 
 // initialization function for line graph
 // input json entry format should be :
 // [{"name": "Example", "amount": "123", "date": "Jan 2016"}]
-function line_graph(input_data, appendTo, width, months_to_show){
+function line_graph(input_data, appendTo, months_to_show){
     append_css_for_line_graph(appendTo);
-    draw_line_graph(input_data, appendTo, width, months_to_show);
+    d3.select(appendTo).attr("input_data", input_data);     // save pointer to the input data for resizing purposes
+    draw_line_graph(window[input_data], appendTo, width, months_to_show);
 }
 
 // initialization function for piechart graph
