@@ -1,4 +1,4 @@
-# Zeeguu-Web [![Build Status](https://travis-ci.org/mircealungu/Zeeguu-Web.svg?branch=master)](https://travis-ci.org/mircealungu/Zeeguu-Web)
+# Zeeguu-Web [![Build Status](https://travis-ci.org/zeeguu-ecosystem/Zeeguu-Web.svg?branch=master)](https://travis-ci.org/zeeguu-ecosystem/Zeeguu-Web)
 
 Basic Web Client for the Zeeguu Platform
 
