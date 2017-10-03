@@ -11,3 +11,4 @@ dist
 wordinfo.db
 default_web.cfg
 node_modules*
+.editorconfig
