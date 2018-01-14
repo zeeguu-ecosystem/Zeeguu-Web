@@ -15,15 +15,15 @@
             <ul class="nav navbar-nav">
                 <!-- The Icon -->
                 {% if tab != "home" %}
-                    <li><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo" src="../static/img/elephlogo-alone.png" alt="ZeeGuu" /></a></li>
+                    <li><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo" src="../static/img/white-house-on-gray.jpg" alt="Home" /></a></li>
                 {% endif %}
 
                 {% if g.user and tab != "install"%}
-                    {{ menu_item ("home", "account.whatnext", "↞ Home") }}
+{#                    {{ menu_item ("home",    "account.whatnext", "↞ Home") }}#}
                 {% endif %}
 
-                {% if cohorts or students %}
-                    {{ menu_item ("my_groups", "account.cohorts", " My Groups") }}
+                {% if students %}
+                    {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
                 {% endif %}
 
 
