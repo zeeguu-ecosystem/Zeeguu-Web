@@ -44,7 +44,7 @@ def delete(bookmark_id):
     zeeguu.db.session.delete(bookmark)
 
     # If no more bookmarks point to the text, text goes too
-    if not (text.all_bookmarks()):
+    if not (text.all_bookmarks(flask.g.user)):
         zeeguu.db.session.delete(text)
 
     zeeguu.db.session.commit()
