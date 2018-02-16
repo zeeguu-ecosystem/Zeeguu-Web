@@ -2,6 +2,7 @@ import requests
 import zeeguu
 from flask import make_response, redirect
 
+from zeeguu_web.account.api.api import API
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
@@ -12,8 +13,9 @@ import sqlalchemy.exc
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
+SESSION_ID = "session_id"
 
-SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME]
+SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME, SESSION_ID]
 
 
 @account.route("/login", methods=("GET", "POST"))
@@ -30,19 +32,17 @@ def login():
     if flask.request.method == "POST" and form.get("login", False):
         password = form.get("password", None)
         email = form.get("email", None)
+
         if password is None or email is None:
             flask.flash("Please enter your email address and password")
         else:
-            ##user = User.authorize(email, password)
-            api_address = zeeguu.app.config.get("ZEEGUU_API") + "/session/" + email
-            resp = requests.post(api_address, {"password": password})
-            print(resp)
-            if resp.status_code is not 200:
+            sessionID = API.login(email, password)
+            if sessionID is -1:
                 flask.flash("Invalid email and password combination")
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
-                _prepare_cookie(resp.text, response)
+                _retrieve_session_data(sessionID, response)
 
                 return response
 
@@ -133,26 +133,29 @@ def _set_session_data(user: User, response):
 
     flask.session[KEY_USER_ID] = user.id
     flask.session[KEY_USER_NAME] = user.name
+    flask.session[SESSION_ID] = api_session.id
 
     flask.session.permanent = True
 
     response.set_cookie('sessionID', str(api_session.id), max_age=31536000)
 
-def _prepare_cookie(sessionID, response):
+def _retrieve_session_data(sessionID, response):
     """
-        extracted to its own function, since it's duplicated between login and create_account
+        THIS FUNCTION STILL DEPENDS ON A LOCAL VERSION OF THE DATABASE BEING AVAILABLE
     """
 
-    #api_session = Session.find_for_user(user)
-    #zeeguu.db.session.add(api_session)
-    #zeeguu.db.session.commit()
+    session = Session.query.get(sessionID)
+    if session is None:
+        flask.abort(401)
+    session.update_use_date()
 
-    flask.session[KEY_USER_ID] = user.id
-    flask.session[KEY_USER_NAME] = user.name
+    flask.session[KEY_USER_ID] = session.user.id
+    flask.session[KEY_USER_NAME] = session.user.name
+    flask.session[SESSION_ID] = sessionID
 
     flask.session.permanent = True
 
-    response.set_cookie('sessionID', sessionID, max_age=31536000)
+    response.set_cookie('sessionID', str(sessionID), max_age=31536000)
 
 
 # @account.route("/login_with_session", methods=["POST"])
