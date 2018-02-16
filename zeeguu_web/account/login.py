@@ -1,3 +1,4 @@
+import requests
 import zeeguu
 from flask import make_response, redirect
 
@@ -8,7 +9,6 @@ from zeeguu.model import User, Session
 from flask import flash
 from zeeguu.model.language import Language
 import sqlalchemy.exc
-
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
@@ -33,15 +33,19 @@ def login():
         if password is None or email is None:
             flask.flash("Please enter your email address and password")
         else:
-            user = User.authorize(email, password)
-            if user is None:
+            ##user = User.authorize(email, password)
+            api_address = zeeguu.app.config.get("ZEEGUU_API") + "/session/" + email
+            resp = requests.post(api_address, {"password": password})
+            print(resp)
+            if resp.status_code is not 200:
                 flask.flash("Invalid email and password combination")
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
-                _set_session_data(user, response)
+                _prepare_cookie(resp.text, response)
 
                 return response
+
 
     return flask.render_template("login.html")
 
@@ -69,10 +73,10 @@ def create_account():
     language = Language.find(form.get("language", None))
     native_language = Language.find(form.get("native_language", None))
 
-    if not code in zeeguu.app.config.get("INVITATION_CODES"):
-        flash("Invitation code is not recognized. Please contact us.")
+    #if not code in zeeguu.app.config.get("INVITATION_CODES"):
+    #    flash("Invitation code is not recognized. Please contact us.")
 
-    elif password is None or email is None or name is None:
+    if password is None or email is None or name is None:
         flash("Please enter your name, email address, and password")
 
     else:
@@ -120,9 +124,7 @@ def logged_in():
 
 def _set_session_data(user: User, response):
     """
-    
-        extracted to its own function, since it's duplicated between login and create_account 
-        
+        extracted to its own function, since it's duplicated between login and create_account
     """
 
     api_session = Session.find_for_user(user)
@@ -135,6 +137,22 @@ def _set_session_data(user: User, response):
     flask.session.permanent = True
 
     response.set_cookie('sessionID', str(api_session.id), max_age=31536000)
+
+def _prepare_cookie(sessionID, response):
+    """
+        extracted to its own function, since it's duplicated between login and create_account
+    """
+
+    #api_session = Session.find_for_user(user)
+    #zeeguu.db.session.add(api_session)
+    #zeeguu.db.session.commit()
+
+    flask.session[KEY_USER_ID] = user.id
+    flask.session[KEY_USER_NAME] = user.name
+
+    flask.session.permanent = True
+
+    response.set_cookie('sessionID', sessionID, max_age=31536000)
 
 
 # @account.route("/login_with_session", methods=["POST"])
