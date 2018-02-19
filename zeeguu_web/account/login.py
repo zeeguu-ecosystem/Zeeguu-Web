@@ -2,7 +2,7 @@ import requests
 import zeeguu
 from flask import make_response, redirect
 
-from zeeguu_web.account.api.api import API
+from zeeguu_web.account.api.session_management import SessionManagement
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
@@ -36,7 +36,7 @@ def login():
         if password is None or email is None:
             flask.flash("Please enter your email address and password")
         else:
-            sessionID = API.login(email, password)
+            sessionID = SessionManagement.login(email, password)
             if sessionID is -1:
                 flask.flash("Invalid email and password combination")
             else:
@@ -107,6 +107,8 @@ def create_account():
 @account.route("/logout")
 @login_first
 def logout():
+    if not SessionManagement.logout() :
+        print("API logout failed")
 
     for key in SESSION_KEYS:
         flask.session.pop(key, None)
