@@ -31,7 +31,9 @@ class SessionManagement:
     def validate(cls):
         session_id = flask.session["session_id"]
         resp = requests.get(cls.api_validate, params={"session": session_id})
-        print(resp)
-
+        if resp.status_code is not 200:
+            return True
+        else:
+            return False
 
 

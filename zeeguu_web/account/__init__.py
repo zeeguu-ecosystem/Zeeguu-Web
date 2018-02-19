@@ -6,6 +6,8 @@ import flask
 from zeeguu.model.user import User
 
 # we define the blueprint here, and extended it in several files
+from zeeguu_web.account.api.session_management import SessionManagement
+
 account = flask.Blueprint("account", __name__)
 
 
@@ -27,6 +29,10 @@ def login_first(fun):
     """
     @wraps(fun)
     def decorated_function(*args, **kwargs):
+        if "session_id" in flask.session:
+            if not SessionManagement.validate():
+                print("Could not validate session at API")
+
         if "user_id" in flask.session:
             flask.g.user = User.query.get(flask.session["user_id"])
         else:
