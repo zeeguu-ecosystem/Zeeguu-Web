@@ -107,7 +107,7 @@ def create_account():
 @account.route("/logout")
 @login_first
 def logout():
-    if not SessionManagement.logout() :
+    if not SessionManagement.logout():
         print("API logout failed")
 
     for key in SESSION_KEYS:
