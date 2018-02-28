@@ -38,9 +38,15 @@ def login():
         if password is None or email is None:
             flask.flash("Please enter your email address and password")
         else:
-            sessionID = SessionManagement.login(email, password)
-            if sessionID is -1:
-                flask.flash("Invalid email and password combination")
+            try:
+                sessionID = SessionManagement.login(email, password)
+            except APIConnectionError as e:
+                if e.status_code is 400 or e.status_code is 401:
+                    flask.flash("Invalid email and password combination")
+                    return
+                else:
+                    flask.flash("Connection error, please try again later.")
+
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
@@ -83,6 +89,7 @@ def create_account():
 
     else:
         try:
+
             session = AccountManagement.create_account(email, name, password, language, native_language) #setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
@@ -92,8 +99,12 @@ def create_account():
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except APIConnectionError:
-            flash("Something went wrong, could the email already be in use?")   # This is not the best message
+        except APIConnectionError as e:
+            if e.status_code is 400 or e.status_code is 401:
+                flask.flash("Invalid email and password combination")
+                return
+            else:
+                flask.flash("Connection error, please try again later.")
         except:
             flash("Something went wrong. Please contact us.")
         finally:
