@@ -142,6 +142,9 @@ def _set_session_data(user: User, response):
     response.set_cookie('sessionID', str(api_session.id), max_age=31536000)
 
 def _set_session_id(sessionID, response):
+    """
+    Set session information for later usage
+    """
     flask.session[SESSION_ID] = sessionID
 
     flask.session.permanent = True
