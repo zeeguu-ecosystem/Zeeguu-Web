@@ -75,8 +75,8 @@ def create_account():
     language = Language.find(form.get("language", None))
     native_language = Language.find(form.get("native_language", None))
 
-    #if not code in zeeguu.app.config.get("INVITATION_CODES"):
-    #    flash("Invitation code is not recognized. Please contact us.")
+    if not code in zeeguu.app.config.get("INVITATION_CODES"):
+        flash("Invitation code is not recognized. Please contact us.")
 
     if password is None or email is None or name is None:
         flash("Please enter your name, email address, and password")
@@ -119,7 +119,7 @@ def logout():
 @account.route("/logged_in")
 @login_first
 def logged_in():
-    if flask.session.get("user_id", None):
+    if flask.session.get("session_id", None):
         return "YES"
     return "NO"
 
