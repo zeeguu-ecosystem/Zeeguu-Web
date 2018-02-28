@@ -2,8 +2,8 @@ import requests
 import zeeguu
 from flask import make_response, redirect
 
-from zeeguu_web.account.api import APIConnectionError
 from zeeguu_web.account.api.account_management import AccountManagement
+from zeeguu_web.account.api.api_exceptions import APIConnectionError
 from zeeguu_web.account.api.session_management import SessionManagement
 from . import account, login_first
 import flask
