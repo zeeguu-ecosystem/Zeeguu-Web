@@ -8,14 +8,14 @@ from zeeguu_web.account.api.api_exceptions import APIConnectionError
 class API:
 
     @classmethod
-    def __check_response(cls, response):
+    def _check_response(cls, response):
         if response.status_code is 200:
             return response
         else:
             raise APIConnectionError(response.status_code)
 
     @classmethod
-    def api_path(cls, path):
+    def _api_path(cls, path):
         return zeeguu.app.config.get("ZEEGUU_API") + "/" + path
 
     @classmethod
