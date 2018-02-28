@@ -2,34 +2,27 @@ import flask
 import requests
 import zeeguu
 
-from zeeguu_web.account.api import retrievePayload
+from zeeguu_web.account.api import API_GET, API_POST
 
 
 class SessionManagement:
 
-    api_login = zeeguu.app.config.get("ZEEGUU_API") + "/session/"
-    api_logout = zeeguu.app.config.get("ZEEGUU_API") + "/logout_session"
-    api_validate = zeeguu.app.config.get("ZEEGUU_API") + "/validate"
+    api_login = "session/"
+    api_logout = "logout_session"
+    api_validate = "validate"
 
     @classmethod
     def login(cls, email, password):
-        api_address = cls.api_login + email
-        resp = requests.post(api_address, data = {"password": password})
-        payload = retrievePayload(resp)
-        return payload.text
+        url = cls.api_login + email
+        resp = API_POST(url, payload={"password": password})
+        return resp.text
 
     @classmethod
     def logout(cls):
-        session_id = flask.session["session_id"]
-        resp = requests.get(cls.api_logout, params={"session": session_id})
-        retrievePayload(resp)
-        return True
+        API_GET(cls.api_logout, session_needed=True)
 
     @classmethod
     def validate(cls):
-        session_id = flask.session["session_id"]
-        resp = requests.get(cls.api_validate, params={"session": session_id})
-        payload = retrievePayload(resp)
-        return True
+        API_GET(cls.api_validate, session_needed=True)
 
 

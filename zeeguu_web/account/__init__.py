@@ -2,6 +2,7 @@
 from functools import wraps
 
 import flask
+from zeeguu.model import Session
 
 from zeeguu.model.user import User
 
@@ -29,8 +30,9 @@ def login_first(fun):
     """
     @wraps(fun)
     def decorated_function(*args, **kwargs):
-        if "user_id" in flask.session:
-            flask.g.user = User.query.get(flask.session["user_id"])
+        if "session_id" in flask.session:
+            session = Session.query.get(flask.session["session_id"])
+            flask.g.user = session.user
         else:
             flask.g.user = None
 

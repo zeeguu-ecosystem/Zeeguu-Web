@@ -2,6 +2,8 @@ import requests
 import zeeguu
 from flask import make_response, redirect
 
+from zeeguu_web.account.api import APIConnectionError
+from zeeguu_web.account.api.account_management import AccountManagement
 from zeeguu_web.account.api.session_management import SessionManagement
 from . import account, login_first
 import flask
@@ -42,7 +44,7 @@ def login():
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
-                _retrieve_session_data(sessionID, response)
+                _set_session_id(sessionID, response)
 
                 return response
 
@@ -81,21 +83,17 @@ def create_account():
 
     else:
         try:
-
-            zeeguu.db.session.add(User(email, name, password, language, native_language, code))
-            zeeguu.db.session.commit()
-
-            user = User.authorize(email, password)
+            session = AccountManagement.create_account(email, name, password, language, native_language) #setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
-            _set_session_data(user, response)
+            _set_session_id(session, response)
 
             return response
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except sqlalchemy.exc.IntegrityError:
-            flash(email + " is already in use. Please select a different email.")
+        except APIConnectionError:
+            flash("Something went wrong, could the email already be in use?")   # This is not the best message
         except:
             flash("Something went wrong. Please contact us.")
         finally:
@@ -107,8 +105,10 @@ def create_account():
 @account.route("/logout")
 @login_first
 def logout():
-    if not SessionManagement.logout():
-        print("API logout failed")
+    try:
+        SessionManagement.logout()
+    except APIConnectionError:
+        print("Logout at server failed, still removing session key.")
 
     for key in SESSION_KEYS:
         flask.session.pop(key, None)
@@ -141,18 +141,7 @@ def _set_session_data(user: User, response):
 
     response.set_cookie('sessionID', str(api_session.id), max_age=31536000)
 
-def _retrieve_session_data(sessionID, response):
-    """
-        THIS FUNCTION STILL DEPENDS ON A LOCAL VERSION OF THE DATABASE BEING AVAILABLE
-    """
-
-    session = Session.query.get(sessionID)
-    if session is None:
-        flask.abort(401)
-    session.update_use_date()
-
-    flask.session[KEY_USER_ID] = session.user.id
-    flask.session[KEY_USER_NAME] = session.user.name
+def _set_session_id(sessionID, response):
     flask.session[SESSION_ID] = sessionID
 
     flask.session.permanent = True
