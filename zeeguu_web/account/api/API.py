@@ -27,10 +27,12 @@ class API:
                 session_id = session
             params["session"] = session_id
         try:
-            resp = requests.post(cls.api_path(path), data=payload, params=params)
+            resp = requests.post(cls._api_path(path), data=payload, params=params)
         except Exception:
+            import traceback
+            print(traceback.format_exc())
             raise APIConnectionError(404)
-        return cls.__check_response(resp)
+        return cls._check_response(resp)
 
     @classmethod
     def get(cls, path, payload={}, params={}, session_needed=False, session=None):
@@ -41,7 +43,7 @@ class API:
                 session_id = session
             params["session"] = session_id
         try:
-            resp = requests.get(cls.api_path(path), data=payload, params=params)
+            resp = requests.get(cls._api_path(path), data=payload, params=params)
         except Exception:
             raise APIConnectionError(404)
-        return cls.__check_response(resp)
+        return cls._check_response(resp)
