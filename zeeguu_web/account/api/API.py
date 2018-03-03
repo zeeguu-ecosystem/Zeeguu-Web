@@ -16,7 +16,10 @@ class API:
 
     @classmethod
     def _api_path(cls, path):
-        return zeeguu.app.config.get("ZEEGUU_API") + "/" + path
+        zeeguu_path = zeeguu.app.config.get("ZEEGUU_API")
+        if zeeguu_path.endswith("/"):
+            return zeeguu_path + path
+        return zeeguu_path + "/" + path
 
     @classmethod
     def post(cls, path, payload={}, params={}, session_needed=False, session=None):
