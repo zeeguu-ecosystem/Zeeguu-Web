@@ -2,27 +2,19 @@ import flask
 import requests
 import zeeguu
 
-from zeeguu_web.account.api.API import API
+from zeeguu_web.account.api.API import get, post
 
+api_login = "session/"
+api_logout = "logout_session"
+api_validate = "validate"
 
-class SessionManagement:
+def login(cls, email, password):
+    url = cls.api_login + email
+    resp = post(url, payload={"password": password})
+    return resp.text
 
-    api_login = "session/"
-    api_logout = "logout_session"
-    api_validate = "validate"
+def logout(cls):
+    get(cls.api_logout, session_needed=True)
 
-    @classmethod
-    def login(cls, email, password):
-        url = cls.api_login + email
-        resp = API.post(url, payload={"password": password})
-        return resp.text
-
-    @classmethod
-    def logout(cls):
-        API.get(cls.api_logout, session_needed=True)
-
-    @classmethod
-    def validate(cls):
-        API.get(cls.api_validate, session_needed=True)
-
-
+def validate(cls):
+    get(cls.api_validate, session_needed=True)
