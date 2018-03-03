@@ -37,8 +37,8 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
     return _check_response(resp)
 
 def post(path, payload={}, params={}, session_needed=False, session=None):
-    _api_call("post", path, payload, params, session_needed, session)
+    return _api_call("post", path, payload, params, session_needed, session)
 
 
 def get(path, payload={}, params={}, session_needed=False, session=None):
-    _api_call("get", path, payload, params, session_needed, session)
+    return _api_call("get", path, payload, params, session_needed, session)

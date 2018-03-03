@@ -2,9 +2,8 @@ import requests
 import zeeguu
 from flask import make_response, redirect
 
-from zeeguu_web.account.api.account_management import AccountManagement
+from zeeguu_web.account.api import session_management, account_management
 from zeeguu_web.account.api.api_exceptions import APIConnectionError
-from zeeguu_web.account.api.session_management import SessionManagement
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
@@ -39,7 +38,7 @@ def login():
             flask.flash("Please enter your email address and password")
         else:
             try:
-                sessionID = SessionManagement.login(email, password)
+                sessionID = session_management.login(email, password)
             except APIConnectionError as e:
                 if e.status_code is 400 or e.status_code is 401:
                     flask.flash("Invalid email and password combination")
@@ -90,7 +89,7 @@ def create_account():
     else:
         try:
 
-            session = AccountManagement.create_account(email, name, password, language, native_language) #setting registration code is not possible
+            session = account_management.create_account(email, name, password, language, native_language) #setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
             _set_session_id(session, response)
@@ -117,7 +116,7 @@ def create_account():
 @login_first
 def logout():
     try:
-        SessionManagement.logout()
+        session_management.logout()
     except APIConnectionError:
         print("Logout at server failed, still removing session key.")
 
