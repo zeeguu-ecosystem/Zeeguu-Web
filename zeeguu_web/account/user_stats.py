@@ -7,7 +7,7 @@ from zeeguu.model import SimpleKnowledgeEstimator, Session
 @account.route("/stats", methods=["GET"])
 @login_first
 def stats():
-    estimator = SimpleKnowledgeEstimator(flask.g.user, flask.g.user.learned_language_id)
+    estimator = SimpleKnowledgeEstimator(flask.g.user, flask.g.user.learned_language.code)
     learner_stats_data = flask.g.user.learner_stats_data()
 
     bookmark_counts_by_date = flask.g.user.bookmark_counts_by_date()
