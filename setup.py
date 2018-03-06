@@ -19,11 +19,11 @@ setuptools.setup(
         "git+https://github.com/mircealungu/Unified-Multilanguage-Reader.git#egg=umr",
         "git+https://github.com/mircealungu/practice-as-a-service.git#egg=zeeguu_exercises"
     ],
-    install_requires=("flask>=0.10.1",
-                      "Flask-SQLAlchemy",
-                      "Flask-Assets",
-                      "cssmin",
-                      "zeeguu",
-			"umr",
-			"zeeguu_exercises")
+    install_requires=(  "flask>=0.10.1",
+                        "Flask-SQLAlchemy",
+                        "Flask-Assets",
+                        "cssmin",
+                        "zeeguu",
+			            "umr",
+			            "zeeguu_exercises")
 )
