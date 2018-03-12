@@ -13,6 +13,7 @@ from zeeguu import db
 from zeeguu.model.unique_code import UniqueCode
 
 # the account blueprint is defined in the __init__ of the module
+from zeeguu_web.account.api import account_management
 from . import account
 
 from smtplib import SMTP
@@ -38,7 +39,8 @@ def reset_password():
     password = form.get("password", "")
 
     if email and not code:
-        generate_code_and_send_email(email)
+        #generate_code_and_send_email(email)
+        account_management.reset_password(email)
         flash("Now check your inbox for a one-time code")
         return flask.render_template("reset_pass.html", code_active=True, email=email)
 

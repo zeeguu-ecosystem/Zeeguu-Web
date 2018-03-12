@@ -8,6 +8,8 @@ api_create_user = "add_user/"
 api_native = "native_language/"
 api_learned = "learned_language/"
 
+api_reset_code = "send_code/"
+
 
 def create_account(email, username, password, learning_language, native_language):
     api_address = api_create_user + email
@@ -19,3 +21,7 @@ def create_account(email, username, password, learning_language, native_language
     resp = post(native, session_needed=True, session=session)
     resp = post(learned, session_needed=True, session=session)
     return session
+
+def reset_password(email):
+    api_addres = api_reset_code + email
+    resp = post(api_addres)
