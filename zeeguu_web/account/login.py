@@ -47,7 +47,9 @@ def login():
                     flask.flash("Connection error, please try again later.")
 
             else:
-                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
+                test1 = flask.request.args.get("next")
+                test2 =flask.url_for("account.whatnext")
+                response = make_response(redirect(test1 or test2))
 
                 _set_session_id(sessionID, response)
 

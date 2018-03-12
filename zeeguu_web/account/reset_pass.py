@@ -40,13 +40,15 @@ def reset_password():
 
     if email and not code:
         #generate_code_and_send_email(email)
-        account_management.reset_password(email)
+        account_management.request_code(email)
         flash("Now check your inbox for a one-time code")
         return flask.render_template("reset_pass.html", code_active=True, email=email)
 
     if email and code and password:
         try:
-            return change_password_if_code_is_correct(code, email, password)
+            account_management.reset_password(code, email, password)
+            flash("Password was reset successfully!")
+            return flask.redirect('login')
         except Exception as e:
             flash("Something went wrong")
             traceback.print_exc(file=sys.stdout)
