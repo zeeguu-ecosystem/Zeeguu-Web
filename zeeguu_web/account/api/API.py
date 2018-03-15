@@ -1,16 +1,19 @@
 import flask
 import requests
 import zeeguu
+from zeeguu_web.account.api.api_exceptions import InvalidData, InvalidCredentials, NotFound, RequestError, ServerError
 
-from zeeguu_web.account.api.api_exceptions import APIConnectionError
-
+possible_exceptions = [
+    InvalidData,
+    InvalidCredentials,
+    NotFound,
+    RequestError,
+    ServerError
+]
 
 def _check_response(response):
-    if response.status_code is 200:
-        return response
-    else:
-        raise APIConnectionError(response.status_code)
-
+    for ex in possible_exceptions:
+        ex.shouldBeThrown()
 
 def _api_path(path):
     zeeguu_path = zeeguu.app.config.get("ZEEGUU_API")
@@ -33,7 +36,7 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
     except Exception:
         import traceback
         print(traceback.format_exc())
-        raise APIConnectionError(404)
+        raise RequestError("Exception while performing request.")
     return _check_response(resp)
 
 def post(path, payload={}, params={}, session_needed=False, session=None):

@@ -1,16 +1,14 @@
-import requests
 import zeeguu
 from flask import make_response, redirect
 
 from zeeguu_web.account.api import session_management, account_management
-from zeeguu_web.account.api.api_exceptions import APIConnectionError
+from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException, NotFound
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
 
 from flask import flash
 from zeeguu.model.language import Language
-import sqlalchemy.exc
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
@@ -39,17 +37,15 @@ def login():
         else:
             try:
                 sessionID = session_management.login(email, password)
-            except APIConnectionError as e:
-                if e.status_code is 400 or e.status_code is 401:
-                    flask.flash("Invalid email and password combination")
-                    return
-                else:
-                    flask.flash("Connection error, please try again later.")
+            except InvalidCredentials as e:
+                flask.flash("Invalid email or password")
+            except NotFound as e:
+                flask.flash("Connection error, please try again later.")
+            except ServerException as e:
+                    flask.flash("Server error")
 
             else:
-                test1 = flask.request.args.get("next")
-                test2 =flask.url_for("account.whatnext")
-                response = make_response(redirect(test1 or test2))
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
                 _set_session_id(sessionID, response)
 
@@ -100,16 +96,14 @@ def create_account():
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except APIConnectionError as e:
-            if e.status_code is 400 or e.status_code is 401:
-                flask.flash("Invalid email and password combination")
-                return
-            else:
-                flask.flash("Connection error, please try again later.")
+        except InvalidCredentials as e:
+            flask.flash("Invalid email or password")
+        except NotFound as e:
+            flask.flash("Connection error, please try again later.")
+        except ServerException as e:
+            flask.flash("Server error")
         except:
             flash("Something went wrong. Please contact us.")
-        finally:
-            zeeguu.db.session.rollback()
 
     return flask.render_template("create_account.html", **template_arguments)
 
@@ -119,7 +113,7 @@ def create_account():
 def logout():
     try:
         session_management.logout()
-    except APIConnectionError:
+    except ServerException:
         print("Logout at server failed, still removing session key.")
 
     for key in SESSION_KEYS:
