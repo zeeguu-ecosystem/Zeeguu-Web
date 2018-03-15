@@ -1,5 +1,14 @@
 from abc import abstractmethod
 
+from flask import json
+
+
+def message(response):
+    try:
+        data = json.loads(response.text)
+        return data["message"]
+    except Exception:
+        return ""
 
 class ServerException(Exception):
     def __init__(self, message):
@@ -13,27 +22,31 @@ class ServerException(Exception):
 
 
 class InvalidData(ServerException):
+    @classmethod
     def shouldBeThrown(cls, response):
-        if response.code == 401:
-            raise InvalidData(response.data)
+        if response.status_code == 400:
+            raise InvalidData(message(response))
 
 class InvalidCredentials(ServerException):
+    @classmethod
     def shouldBeThrown(cls, response):
-        if response.code == 400:
-            raise InvalidCredentials(response.data)
+        if response.status_code == 401:
+            raise InvalidCredentials(message(response))
 
 class NotFound(ServerException):
+    @classmethod
     def shouldBeThrown(cls, response):
-        if response.code == 404:
-            raise NotFound(response.data)
+        if response.status_code == 404:
+            raise NotFound(message(response))
 
 class RequestError(ServerException):
+    @classmethod
     def shouldBeThrown(cls, response):
-        if response.code == 430:
-            raise RequestError(response.data)
+        if response.status_code == 430:
+            raise RequestError(message(response))
 
 class ServerError(ServerException):
+    @classmethod
     def shouldBeThrown(cls, response):
-        if response.code == 530:
-            raise ServerError(response.data)
-
+        if response.status_code == 530:
+            raise ServerError(message(response))

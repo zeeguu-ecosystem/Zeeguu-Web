@@ -13,7 +13,7 @@ possible_exceptions = [
 
 def _check_response(response):
     for ex in possible_exceptions:
-        ex.shouldBeThrown()
+        ex.shouldBeThrown(response)
 
 def _api_path(path):
     zeeguu_path = zeeguu.app.config.get("ZEEGUU_API")
