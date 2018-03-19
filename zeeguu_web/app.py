@@ -16,11 +16,13 @@ if sys.version_info[0] < 3:
 # *** Starting the App *** #
 app = CrossDomainApp(__name__)
 
+config_file =os.environ['ZEEGUU_WEB_CONFIG']
+app.config.from_pyfile(config_file, silent=False)
 
-load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
-                            ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
-                             'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD',
-                             'INVITATION_CODES', 'ZEEGUU_API'])
+# load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
+#                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
+#                              'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD',
+#                              'INVITATION_CODES', 'ZEEGUU_API'])
 
 
 # The zeeguu.model  module relies on an app being injected from outside

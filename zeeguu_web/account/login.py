@@ -75,10 +75,10 @@ def create_account():
     email = form.get("email", None)
     name = form.get("name", None)
     code = form.get("code", None)
-    language = Language.find(form.get("language", None))
-    native_language = Language.find(form.get("native_language", None))
+    language = form.get("language", None)
+    native_language = form.get("native_language", None)
 
-    if not code in zeeguu.app.config.get("INVITATION_CODES"):
+    if not code in flask.app.config.get("INVITATION_CODES"):
         flash("Invitation code is not recognized. Please contact us.")
 
     if password is None or email is None or name is None:
