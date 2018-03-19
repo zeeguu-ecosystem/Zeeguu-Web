@@ -9,7 +9,6 @@ dist
 .DS_Store
 *.map
 wordinfo.db
-default_web.cfg
 node_modules*
 .editorconfig
 *translators.log
