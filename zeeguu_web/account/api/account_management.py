@@ -1,7 +1,3 @@
-import flask
-import requests
-import zeeguu
-
 from zeeguu_web.account.api.API import post
 
 api_create_user = "add_user/"

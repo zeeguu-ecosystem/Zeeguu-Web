@@ -1,7 +1,3 @@
-import flask
-import requests
-import zeeguu
-
 from zeeguu_web.account.api.API import get, post
 
 api_login = "session/"
