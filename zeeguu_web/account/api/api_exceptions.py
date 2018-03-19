@@ -20,7 +20,6 @@ class ServerException(Exception):
     def shouldBeThrown(cls, response):
         pass
 
-
 class InvalidData(ServerException):
     @classmethod
     def shouldBeThrown(cls, response):

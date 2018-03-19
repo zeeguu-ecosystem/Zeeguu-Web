@@ -1,0 +1,3 @@
+{
+  "tests_zeeguu_web/test_api.py::TestAPI::()::test_response_ServerException_message_set": true
+}
