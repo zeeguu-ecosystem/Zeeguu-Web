@@ -1,6 +1,7 @@
 import flask
 import requests
 from zeeguu_web.account.api.api_exceptions import InvalidData, InvalidCredentials, NotFound, RequestError, ServerError
+from zeeguu_web.app import configuration
 
 possible_exceptions = [
     InvalidData,
@@ -13,9 +14,10 @@ possible_exceptions = [
 def _check_response(response):
     for ex in possible_exceptions:
         ex.shouldBeThrown(response)
+    return response
 
 def _api_path(path):
-    zeeguu_path = flask.app.config.get("ZEEGUU_API")
+    zeeguu_path = configuration.get("ZEEGUU_API")
     if zeeguu_path.endswith("/"):
         return zeeguu_path + path
     return zeeguu_path + "/" + path
@@ -31,7 +33,8 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
         if function == "post":
             resp = requests.post(_api_path(path), data=payload, params=params)
         else:
-            resp = requests.get(_api_path(path), data=payload, params=params)
+            _path = _api_path(path)
+            resp = requests.get(_path, data=payload, params=params)
     except Exception:
         import traceback
         print(traceback.format_exc())

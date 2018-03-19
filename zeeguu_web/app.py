@@ -15,6 +15,7 @@ app = CrossDomainApp(__name__)
 
 config_file =os.environ['ZEEGUU_WEB_CONFIG']
 app.config.from_pyfile(config_file, silent=False)
+configuration = app.config
 
 # load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
 #                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',

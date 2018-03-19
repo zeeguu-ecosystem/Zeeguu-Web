@@ -1,20 +1,22 @@
 import zeeguu
 from flask import make_response, redirect
 
-from zeeguu_web.account.api import session_management, account_management
+from zeeguu_web.account.api import session_management, account_management, languages
 from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException, NotFound
+from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
 
 from flask import flash
-from zeeguu.model.language import Language
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
 SESSION_ID = "session_id"
 
 SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME, SESSION_ID]
+
+DEFAULT_LANGUAGE = "en"
 
 
 @account.route("/login", methods=("GET", "POST"))
@@ -60,9 +62,9 @@ def create_account():
 
     # A cool way of passing the arguments to the flask template
     template_arguments = dict (
-         languages= Language.available_languages(),
-         native_languages = Language.native_languages(),
-         default_learned= Language.default_learned()
+         languages= get_available_languages(),
+         native_languages = get_available_native_languages(),
+         default_learned= DEFAULT_LANGUAGE
     )
 
     # GET
