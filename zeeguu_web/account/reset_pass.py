@@ -12,10 +12,8 @@ from zeeguu_web.account.api import account_management
 from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException
 from . import account
 
-from smtplib import SMTP
 import traceback
 import sys
-from zeeguu.model.user import User
 
 
 @account.route("/reset_pass", methods=("POST", "GET",))
