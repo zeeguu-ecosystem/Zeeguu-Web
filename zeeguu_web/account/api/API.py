@@ -1,6 +1,5 @@
 import flask
 import requests
-import zeeguu
 from zeeguu_web.account.api.api_exceptions import InvalidData, InvalidCredentials, NotFound, RequestError, ServerError
 
 possible_exceptions = [
@@ -16,7 +15,7 @@ def _check_response(response):
         ex.shouldBeThrown(response)
 
 def _api_path(path):
-    zeeguu_path = zeeguu.app.config.get("ZEEGUU_API")
+    zeeguu_path = flask.app.config.get("ZEEGUU_API")
     if zeeguu_path.endswith("/"):
         return zeeguu_path + path
     return zeeguu_path + "/" + path

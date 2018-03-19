@@ -1,9 +1,8 @@
 import pytest
 import requests
-from flask import json, jsonify
 
 from zeeguu_web.account.api import API
-from zeeguu_web.account.api.api_exceptions import InvalidData, ServerException, InvalidCredentials, NotFound, \
+from zeeguu_web.account.api.api_exceptions import InvalidData, InvalidCredentials, NotFound, \
     RequestError, ServerError
 
 
