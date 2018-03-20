@@ -4,6 +4,7 @@ from flask import make_response, redirect
 from zeeguu_web.account.api import session_management, account_management, languages
 from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException, NotFound
 from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
+from zeeguu_web.app import configuration
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
@@ -80,7 +81,7 @@ def create_account():
     language = form.get("language", None)
     native_language = form.get("native_language", None)
 
-    if not code in flask.app.config.get("INVITATION_CODES"):
+    if not code in configuration.get("INVITATION_CODES"):
         flash("Invitation code is not recognized. Please contact us.")
 
     if password is None or email is None or name is None:

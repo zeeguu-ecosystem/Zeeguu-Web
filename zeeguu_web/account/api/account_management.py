@@ -13,8 +13,8 @@ def create_account(email, username, password, learning_language, native_language
     resp = post(api_address, payload={"password": password, "username": username})
     session = int(resp.text)
     # What to do when the server crashes here?
-    native = api_native + native_language.code
-    learned = api_learned + learning_language.code
+    native = api_native + native_language
+    learned = api_learned + learning_language
     resp = post(native, session_needed=True, session=session)
     resp = post(learned, session_needed=True, session=session)
     return session
