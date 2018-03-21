@@ -1,6 +1,5 @@
 from zeeguu_web.account.api.models.URL import URL
 
-
 CONTEXT_LENGTH = 42
 
 class Bookmark:

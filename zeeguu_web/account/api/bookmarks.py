@@ -19,12 +19,6 @@ def get_bookmarks_by_date(date):
     }
     resp = post(BOOKMARKS_BY_DATE, payload=_payload, session_needed=True)
     _json = json.loads(resp.content)
-    # ("bookmarks.html",
-    #  bookmarks_by_url=bookmarks_by_url,
-    # urls_by_date=urls_by_date,
-    # sorted_dates=most_recent_seven_days,
-    # bookmark_counts_by_date=bookmark_counts_by_date,
-    # user=flask.g.user)
 
     sorted_dates = []
     bookmarks_by_url = {}
