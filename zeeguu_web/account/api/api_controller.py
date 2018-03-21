@@ -4,13 +4,23 @@ from flask import json
 
 from zeeguu_web.app import configuration
 
-
-class ServerException(Exception):
+class APIException(Exception):
+    """
+    Exception for signalling something went wrong while communication with the API
+    """
     def __init__(self, message):
         super()
         self.message = message
 
 def _check_response(response):
+    """
+    Given a response from the API this function checks if the status code is valid.
+
+    If the status code is above 400 a APIException is thrown.
+
+    :param response:
+    :return:
+    """
     if response.status_code >= 400:
         try:
             # We can't depend on the API always providing a default message
@@ -18,7 +28,7 @@ def _check_response(response):
         except Exception as ex:
             data = response.reason
         finally:
-            raise ServerException(data)
+            raise APIException(data)
     else :
         return response
 
@@ -44,7 +54,7 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
     except Exception:
         import traceback
         print(traceback.format_exc())
-        raise ServerException("Exception while performing request.")
+        raise APIException("Exception while performing request.")
     return _check_response(resp)
 
 def post(path, payload={}, params={}, session_needed=False, session=None):

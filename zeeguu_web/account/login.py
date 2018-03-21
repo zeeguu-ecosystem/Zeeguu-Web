@@ -2,7 +2,7 @@ import zeeguu
 from flask import make_response, redirect
 
 from zeeguu_web.account.api import session_management, account_management, languages
-from zeeguu_web.account.api.API import ServerException
+from zeeguu_web.account.api.api_controller import APIException
 from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
 from zeeguu_web.app import configuration
 from . import account, login_first
@@ -40,7 +40,7 @@ def login():
         else:
             try:
                 sessionID = session_management.login(email, password)
-            except ServerException as e:
+            except APIException as e:
                     flask.flash(e.message)
 
             else:
@@ -95,7 +95,7 @@ def create_account():
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except ServerException as e:
+        except APIException as e:
             flask.flash(e.message)
         except:
             flash("Something went wrong. Please contact us.")
@@ -108,7 +108,7 @@ def create_account():
 def logout():
     try:
         session_management.logout()
-    except ServerException:
+    except APIException:
         print("Logout at server failed, still removing session key.")
 
     for key in SESSION_KEYS:

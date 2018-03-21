@@ -1,16 +1,16 @@
-from zeeguu_web.account.api.API import get, post
+from zeeguu_web.account.api.api_controller import get, post
 
-api_login = "session/"
-api_logout = "logout_session"
-api_validate = "validate"
+LOGIN = "session/"
+LOGOUT = "logout_session"
+VALIDATE = "validate"
 
 def login(email, password):
-    url = api_login + email
+    url = LOGIN + email
     resp = post(url, payload={"password": password})
     return resp.text
 
 def logout():
-    get(api_logout, session_needed=True)
+    get(LOGOUT, session_needed=True)
 
 def validate(cls):
-    get(api_validate, session_needed=True)
+    get(VALIDATE, session_needed=True)
