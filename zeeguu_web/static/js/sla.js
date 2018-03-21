@@ -96,16 +96,16 @@ function deleteBookmark(id) {
     return false;
 }
 
-function unstarBookmark(id, user_id) {
+function unstarBookmark(id) {
     console.log("unstarring " + id)
-    $.post("/unstarred_bookmark/" + id+"/"+user_id);
-    $("#star"+id).html('<a href="javascript:void(0);" onclick="starBookmark('+id+','+user_id+')"><i style="color:lightgray" class="icon-star-empty"></i></a>');
+    $.post("/unstarred_bookmark/" + id);
+    $("#star"+id).html('<a href="javascript:void(0);" onclick="starBookmark('+id+')"><i style="color:lightgray" class="icon-star-empty"></i></a>');
 }
 
-function starBookmark(id,user_id) {
+function starBookmark(id) {
     console.log("starring " + id)
-    $.post("/starred_bookmark/" + id+"/"+user_id);
-    $("#star"+id).html('<a href="javascript:void(0);" onclick="unstarBookmark('+id+','+user_id+')"><i style="color:gold" class="icon-star"></i></a>');
+    $.post("/starred_bookmark/" + id);
+    $("#star"+id).html('<a href="javascript:void(0);" onclick="unstarBookmark('+id+')"><i style="color:gold" class="icon-star"></i></a>');
 }
 
 

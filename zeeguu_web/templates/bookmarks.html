@@ -21,12 +21,12 @@
                         <tr>
                             <td style="border:0px solid white;text-align:left; background-color:white;"></td>
                             <td colspan="4" style="border:0px solid white;text-align:left; background-color:white;">
-                                <small><a href="{{ url.as_string() }}">{{ url.title_if_available() }}</a></small>
+                                <small><a href="{{ url.url }}">{{ url.title }}</a></small>
                             </td>
                         </tr>
 
                         {% for bookmark in bookmarks_by_url.get(url) %}
-                            {% if bookmark.time.day == date.day %}
+                            {% if bookmark.date.day == date.day %}
                                 <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
 
                                 <tr id="bookmark{{ bookmark.id }}">
@@ -38,13 +38,13 @@
                                                 {% if bookmark.starred %}
 
                                                     <a href="javascript:void(0);"
-                                                       onclick="unstarBookmark({{ bookmark.id }},{{ g.user.id }})">
+                                                       onclick="unstarBookmark({{ bookmark.id }})">
                                                         <i style="color:gold" class="icon-star"></i>
                                                     </a>
 
                                                 {% else %}
                                                     <a href="javascript:void(0);"
-                                                       onclick="starBookmark({{ bookmark.id }},{{ g.user.id }})">
+                                                       onclick="starBookmark({{ bookmark.id }})">
                                                         <i style="color:lightgray" class="icon-star-empty"></i>
                                                     </a>
                                                 {% endif %}
@@ -56,24 +56,25 @@
                                     <td colspan="2" class="word-details-td">
                                         <div class="impression">
 
-                                            <b>{{ bookmark.origin.word }}</b>
+                                            <b>{{ bookmark.from_ }}</b>
                                             -
-                                            <b>{{ bookmark.translation.word }}</b>
+                                            <b>{{ bookmark.to }}</b>
                                             <br/>
-                                            <small>{{ bookmark.text.shorten_word_context(bookmark.origin.word, 42) }}
-                                                <br/>
-                                                {% if bookmark.card %}
-                                                    {% if bookmark.card[0].position > 0 %}
-                                                        Progress: {{ bookmark.card[0].position * 10 }}%
-                                                    {% endif %}
-                                                {% endif %}
+                                            <small>{{ bookmark.context }}
+                                                <!--The part below seems to be deprecated as there is no reference to cards in bookmarks-->
+                                                <!--<br/>-->
+                                                <!--{% if bookmark.card %}-->
+                                                    <!--{% if bookmark.card[0].position > 0 %}-->
+                                                        <!--Progress: {{ bookmark.card[0].position * 10 }}%-->
+                                                    <!--{% endif %}-->
+                                                <!--{% endif %}-->
 
                                             </small>
                                         </div>
                                     </td>
 
                                     <td style="text-align: right">
-                                        <small>{{ bookmark.origin.importance_level_string() }}</small>
+                                        <small>{{ bookmark.origin_importance }}</small>
                                     </td>
 
                                     <td style="text-align: right;">

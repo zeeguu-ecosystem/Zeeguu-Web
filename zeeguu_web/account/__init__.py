@@ -30,11 +30,14 @@ def login_first(fun):
     def decorated_function(*args, **kwargs):
         if "session_id" in flask.session:
             session = Session.query.get(flask.session["session_id"])
-            flask.g.user = session.user
+            if session is None:
+                flask.g.user = None
+            else:
+                flask.g.user = session.user
         else:
             flask.g.user = None
 
-        if flask.g.user:
+        if "session_id" in flask.session:
             return fun(*args, **kwargs)
         else:
             next_url = flask.request.url
