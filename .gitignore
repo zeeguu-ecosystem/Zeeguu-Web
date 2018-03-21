@@ -13,4 +13,4 @@ node_modules*
 .editorconfig
 *translators.log
 *errors.translators.log
-
+.pytest_cache/*

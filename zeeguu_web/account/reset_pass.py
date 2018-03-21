@@ -9,7 +9,7 @@ from flask import flash
 
 # the account blueprint is defined in the __init__ of the module
 from zeeguu_web.account.api import account_management
-from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException
+from zeeguu_web.account.api.api_connection import APIException
 from . import account
 
 import traceback
@@ -43,12 +43,8 @@ def reset_password():
             account_management.reset_password(code, email, password)
             flash("Password was reset successfully!")
             return flask.redirect('login')
-        except InvalidCredentials as e:
-            flash("Email unknown")
-            traceback.print_exc(file=sys.stdout)
-            return flask.render_template("reset_pass.html",message=True)
-        except ServerException as e:
-            flash("Unable to send password request code")
+        except APIException as e:
+            flash(e.message)
             traceback.print_exc(file=sys.stdout)
             return flask.render_template("reset_pass.html", message=True)
 
