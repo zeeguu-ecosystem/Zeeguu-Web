@@ -14,12 +14,13 @@ def _check_response(response):
     if response.status_code >= 400:
         try:
             # We can't depend on the API always providing a default message
-            data = json.loads(response.text)
-            raise ServerException(data)
+            data = json.loads(response.text)["message"]
         except Exception as ex:
-            reason = response.reason
-            raise ServerException(reason)
-    return response
+            data = response.reason
+        finally:
+            raise ServerException(data)
+    else :
+        return response
 
 def _api_path(path):
     zeeguu_path = configuration.get("ZEEGUU_API")
