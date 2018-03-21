@@ -4,7 +4,12 @@ from flask import json
 from zeeguu_web.account.api.api_connection import post
 from zeeguu_web.account.api.models.Bookmark import Bookmark
 
-api_bookmarks_by_date = "bookmarks_by_day"
+BOOKMARKS_BY_DATE = "bookmarks_by_day"
+DELETE_BOOKMARK = "delete_bookmark/"
+STAR_BOOKMARK = "star_bookmark/"
+UNSTAR_BOOKMARK = "unstar_bookmark/"
+
+
 
 def get_bookmarks_by_date(date):
     _date_string = date.strftime('%Y-%m-%dT%H:%M:%S')
@@ -12,7 +17,7 @@ def get_bookmarks_by_date(date):
         "with_context" : True,
         "after_date" : _date_string
     }
-    resp = post(api_bookmarks_by_date, payload=_payload, session_needed=True)
+    resp = post(BOOKMARKS_BY_DATE, payload=_payload, session_needed=True)
     _json = json.loads(resp.content)
     # ("bookmarks.html",
     #  bookmarks_by_url=bookmarks_by_url,
@@ -43,3 +48,18 @@ def get_bookmarks_by_date(date):
         "urls_by_date" : urls_by_date,
         "bookmark_counts_by_date" : bookmark_counts_by_date
     }
+
+def delete_bookmark(bookmark_id):
+    path = DELETE_BOOKMARK + str(bookmark_id)
+    resp = post(path)
+    return resp.text
+
+def star_bookmark(bookmark_id):
+    path = STAR_BOOKMARK + str(bookmark_id)
+    resp = post(path)
+    return resp.text
+
+def unstar_bookmark(bookmark_id):
+    path = UNSTAR_BOOKMARK + str(bookmark_id)
+    resp = post(path)
+    return resp.text
