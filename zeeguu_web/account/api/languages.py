@@ -1,6 +1,6 @@
 from flask import json
 
-from zeeguu_web.account.api.api_controller import get
+from zeeguu_web.account.api.api_connection import get
 
 AVAILABLE_LANGUAGES = "available_languages"
 AVAILABLE_NATIVE_LANGUAGES = "available_native_languages"

@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.api_controller import post
+from zeeguu_web.account.api.api_connection import post
 
 CREATE_USER = "add_user/"
 NATIVE_LANGUAGE = "native_language/"

@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.api_controller import get, post
+from zeeguu_web.account.api.api_connection import get, post
 
 LOGIN = "session/"
 LOGOUT = "logout_session"

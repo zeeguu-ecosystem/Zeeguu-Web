@@ -9,7 +9,7 @@ from flask import flash
 
 # the account blueprint is defined in the __init__ of the module
 from zeeguu_web.account.api import account_management
-from zeeguu_web.account.api.api_controller import APIException
+from zeeguu_web.account.api.api_connection import APIException
 from . import account
 
 import traceback
