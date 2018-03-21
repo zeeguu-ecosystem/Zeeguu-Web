@@ -2,7 +2,7 @@ import zeeguu
 from flask import make_response, redirect
 
 from zeeguu_web.account.api import session_management, account_management, languages
-from zeeguu_web.account.api.api_exceptions import InvalidCredentials, ServerException, NotFound
+from zeeguu_web.account.api.API import ServerException
 from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
 from zeeguu_web.app import configuration
 from . import account, login_first
@@ -40,12 +40,8 @@ def login():
         else:
             try:
                 sessionID = session_management.login(email, password)
-            except InvalidCredentials as e:
-                flask.flash("Invalid email or password")
-            except NotFound as e:
-                flask.flash("Connection error, please try again later.")
             except ServerException as e:
-                    flask.flash("Server error")
+                    flask.flash(e.message)
 
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
@@ -99,12 +95,8 @@ def create_account():
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except InvalidCredentials as e:
-            flask.flash("Invalid email or password")
-        except NotFound as e:
-            flask.flash("Connection error, please try again later.")
         except ServerException as e:
-            flask.flash("Server error")
+            flask.flash(e.message)
         except:
             flash("Something went wrong. Please contact us.")
 
@@ -120,6 +112,7 @@ def logout():
         print("Logout at server failed, still removing session key.")
 
     for key in SESSION_KEYS:
+        req = flask.session
         flask.session.pop(key, None)
 
     return make_response(redirect(flask.url_for("account.home")))

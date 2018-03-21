@@ -1,19 +1,24 @@
 import flask
 import requests
-from zeeguu_web.account.api.api_exceptions import InvalidData, InvalidCredentials, NotFound, RequestError, ServerError
+from flask import json
+
 from zeeguu_web.app import configuration
 
-possible_exceptions = [
-    InvalidData,
-    InvalidCredentials,
-    NotFound,
-    RequestError,
-    ServerError
-]
+
+class ServerException(Exception):
+    def __init__(self, message):
+        super()
+        self.message = message
 
 def _check_response(response):
-    for ex in possible_exceptions:
-        ex.shouldBeThrown(response)
+    if response.status_code >= 400:
+        try:
+            # We can't depend on the API always providing a default message
+            data = json.loads(response.text)
+            raise ServerException(data)
+        except Exception as ex:
+            reason = response.reason
+            raise ServerException(reason)
     return response
 
 def _api_path(path):
@@ -38,7 +43,7 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
     except Exception:
         import traceback
         print(traceback.format_exc())
-        raise RequestError("Exception while performing request.")
+        raise ServerException("Exception while performing request.")
     return _check_response(resp)
 
 def post(path, payload={}, params={}, session_needed=False, session=None):
