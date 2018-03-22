@@ -3,15 +3,13 @@ import datetime
 from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, unstar_bookmark, delete_bookmark
 from . import account, login_first
 import flask
-from zeeguu.model import Bookmark, Text
-import zeeguu
 
 
 @account.route("/bookmarks")
 @login_first
 def bookmarks():
 
-    d = datetime.datetime.now() - datetime.timedelta(days = 365)
+    d = datetime.datetime.now() - datetime.timedelta(days = 7)
     data = get_bookmarks_by_date(d)
 
     return flask.render_template("bookmarks.html",

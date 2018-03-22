@@ -9,8 +9,6 @@ DELETE_BOOKMARK = "delete_bookmark/"
 STAR_BOOKMARK = "star_bookmark/"
 UNSTAR_BOOKMARK = "unstar_bookmark/"
 
-
-
 def get_bookmarks_by_date(date):
     _date_string = date.strftime('%Y-%m-%dT%H:%M:%S')
     _payload = {
