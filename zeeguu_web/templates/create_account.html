@@ -51,7 +51,7 @@
                         <label class="control-label">The language you are learning</label>
                             <select autofocus id="language" required name="language" class="form-control input-lg">
                                 {% for l in languages %}
-                                    <option {% if l.id == default_learned.id %} selected {% endif %} value="{{l.code}}">{{l.name}}</option>
+                                    <option {% if l == default_learned %} selected {% endif %} value="{{l}}">{{l}}</option>
                                 {% endfor %}
                             </select>
                     </div>
@@ -60,7 +60,7 @@
                         <label class="control-label">Your base language</label>
                             <select autofocus id="native_language" required name="native_language" class="form-control input-lg">
                                 {% for l in native_languages %}
-                                    <option value="{{l.code}}">{{l.name}}</option>
+                                    <option value="{{l}}">{{l}}</option>
                                 {% endfor %}
                             </select>
                     </div>

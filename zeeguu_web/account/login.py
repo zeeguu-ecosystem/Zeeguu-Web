@@ -1,22 +1,23 @@
-import requests
 import zeeguu
 from flask import make_response, redirect
 
-from zeeguu_web.account.api import session_management, account_management
-from zeeguu_web.account.api.api_exceptions import APIConnectionError
+from zeeguu_web.account.api import session_management, account_management, languages
+from zeeguu_web.account.api.api_connection import APIException
+from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
+from zeeguu_web.app import configuration
 from . import account, login_first
 import flask
 from zeeguu.model import User, Session
 
 from flask import flash
-from zeeguu.model.language import Language
-import sqlalchemy.exc
 
 KEY_USER_ID = "user_id"
 KEY_USER_NAME = "user_name"
 SESSION_ID = "session_id"
 
 SESSION_KEYS = [KEY_USER_ID, KEY_USER_NAME, SESSION_ID]
+
+DEFAULT_LANGUAGE = "en"
 
 
 @account.route("/login", methods=("GET", "POST"))
@@ -39,12 +40,8 @@ def login():
         else:
             try:
                 sessionID = session_management.login(email, password)
-            except APIConnectionError as e:
-                if e.status_code is 400 or e.status_code is 401:
-                    flask.flash("Invalid email and password combination")
-                    return
-                else:
-                    flask.flash("Connection error, please try again later.")
+            except APIException as e:
+                    flask.flash(e.message)
 
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
@@ -62,9 +59,9 @@ def create_account():
 
     # A cool way of passing the arguments to the flask template
     template_arguments = dict (
-         languages= Language.available_languages(),
-         native_languages = Language.native_languages(),
-         default_learned= Language.default_learned()
+         languages= get_available_languages(),
+         native_languages = get_available_native_languages(),
+         default_learned= DEFAULT_LANGUAGE
     )
 
     # GET
@@ -77,10 +74,10 @@ def create_account():
     email = form.get("email", None)
     name = form.get("name", None)
     code = form.get("code", None)
-    language = Language.find(form.get("language", None))
-    native_language = Language.find(form.get("native_language", None))
+    language = form.get("language", None)
+    native_language = form.get("native_language", None)
 
-    if not code in zeeguu.app.config.get("INVITATION_CODES"):
+    if not code in configuration.get("INVITATION_CODES"):
         flash("Invitation code is not recognized. Please contact us.")
 
     if password is None or email is None or name is None:
@@ -98,16 +95,10 @@ def create_account():
 
         except ValueError:
             flash("Username could not be created. Please contact us.")
-        except APIConnectionError as e:
-            if e.status_code is 400 or e.status_code is 401:
-                flask.flash("Invalid email and password combination")
-                return
-            else:
-                flask.flash("Connection error, please try again later.")
+        except APIException as e:
+            flask.flash(e.message)
         except:
             flash("Something went wrong. Please contact us.")
-        finally:
-            zeeguu.db.session.rollback()
 
     return flask.render_template("create_account.html", **template_arguments)
 
@@ -117,10 +108,11 @@ def create_account():
 def logout():
     try:
         session_management.logout()
-    except APIConnectionError:
+    except APIException:
         print("Logout at server failed, still removing session key.")
 
     for key in SESSION_KEYS:
+        req = flask.session
         flask.session.pop(key, None)
 
     return make_response(redirect(flask.url_for("account.home")))
