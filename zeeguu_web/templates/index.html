@@ -4,194 +4,205 @@
 
 {% block body %}
 
-<!-- Macros Used on this Page -->
-{% macro member(name, role) -%}
-<div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
-    <div class="member"><small>{{ role }}</small></div>
-    <br/>
-{%- endmacro %}
-<!-- Macros Used on this Page -->
+    <!-- Macros Used on this Page -->
+    {% macro member(name, role) -%}
+        <div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
+        <div class="member">
+            <small>{{ role }}</small>
+        </div>
+        <br/>
+    {%- endmacro %}
+    <!-- Macros Used on this Page -->
 
 
-<!--UP-PAGE PRESENTATION-->
+    <!--UP-PAGE PRESENTATION-->
 
-<div class="container-img-block">
+    <div class="container-img-block">
 
 
-    <img id="logo-elephantu" class="inner-center" src="../static/img/Zeeguu-logo-red.png"/>
+        <img id="logo-elephantu" class="inner-center" src="../static/img/Zeeguu-logo-red.png"/>
 
         <h2 id="main-message" class="inner-center">
-        A research project designed to<br/>
-        speed & fun up vocabulary learning in a new language
-    </h2>
+            A research project designed to<br/>
+            speed & fun up vocabulary learning in a new language
+        </h2>
 
-    {% if not g.user %}
-        <h3 id="extra-button" class="inner-center">
-            <a href="http://bit.ly/1UFL5GW">Become a Beta Tester</a>
-        </h3>
-    {% endif %}
+        {% if not g.user %}
+            <h3 id="extra-button" class="inner-center">
+                <a href="http://bit.ly/1UFL5GW">Become a Beta Tester</a>
+            </h3>
+        {% endif %}
 
-</div>
-
-
-
-<!--THREE STEPS PRESENTATION-->
-
-<div class="container">
-
-    <div class="three-steps-presentation">
-
-        <h1 style="text-align:center">Our approach is designed around three fundamental principles
-        </h1>
-
-        <div class="row feature">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
-                <h3>Only Read The Stuff You Like</h3>
-                <p>
-                    Unlike most traditional learning materials based on pre-defined, standardized and let's admit it: boring texts, we think that you should read only the stuff that you love: eBooks, blogs, articles and news in the desired language. In each of these contexts and on any chosen device, you should have translations of unfamiliar terms “at the touch of a fingertip”.
+    </div>
 
 
-                </p>
-            </div>
 
-            <div class=" col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3 ">
-                <img id="eleph-booklover" src="../static/img/eleph-reader-lover.png" />
-            </div>
+    <!--THREE STEPS PRESENTATION-->
 
-        </div>
+    <div class="container">
 
+        <div class="three-steps-presentation">
 
-        <div class="row feature">
+            <h1 style="text-align:center">Our approach is designed around three fundamental principles
+            </h1>
 
-            <div class="hidden-sm hidden-xs col-md-offset-0 col-md-3">
-                <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
-            </div>
-
-            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-0 info-cassette">
-                <h3>Have Your Words Everywhere With You</h3>
-                <p>
-                    Words that you have once translated, will be available to you always (read as “from any of your devices”) and they will go into your own, private dictionary.
-                    The information about the context where you encountered a given new word will also be synchronized among the applications and devices. There is no doubt we understand and remember so much better words in context.
-                </p>
-            </div>
-
-            <div class="visible-sm visible-xs col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
-                <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
-            </div>
-
-        </div>
+            <div class="row feature">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
+                    <h3>Only Read The Stuff You Like</h3>
+                    <p>
+                        Unlike most traditional learning materials based on pre-defined, standardized and let's admit
+                        it: boring texts, we think that you should read only the stuff that you love: eBooks, blogs,
+                        articles and news in the desired language. In each of these contexts and on any chosen device,
+                        you should have translations of unfamiliar terms “at the touch of a fingertip”.
 
 
-        <div class="row feature">
+                    </p>
+                </div>
 
-            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
-                <h3>Practice with Personalized Exercices</h3>
-                <p>
-                    Based on the texts you read, the words you translate, and lists of word frequencies, Zeeguu will use machine learning to build a model of your current vocabulary in the target language. Applying this model and using spaced repetition, you will receive personalized exercises that will help you learn, practice and retain the new words, ranked according to their importance.
-                </p>
+                <div class=" col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3 ">
+                    <img id="eleph-booklover" src="../static/img/eleph-reader-lover.png"/>
+                </div>
+
             </div>
 
 
-            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
-                <img id="eleph-redpants" src="../static/img/eleph-sport-dessert.png"/>
+            <div class="row feature">
+
+                <div class="hidden-sm hidden-xs col-md-offset-0 col-md-3">
+                    <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
+                </div>
+
+                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-0 info-cassette">
+                    <h3>Have Your Words Everywhere With You</h3>
+                    <p>
+                        Words that you have once translated, will be available to you always (read as “from any of your
+                        devices”) and they will go into your own, private dictionary.
+                        The information about the context where you encountered a given new word will also be
+                        synchronized among the applications and devices. There is no doubt we understand and remember so
+                        much better words in context.
+                    </p>
+                </div>
+
+                <div class="visible-sm visible-xs col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
+                    <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
+                </div>
+
             </div>
 
+
+            <div class="row feature">
+
+                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
+                    <h3>Practice with Personalized Exercices</h3>
+                    <p>
+                        Based on the texts you read, the words you translate, and lists of word frequencies, Zeeguu will
+                        use machine learning to build a model of your current vocabulary in the target language.
+                        Applying this model and using spaced repetition, you will receive personalized exercises that
+                        will help you learn, practice and retain the new words, ranked according to their importance.
+                    </p>
+                </div>
+
+
+                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
+                    <img id="eleph-redpants" src="../static/img/eleph-sport-dessert.png"/>
+                </div>
+
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
+    <!--HOW DOES IT WORK STEPS-->
 
-<!--HOW DOES IT WORK STEPS-->
-
-<!--<div class="container">-->
+    <!--<div class="container">-->
     <!--<div class="row grey-backgroung-strip-steps">-->
 
-        <!--<div class="container">-->
+    <!--<div class="container">-->
 
-            <!--<div class="col-sm-12 col-md-12">-->
-                <!--<h1 style="text-align:center">How does it work?</h1>-->
-            <!--</div>-->
-
-                <!--<div class="row step1">-->
-                    <!--<div class="col-sm-6 col-md-4">-->
-                        <!--<h3>Step1</h3>-->
-                        <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Get started</span>-->
-                            <!--creating your Zeeguu account and setting your preferences for your Language-Building Program</p>-->
-                    <!--</div>-->
-
-                    <!--<div class="col-sm-6 col-md-4">-->
-                        <!--<!--<img id="foot2" src ="../static/img/foot2.png">-->
-                        <!--<!--<img id="foot4" src ="../static/img/foot4.png">-->
-                        <!--<!--<img id="foot5" src ="../static/img/foot5.png">-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-                <!--<div class="row step2">-->
-                    <!--<div class="col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2">-->
-                        <!--<!--<img id="foot6" src ="../static/img/foot5.png">-->
-                        <!--<!--<img id="foot7" src ="../static/img/foot6.png">-->
-                    <!--</div>-->
-
-
-                    <!--<div class="col-sm-6 col-md-4">-->
-                        <!--<h3>Step2</h3>-->
-                        <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Freely navigate</span>-->
-                            <!--on the websites you like, reading the texts you want: the latest news, favourite blogs,-->
-                            <!--your e-books, in the selected learning language on your chosen device</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row step3">-->
-                    <!--<div class="col-sm-offset-1 col-sm-5 col-md-offset-4 col-md-4">-->
-                        <!--<!--<img id="foot8" src ="../static/img/foot8.png">-->
-                        <!--<!--<img id="foot9" src ="../static/img/foot9.png">-->
-                    <!--</div>-->
-
-                    <!--<div class="col-sm-6 col-md-4">-->
-                        <!--<h3>Step3</h3>-->
-                        <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Find an unknown word</span>, select it and get the translation.Not 100% satisfied with the-->
-                            <!--translation? Contribute your own translation for the selected word.</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-                <!--<div class="row step4">-->
-                    <!--<div class="col-sm-6 col-md-4">-->
-                        <!--<h3>Step4</h3>-->
-                        <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Bookmark the word</span>. Once bookmarked, the word will be stored along with the given-->
-                            <!--translation and the word’s context on your online profile</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row step5">-->
-                    <!--<div class="col-sm-offset-4 col-sm-6 col-md-offset-4 col-md-4">-->
-                        <!--<h3>Step5</h3>-->
-                        <!--<p>Go whenever you want to your Words Gym to see your words.-->
-                            <!--<span class="capitalized-phrase" font style="text-transform: uppercase">Get personalized exercises</span>-->
-                            <!--in the <b>Words Gym</b> with the words until you know them.</p>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-
-
-                <!--<div class="row step6">-->
-                    <!--<div class="col-sm-6 col-md-offset-8 col-md-4">-->
-                        <!--<h3>Step6</h3>-->
-                        <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Track your progress</span> and get feedback on your workout, by checking the Performance Progress Indicators</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-        <!--</div>-->
+    <!--<div class="col-sm-12 col-md-12">-->
+    <!--<h1 style="text-align:center">How does it work?</h1>-->
     <!--</div>-->
-<!--</div>-->
+
+    <!--<div class="row step1">-->
+    <!--<div class="col-sm-6 col-md-4">-->
+    <!--<h3>Step1</h3>-->
+    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Get started</span>-->
+    <!--creating your Zeeguu account and setting your preferences for your Language-Building Program</p>-->
+    <!--</div>-->
+
+    <!--<div class="col-sm-6 col-md-4">-->
+    <!--<!--<img id="foot2" src ="../static/img/foot2.png">-->
+    <!--<!--<img id="foot4" src ="../static/img/foot4.png">-->
+    <!--<!--<img id="foot5" src ="../static/img/foot5.png">-->
+    <!--</div>-->
+    <!--</div>-->
 
 
-<!--TEAM-->
+    <!--<div class="row step2">-->
+    <!--<div class="col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2">-->
+    <!--<!--<img id="foot6" src ="../static/img/foot5.png">-->
+    <!--<!--<img id="foot7" src ="../static/img/foot6.png">-->
+    <!--</div>-->
 
-<div class="container">
+
+    <!--<div class="col-sm-6 col-md-4">-->
+    <!--<h3>Step2</h3>-->
+    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Freely navigate</span>-->
+    <!--on the websites you like, reading the texts you want: the latest news, favourite blogs,-->
+    <!--your e-books, in the selected learning language on your chosen device</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row step3">-->
+    <!--<div class="col-sm-offset-1 col-sm-5 col-md-offset-4 col-md-4">-->
+    <!--<!--<img id="foot8" src ="../static/img/foot8.png">-->
+    <!--<!--<img id="foot9" src ="../static/img/foot9.png">-->
+    <!--</div>-->
+
+    <!--<div class="col-sm-6 col-md-4">-->
+    <!--<h3>Step3</h3>-->
+    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Find an unknown word</span>, select it and get the translation.Not 100% satisfied with the-->
+    <!--translation? Contribute your own translation for the selected word.</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="row step4">-->
+    <!--<div class="col-sm-6 col-md-4">-->
+    <!--<h3>Step4</h3>-->
+    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Bookmark the word</span>. Once bookmarked, the word will be stored along with the given-->
+    <!--translation and the word’s context on your online profile</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row step5">-->
+    <!--<div class="col-sm-offset-4 col-sm-6 col-md-offset-4 col-md-4">-->
+    <!--<h3>Step5</h3>-->
+    <!--<p>Go whenever you want to your Words Gym to see your words.-->
+    <!--<span class="capitalized-phrase" font style="text-transform: uppercase">Get personalized exercises</span>-->
+    <!--in the <b>Words Gym</b> with the words until you know them.</p>-->
+
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="row step6">-->
+    <!--<div class="col-sm-6 col-md-offset-8 col-md-4">-->
+    <!--<h3>Step6</h3>-->
+    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Track your progress</span> and get feedback on your workout, by checking the Performance Progress Indicators</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--TEAM-->
+
+    <div class="container">
 
     <div class="team-members">
 
@@ -201,17 +212,15 @@
             {{ member("Mircea Lungu", "Production, API design") }}
 
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
-                {{ member("Martin Avagyan", "Language Exercises") }}
-                {{ member("Dan Chirtoaca", "Universal Multilingual Reader") }}
+                {{ member("Feiko Ritsema", "Topic Browser") }}
+                {{ member("Sybren van Vliet", "Forgiving Exercise Feedback") }}
+                {{ member("Jeroen van Engen", "Education Feedback") }}
             </div>
 
             <div class="col-sm-4 col-md-3">
-                {{ member("Luc van der Brand", "Universal Multilingual Reader") }}
-                {{ member("Vlad Turbureanu", "Language Exercises") }}
-            </div>
-
-            <div class="col-sm-12 col-md-12">
-                  {{ member("Niels Haan", "Smartwatch Development") }}
+                {{ member("Joël Grondman", "Personalized Difficulty Estimator") }}
+                {{ member("Carlos Paz", "Knowledge Dashboard") }}
+                {{ member("Wim Gombert", "Education Feedback") }}
             </div>
 
 
@@ -220,31 +229,60 @@
         <div class="row">
             <h1 class="section-title">Alumni</h1>
 
-            {{ member("Ada Lungu", "UX and Web Design") }}
+            <small>Over the years, many people contributed to the project.
+            </small>
+
+            <br/><br/><br/>
 
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+                {{ member("Ada Lungu", "UX and Web Design") }}
+                {{ member("Lars Holdijk", "API Design") }}
+                {{ member("Dan Chirtoaca", "Universal Multilingual Reader") }}
+                {{ member("Luc van der Brand", "Universal Multilingual Reader") }}
+                {{ member("Alexander Lukjanenkovs", "Learner Feedback") }}
                 {{ member("Anca Lungu", "Linguistics") }}
-                {{ member("Simon Marti", "Initial API and Chrome Extension") }}
                 {{ member("Linus Schwab", "Android RSS Feed Reader") }}
+                {{ member("Simon Marti", "Initial API and Chrome Extension") }}
             </div>
 
             <div class="col-sm-4 col-md-3">
+                {{ member("Johan De Jager", "Translation Multiplexer") }}
+                {{ member("Martin Avagyan", "Language Exercises") }}
+                {{ member("Vlad Turbureanu", "Language Exercises") }}
+                {{ member("Niels Haan", "Smartwatch Development") }}
                 {{ member("Jorrit Oosterhof", "iOS News Reader") }}
                 {{ member("Karan Sethi", "Knowledge Estimator") }}
-                {{ member("Pascal Giehl", "Augmented Reality and Android") }}
+                {{ member("Pascal Giehl", "Android Development") }}
             </div>
 
         </div>
 
 
-            <!--<div class="col-sm-offset-4 col-sm-4" style="text-align: center">-->
-            <!--</div>-->
+        <div class="row">
+            <h1 class="section-title">Thanks</h1>
 
-        <small>Zeeguu is kindly hosted by <a href="http://scg.unibe.ch">SCG</a> at the University of Bern.</small>
+            <small>Zeeguu is kindly hosted by <a href="http://scg.unibe.ch">SCG</a> at the University of Bern.</small>
+            <br/>
 
+            <small>Also, Zeeguu uses many open source libraries and free APIs.
+                Some of them are listed here.
+            </small>
+
+            <br/><br/><br/>
+
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+                {{ member("Glosbe", "Online translation API") }}
+            </div>
+
+            <div class="col-sm-4 col-md-3">
+                {{ member("Flask", "Web Development with Python") }}
+            </div>
+
+            <small>
+
+        </div>
     </div>
-</div>
 
-        <a href="m_home">_</a>
+    <a href="m_home">_</a>
 
 {% endblock %}
