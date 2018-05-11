@@ -17,6 +17,8 @@ config_file =os.environ['ZEEGUU_WEB_CONFIG']
 app.config.from_pyfile(config_file, silent=False)
 configuration = app.config
 
+assert "ZEEGUU_API" in app.config
+
 # load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
 #                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
 #                              'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD',
