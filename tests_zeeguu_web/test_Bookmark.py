@@ -23,7 +23,7 @@ class TestBookmark:
         assert bm.to_lang == 'en'
         assert bm.url.title == ''
         assert bm.url.url == 'http://www.eluniversal.com.mx/mundo/homenajean-en-los-angeles-actriz-porno-que-enfrenta-trump'
-        assert bm.origin_importance == '|'
+        assert bm.origin_importance == ''
         assert bm.starred == False
         assert bm.from_ == 'supuesta'
         assert bm.context == 'Hurpy durpy durp'
@@ -41,8 +41,8 @@ class TestBookmark:
 
     def test_importance_float(self):
         text = Bookmark.string_representation_of_importance(2.31)
-        assert text == '||'
+        assert text == "<span style='font-size:8pt'>|</span><span style='font-size:7pt'>|</span>"
 
     def test_importance_below_1(self):
         text = Bookmark.string_representation_of_importance(0.1)
-        assert text == '|'
+        assert text == ''
