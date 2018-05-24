@@ -27,10 +27,13 @@ def get_bookmarks_by_date(date):
         d = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
         sorted_dates.append(d)
         for bm_json in data["bookmarks"]:
-            bm = Bookmark.from_json(bm_json)
-            bm.set_date(d)
-            urls_by_date.setdefault(d, set()).add(bm.url)
-            bookmarks_by_url.setdefault(bm.url, []).append(bm)
+            try :
+                bm = Bookmark.from_json(bm_json)
+                bm.set_date(d)
+                urls_by_date.setdefault(d, set()).add(bm.url)
+                bookmarks_by_url.setdefault(bm.url, []).append(bm)
+            except Exception:
+                print("Parsing bookmark failed")
 
         bookmark_counts_by_date.setdefault(d, set()).add(len(data["bookmarks"]))
 
