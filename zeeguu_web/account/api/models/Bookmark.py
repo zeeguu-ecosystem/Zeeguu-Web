@@ -26,9 +26,12 @@ class Bookmark:
     @classmethod
     def string_representation_of_importance(cls, importance):
         if importance < 1:
-            importance = 1
-        b = "|"
-        return b * int(importance)
+            importance = 0
+        
+        rep = ""
+        for imp in range (0,int(importance)):
+            rep = f"<span style='font-size:{imp+7}pt'>|</span>" + rep
+        return rep 
 
     @classmethod
     def from_json(cls, _json):
