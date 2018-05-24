@@ -4,7 +4,7 @@ from zeeguu_web.account.api import api_connection
 from zeeguu_web.account.api.api_connection import APIException
 
 
-class testAPIConnection:
+class TestAPIConnection:
 
     def test_response_code_200(self):
         response = requests.Response()
