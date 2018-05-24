@@ -25,8 +25,10 @@ class Bookmark:
 
     @classmethod
     def string_representation_of_importance(cls, importance):
+        if importance < 1:
+            importance = 1
         b = "|"
-        return b * importance
+        return b * int(importance)
 
     @classmethod
     def from_json(cls, _json):

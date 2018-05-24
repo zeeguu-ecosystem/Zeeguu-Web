@@ -9,8 +9,6 @@
         <!--<h3>Words</h3>-->
 
         {% if sorted_dates %}
-            <!--<p>{{ g.user.name}}, these are the <b>{{ g.user.all_bookmarks()|length }}</b> words you are currently learning.<br/>-->
-            <!--Context and importance are listed when available.</p>-->
 
         {% for date in sorted_dates %}
         {{ date.strftime("%A %B %d, %Y") }}
