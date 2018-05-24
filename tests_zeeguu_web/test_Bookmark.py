@@ -1,8 +1,3 @@
-import pytest
-import requests
-
-from zeeguu_web.account.api import api_connection
-from zeeguu_web.account.api.api_connection import APIException
 from zeeguu_web.account.api.models.Bookmark import Bookmark
 
 
