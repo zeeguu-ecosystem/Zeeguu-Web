@@ -25,8 +25,13 @@ class Bookmark:
 
     @classmethod
     def string_representation_of_importance(cls, importance):
-        b = "|"
-        return b * importance
+        if importance < 1:
+            importance = 0
+        
+        rep = ""
+        for imp in range (0,int(importance)):
+            rep = f"<span style='font-size:{imp+7}pt'>|</span>" + rep
+        return rep 
 
     @classmethod
     def from_json(cls, _json):
@@ -38,13 +43,7 @@ class Bookmark:
         starred = _json["starred"]
 
         url = URL(_json["url"], _json["title"])
-        try: 
-            context = cls.get_first_N_words_of_context(_json["context"])
-        except: 
-            context = '(missing context)'
-        try: 
-            origin_importance = cls.string_representation_of_importance(_json["origin_importance"])
-        except: 
-            origin_importance = '??'    
+        context = cls.get_first_N_words_of_context(_json["context"])
+        origin_importance = cls.string_representation_of_importance(_json["origin_importance"])
 
         return Bookmark(id, to, from_lang, to_lang, url, origin_importance, from_, starred, context)
