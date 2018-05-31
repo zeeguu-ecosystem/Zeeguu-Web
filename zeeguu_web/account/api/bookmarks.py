@@ -19,10 +19,8 @@ def get_starred_bookmarks():
     bookmarks = []
     for data in _json:
         bm = Bookmark.from_json(data)
-        print(data)
         bookmarks.append(bm)
 
-    print(bookmarks)
     return bookmarks
 
 
@@ -33,10 +31,8 @@ def get_top_bookmarks(count):
     bookmarks = []
     for data in _json:
         bm = Bookmark.from_json(data)
-        print(data)
         bookmarks.append(bm)
 
-    print(bookmarks)
     return bookmarks
 
 
