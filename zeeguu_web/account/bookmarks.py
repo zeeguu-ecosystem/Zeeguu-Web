@@ -1,6 +1,7 @@
 import datetime
 
-from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, unstar_bookmark, delete_bookmark
+from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, unstar_bookmark, delete_bookmark, \
+    get_top_bookmarks, get_starred_bookmarks
 from . import account, login_first
 import flask
 
@@ -8,9 +9,8 @@ import flask
 @account.route("/bookmarks")
 @login_first
 def bookmarks():
-
-    d = datetime.datetime.now() - datetime.timedelta(days = 7)
-    data = get_bookmarks_by_date(d)
+    # d = datetime.datetime.now() - datetime.timedelta(days=7)
+    data = get_bookmarks_by_date()
 
     return flask.render_template("bookmarks.html",
                                  bookmarks_by_url=data["bookmarks_by_url"],
@@ -18,6 +18,24 @@ def bookmarks():
                                  sorted_dates=data["sorted_dates"],
                                  bookmark_counts_by_date=data["bookmark_counts_by_date"],
                                  )
+
+
+@account.route("/top_bookmarks")
+@login_first
+def top_bookmarks():
+    bookmarks = get_top_bookmarks(10)
+
+    return flask.render_template("top_bookmarks.html",
+                                 bookmarks=bookmarks)
+
+
+@account.route("/starred_bookmarks")
+@login_first
+def starred_bookmarks():
+    bookmarks = get_starred_bookmarks()
+
+    return flask.render_template("starred_bookmarks.html",
+                                 bookmarks=bookmarks)
 
 
 # These following endpoints are invoked via ajax calls from the bookmarks page

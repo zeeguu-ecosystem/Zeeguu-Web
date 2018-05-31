@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set tab = "bookmarks" %}
+{% set active_page = "bookmarks" %}
 
 {% block body %}
 
@@ -10,88 +10,92 @@
 
         {% if sorted_dates %}
 
-        {% for date in sorted_dates %}
-        {{ date.strftime("%A %B %d, %Y") }}
+            <h3>All Your Words</h3>
 
-            <table class="table table-striped table-no-borders">
 
-                    {% for url in urls_by_date.get(date) %}
-                        <tr>
-                            <td style="border:0px solid white;text-align:left; background-color:white;"></td>
-                            <td colspan="4" style="border:0px solid white;text-align:left; background-color:white;">
-                                <small><a href="{{ url.url }}">{{ url.title }}</a></small>
-                            </td>
-                        </tr>
+            {% for date in sorted_dates %}
+                {{ date.strftime("%A %B %d, %Y") }}
 
-                        {% for bookmark in bookmarks_by_url.get(url) %}
-                            {% if bookmark.date.day == date.day %}
-                                <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
+                <table class="table table-striped table-no-borders">
 
-                                <tr id="bookmark{{ bookmark.id }}">
-                                    <td style="border:0px solid white;background-color:white;"></td>
-                                    <td class="word-action-buttons-td">
-                                        <div class="word-action-buttons">
+                {% for url in urls_by_date.get(date) %}
+                    <tr>
+                        <td style="border:0px solid white;text-align:left; background-color:white;"></td>
+                        <td colspan="4" style="border:0px solid white;text-align:left; background-color:white;">
+                            <small><a href="{{ url.url }}">{{ url.title }}</a></small>
+                        </td>
+                    </tr>
 
-                                            <div id="star{{ bookmark.id }}">
-                                                {% if bookmark.starred %}
+                    {% for bookmark in bookmarks_by_url.get(url) %}
+                        {% if bookmark.date.day == date.day %}
+                            <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
 
-                                                    <a href="javascript:void(0);"
-                                                       onclick="unstarBookmark({{ bookmark.id }})">
-                                                        <i style="color:gold" class="icon-star"></i>
-                                                    </a>
+                            <tr id="bookmark{{ bookmark.id }}">
+                                <td style="border:0px solid white;background-color:white;"></td>
+                                <td class="word-action-buttons-td">
+                                    <div class="word-action-buttons">
 
-                                                {% else %}
-                                                    <a href="javascript:void(0);"
-                                                       onclick="starBookmark({{ bookmark.id }})">
-                                                        <i style="color:lightgray" class="icon-star-empty"></i>
-                                                    </a>
-                                                {% endif %}
-                                            </div>
+                                        <div id="star{{ bookmark.id }}">
+                                            {% if bookmark.starred %}
 
+                                                <a href="javascript:void(0);"
+                                                   onclick="unstarBookmark({{ bookmark.id }})">
+                                                    <i style="color:gold" class="icon-star"></i>
+                                                </a>
+
+                                            {% else %}
+                                                <a href="javascript:void(0);"
+                                                   onclick="starBookmark({{ bookmark.id }})">
+                                                    <i style="color:lightgray" class="icon-star-empty"></i>
+                                                </a>
+                                            {% endif %}
                                         </div>
 
-                                    </td>
-                                    <td colspan="2" class="word-details-td">
-                                        <div class="impression">
+                                    </div>
 
-                                            <b>{{ bookmark.from_ }}</b>
-                                            -
-                                            <b>{{ bookmark.to }}</b>
-                                            <br/>
-                                            <small>{{ bookmark.context }}</small>
-                                        </div>
-                                    </td>
+                                </td>
+                                <td colspan="2" class="word-details-td">
+                                    <div class="impression">
 
-                                    <td style="text-align: right">
-                                        {{ bookmark.origin_importance | safe }}
-                                    </td>
+                                        <b>{{ bookmark.from_ }}</b>
+                                        -
+                                        <b>{{ bookmark.to }}</b>
+                                        <br/>
+                                        <small>{{ bookmark.context }}</small>
+                                    </div>
+                                </td>
 
-                                    <td style="text-align: right;">
+                                <td style="text-align: right">
+                                    {{ bookmark.origin_importance | safe }}
+                                </td>
 
-                                        <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})"
-                                           id="trash">
-                                            <i class="icon-trash button-disabled"></i>
-                                        </a>
+                                <td style="text-align: right;">
+
+                                    <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})"
+                                       id="trash">
+                                        <i class="icon-trash button-disabled"></i>
+                                    </a>
 
 
-                                    </td>
+                                </td>
 
 
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 {% endfor %}
-            </table>
+            {% endfor %}
+        </table>
 
             </div>
         {% else %}
             <div class="col-md-offset-1 col-md-10">
-                <h2>What next?</h2>
+                <h2>You have not translated any words...</h2>
                 <br/>
                 <h4>- Head to the <a href="/reading">reading room</a> for news and blogs</h4>
                 <br/>
-                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install the Zeeguu Chrome extension and Android App</a><br/>
+                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install
+                    the Zeeguu Chrome extension and Android App</a><br/>
                     and start translating words on any website you visit.
                 </h4>
             </div>

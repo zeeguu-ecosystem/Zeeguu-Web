@@ -22,6 +22,26 @@
 {#                    {{ menu_item ("home",    "account.whatnext", "↞ Home") }}#}
                 {% endif %}
 
+
+                {% if g.user %}
+
+                    {% set navigation_bar = [
+                            ('/top_bookmarks', 'top', '🎉 Especially for You'),
+                            ('/starred_bookmarks', 'starred', 'Starred'),
+                            ('/bookmarks', 'bookmarks', 'All Past Translations')
+                    ] -%}
+
+                    {% set active_page = active_page|default('top') -%}
+
+                        {% for href, id, caption in navigation_bar %}
+                        <li{% if id == active_page %} class="active"{% endif
+                        %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                        </li>
+                        {% endfor %}
+
+
+                {% endif %}
+
                 {% if students %}
                     {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
                 {% endif %}

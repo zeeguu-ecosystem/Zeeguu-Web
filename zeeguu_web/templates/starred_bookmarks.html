@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% set active_page = "starred" %}
+
+{% block body %}
+
+    <div class="col-md-offset-2 col-md-8">
+
+
+        {% if bookmarks %}
+
+            <h3>Starred Words</h3>
+
+            <table class="table table-striped table-no-borders">
+
+
+                        {% for bookmark in bookmarks %}
+
+                                <tr id="bookmark{{ bookmark.id }}">
+                                    <td style="border:0px solid white;background-color:white;"></td>
+                                    <td class="word-action-buttons-td">
+                                        <div class="word-action-buttons">
+
+                                            <div id="star{{ bookmark.id }}">
+                                                {% if bookmark.starred %}
+
+                                                    <a href="javascript:void(0);"
+                                                       onclick="unstarBookmark({{ bookmark.id }})">
+                                                        <i style="color:gold" class="icon-star"></i>
+                                                    </a>
+
+                                                {% else %}
+                                                    <a href="javascript:void(0);"
+                                                       onclick="starBookmark({{ bookmark.id }})">
+                                                        <i style="color:lightgray" class="icon-star-empty"></i>
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+                                    <td colspan="2" class="word-details-td">
+                                        <div class="impression">
+
+                                            <b>{{ bookmark.from_ }}</b>
+                                            -
+                                            <b>{{ bookmark.to }}</b>
+                                            <br/>
+                                            <small>{{ bookmark.context }}</small>
+                                        </div>
+                                    </td>
+
+                                    <td style="text-align: right">
+                                        {{ bookmark.origin_importance | safe }}
+                                    </td>
+
+                                    <td style="text-align: right;">
+
+                                        <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})"
+                                           id="trash">
+                                            <i class="icon-trash button-disabled"></i>
+                                        </a>
+
+
+                                    </td>
+
+
+                                </tr>
+                        {% endfor %}
+
+            </table>
+
+            </div>
+        {% else %}
+            <div class="col-md-offset-1 col-md-10">
+                <h2>You have no starred words</h2>
+            </div>
+        {% endif %}
+{% endblock %}

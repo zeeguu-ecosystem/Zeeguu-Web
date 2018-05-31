@@ -3,7 +3,9 @@
 <!------------------------------------>
 
     {% macro menu_item(tab_name, url, text) -%}
-        <li class="{% if tab == tab_name %} active {% endif %}"><a href="{{ url_for(url) }}">{{ text }}</a></li>
+        {% if tab == tab_name %}
+            <li class="active"><a href="{{ url_for(url) }}">{{ text }}</a></li>
+        {% endif %}
     {%- endmacro %}
 
     {% macro flash_messages() -%}
