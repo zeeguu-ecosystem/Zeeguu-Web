@@ -9,9 +9,12 @@
 {% endassets -%}
 
 
-<div class="container">
 
     <form id="create_account" class="form-horizontal" action="" method="post" class="input-group">
+
+
+    <div class="container">
+
         <fieldset>
             <div class="outer-block">
 
@@ -69,6 +72,49 @@
                     This email address is already in use.
                     </div>
 
+                    <br/>
+                    <hr/>
+
+                    <div>
+                        <h3>Privacy Notice</h3>
+
+                        <small>
+                        <p>
+                            Zeeguu is a research project. Our goal is to
+                            discover ways in which learning a foreign
+                            language is more fun.
+                        </p>
+
+                        <p>
+                            The <b>only personal information</b> that we store about you
+                            is your <b>email</b>. We do not share it with anybody.
+                            We need it to send you a survey and possibly  announcements
+                            later.
+                        </p>
+
+                        <p>
+                            We store <b>anonymized data</b> about your
+                            <b>interactions with foreign texts and exercises</b>
+                            together with the times of these interactions.
+                            They help us <b>estimate</b> the words you know,
+                            the ones you should learn, recommend texts,
+                            and approximate time spent studying.
+                        </p>
+
+                        <p>
+                        We might make the anonymized interaction data available for other researchers too. In research,
+                            data can be even more important than algorithms.
+                        </p>
+
+                        </small>
+
+                    </div>
+
+
+                    <hr/>
+
+                    <br/>
+
                     <!--<br/>-->
                     <div class="input-group">
                         <input type="submit" name="create_account" value="Create Account" class="btn btn-success green-button" />
@@ -77,6 +123,11 @@
                 </div>
             </div>
         </fieldset>
+    </div>
+
+    <div class="container">
+
+    </div>
+
     </form>
-</div>
 {% endblock %}
