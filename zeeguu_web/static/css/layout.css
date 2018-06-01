@@ -8,22 +8,13 @@
 .navbar-right li {
   font-size: 20px; }
 
-@media screen and (max-width: 992px) {
-  .menu-cassette {
-    height: 85px; }
-
+@media screen and (max-width: 768px) {
   .navbar-nav li {
-    font-size: 24px; }
+    width: 25%;
+    float: left; }
 
-  .navbar-right li {
-    font-size: 24px; }
-
-  #zeeguu-logo {
-    height: 24px;
-    margin-top: 20px; }
-
-  #login {
-    font-size: 35px; } }
+  #zeeguu-logo-li {
+    width: 50px; } }
 .navbar-brand, .navbar-nav li a, .navbar-nav li a:visited, .navbar-nav li a:hover {
   line-height: 75px;
   height: 75px;
@@ -70,14 +61,5 @@
     color: white; }
     .navbar-default .navbar-link:hover {
       color: white; }
-
-@media (max-width: 767px) {
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: white; }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: white; }
-  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.2); } }
 
 /*# sourceMappingURL=layout.css.map */

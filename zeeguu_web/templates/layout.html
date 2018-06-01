@@ -1,76 +1,75 @@
 {% from "common_layout.html" import menu_item, flash_messages, header %}
 
+{% set navigation_bar = [
+            ('/top_bookmarks', 'top', 'Important'),
+            ('/starred_bookmarks', 'starred', 'Starred'),
+            ('/bookmarks', 'bookmarks', 'All History')
+    ] -%}
+
+{% set active_page = active_page|default('top') -%}
 
 <html>
 
-    {{ header() }}
+{{ header() }}
 
-    <body>
-
-    {% if not mobile %}
-
-    <nav class="navbar navbar-default menu-cassette">
-        <div class="container-fluid">
-            <!-- The Menu Options on the Left -->
-            <ul class="nav navbar-nav">
-                <!-- The Icon -->
-                {% if tab != "home" %}
-                    <li><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo" src="../static/img/white-house-on-gray.jpg" alt="Home" /></a></li>
-                {% endif %}
-
-                {% if g.user and tab != "install"%}
-{#                    {{ menu_item ("home",    "account.whatnext", "↞ Home") }}#}
-                {% endif %}
+<body>
 
 
-                {% if g.user %}
+<nav class="navbar navbar-default menu-cassette">
+    <div class="container-fluid">
+        <!-- The Menu Options on the Left -->
+        <ul class="nav navbar-nav">
 
-                    {% set navigation_bar = [
-                            ('/top_bookmarks', 'top', '🎉 Especially for You'),
-                            ('/starred_bookmarks', 'starred', 'Starred'),
-                            ('/bookmarks', 'bookmarks', 'All Past Translations')
-                    ] -%}
+            <!-- The Icon -->
+            {% if active_page != "home" %}
+                    <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
+                                                                     src="../static/img/white-house-on-gray.jpg"
+                                                                     alt="Home"/></a></li>
+            {% endif %}
 
-                    {% set active_page = active_page|default('top') -%}
-
-                        {% for href, id, caption in navigation_bar %}
-                        <li{% if id == active_page %} class="active"{% endif
-                        %}><a href="{{ href|e }}">{{ caption|e }}</a>
-                        </li>
-                        {% endfor %}
+            {% if g.user %}
 
 
-                {% endif %}
 
-                {% if students %}
-                    {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
-                {% endif %}
+                {% for href, id, caption in navigation_bar %}
+                    <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+                {% endfor %}
 
 
-            </ul>
+            {% endif %}
 
-            <!-- The menu options on the right... -->
-            <ul class="nav navbar-nav navbar-right" >
-                {% if g.user %}
-                    <!-- When user logged in, show the dropdown -->
+            {% if students %}
+                {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
+            {% endif %}
+
+
+        </ul>
+
+        <!-- The menu options on the right... -->
+        <ul class="nav navbar-nav navbar-right">
+            {% if g.user %}
+
+                {% if active_page == "home" %}
+                    <!-- When user logged in, show the dropdown but only on home -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b
+                                class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
-                            <li><a href="{{ url_for('account.watch_connect') }}">Connect Watch</a></li>
                             <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
                         </ul>
                     </li>
-                {% elif tab != "login" and tab != "create_account" %}
-                    <!-- Don't show login on the login and create_account page :) -->
-                    <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    {% endif %}
+                 {% endif %}
+            {% elif tab != "login" and tab != "create_account" %}
+                <!-- Don't show login on the login and create_account page :) -->
+                <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-    </body>
+</body>
 </html>

@@ -12,24 +12,29 @@ $menu-bar-height: 75px
 .navbar-right li
   font-size: 20px
 
-
-@media screen and (max-width: $SMALL_SCREEN)
-
-  .menu-cassette
-    height: $sm-menu-bar-height
+@media screen and (max-width: $XSMALL_SCREEN)
 
   .navbar-nav li
-    font-size: 24px
+    width: 25%
+    float: left
 
-  .navbar-right li
-    font-size: 24px
+  #zeeguu-logo-li
+    width: 50px
 
-  #zeeguu-logo
-    height: 24px
-    margin-top: 20px
-
-  #login
-    font-size: $sm-h3-size
+//@media screen and (max-width: $SMALL_SCREEN)
+//
+//  .navbar-nav li
+//    font-size: 24px
+//
+//  .navbar-right li
+//    font-size: 24px
+//
+//  #zeeguu-logo
+//    height: 24px
+//    margin-top: 20px
+//
+//  #login
+//    font-size: $sm-h3-size
 
 
 // Custom Height
@@ -41,11 +46,11 @@ $menu-bar-height: 75px
 
 // Generated from:
 // http://work.smarchal.com/twbscolor/
-$bgDefault      : rgb(80, 90, 100)
-$bgHighlight    : rgba(255, 255, 255, 0.2)
-$colDefault     : white
-$colHighlight   : white
-$dropDown       : true
+$bgDefault: rgb(80, 90, 100)
+$bgHighlight: rgba(255, 255, 255, 0.2)
+$colDefault: white
+$colHighlight: white
+$dropDown: true
 .navbar-default
   background-color: $bgDefault
   border-color: $bgHighlight
@@ -92,18 +97,5 @@ $dropDown       : true
     color: $colDefault
     &:hover
       color: $colHighlight
-@media (max-width: 767px)
-  .navbar-default .navbar-nav .open .dropdown-menu
-    > li > a
-      color: $colDefault
-      &:hover, &:focus
-        color: $colHighlight
-    > .active
-      > a, > a:hover, > a:focus
-        color: $colHighlight
-        background-color: $bgHighlight
-
-
-
 
 
