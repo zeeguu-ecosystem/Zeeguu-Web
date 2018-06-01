@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 768px) {
   .navbar-nav li {
-    width: 25%;
+    width: auto;
     float: left; }
 
   #zeeguu-logo-li {
