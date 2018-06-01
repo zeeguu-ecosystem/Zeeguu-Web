@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% from "common_layout.html" import no_words_yet %}
+
 {% set active_page = "starred" %}
 
 {% block body %}
@@ -77,8 +79,6 @@
 
             </div>
         {% else %}
-            <div class="col-md-offset-1 col-md-10">
-                <h2>You have no starred words</h2>
-            </div>
+            {{ no_words_yet() }}
         {% endif %}
 {% endblock %}

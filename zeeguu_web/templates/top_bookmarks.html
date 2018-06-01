@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% from "common_layout.html" import no_words_yet %}
+
 {% set active_page = "top" %}
 
 {% block body %}
@@ -85,14 +87,6 @@
 
             </div>
         {% else %}
-            <div class="col-md-offset-1 col-md-10">
-                <h2>You have not translated any words...</h2>
-                <br/>
-                <h4>- Head to the <a href="/reading">reading room</a> for news and blogs</h4>
-                <br/>
-                <h4>- <a href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">Install the Zeeguu Chrome extension and Android App</a><br/>
-                    and start translating words on any website you visit.
-                </h4>
-            </div>
+            {{ no_words_yet() }}
         {% endif %}
 {% endblock %}
