@@ -4,7 +4,20 @@
 
 {% set active_page = "top" %}
 
+
+
 {% block body %}
+
+<script>
+    function showInlineAnswer(elem, word, translation) {
+
+        if (elem.text == word + " = " + translation)
+            elem.text = word;
+        else
+            elem.text = word + " = " + translation;
+    }
+</script>
+
 
     <div class="col-md-offset-2 col-md-8">
 
@@ -22,7 +35,7 @@
                         <thead>
                             <td></td>
                             <td></td>
-                            <td><small>Word - Translation - Context </small></td>
+                            <td><small> </small></td>
                             <td></td>
                             <td><small>Rank</small></td>
 
@@ -57,9 +70,11 @@
                                     <td colspan="2" class="word-details-td">
                                         <div class="impression">
 
-                                            <b>{{ bookmark.from_ }}</b>
-                                            -
-                                            <b>{{ bookmark.to }}</b>
+
+                                            <b>
+                                                <a  href="javascript:void(0);" onclick="showInlineAnswer(this,  '{{ bookmark.from_ }}', '{{ bookmark.to }}')">{{ bookmark.from_ }}</a>
+                                            </b>
+
                                             <br/>
                                             <small>{{ bookmark.context }}</small>
                                         </div>
