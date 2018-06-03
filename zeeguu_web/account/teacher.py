@@ -12,7 +12,7 @@ def students(cohort_id: int):
     cohort = Cohort.find(cohort_id)
     students = cohort.get_students()
 
-    return flask.render_template("students.html", teacher=teacher, cohort=cohort, students=students)
+    return flask.render_template("teacher_students.html", teacher=teacher, cohort=cohort, students=students)
 
 
 @account.route("/cohorts")
@@ -21,4 +21,4 @@ def cohorts():
     teacher = Teacher.from_user(flask.g.user)
     the_cohorts = teacher.get_cohorts()
 
-    return flask.render_template("cohorts.html", teacher=teacher, cohorts=the_cohorts)
+    return flask.render_template("teacher_cohorts.html", teacher=teacher, cohorts=the_cohorts)
