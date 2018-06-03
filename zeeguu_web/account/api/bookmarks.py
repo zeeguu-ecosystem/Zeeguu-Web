@@ -6,6 +6,7 @@ from zeeguu_web.account.api.models.Bookmark import Bookmark
 
 BOOKMARKS_BY_DATE = "bookmarks_by_day"
 DELETE_BOOKMARK = "delete_bookmark/"
+REPORT_LEARNED_BOOKMARK = "report_learned_bookmark/"
 STAR_BOOKMARK = "star_bookmark/"
 UNSTAR_BOOKMARK = "unstar_bookmark/"
 TOP_BOOKMARKS = "top_bookmarks"
@@ -76,6 +77,12 @@ def get_bookmarks_by_date(date=None):
 
 def delete_bookmark(bookmark_id):
     path = DELETE_BOOKMARK + str(bookmark_id)
+    resp = post(path, session_needed=True)
+    return resp.text
+
+
+def report_learned_bookmark(bookmark_id):
+    path = REPORT_LEARNED_BOOKMARK + str(bookmark_id)
     resp = post(path, session_needed=True)
     return resp.text
 

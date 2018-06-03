@@ -1,6 +1,6 @@
 import datetime
 
-from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, unstar_bookmark, delete_bookmark, \
+from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, report_learned_bookmark, unstar_bookmark, delete_bookmark, \
     get_top_bookmarks, get_starred_bookmarks
 from . import account, login_first
 import flask
@@ -39,6 +39,12 @@ def starred_bookmarks():
 
 
 # These following endpoints are invoked via ajax calls from the bookmarks page
+@account.route("/report_learned_bookmark/<bookmark_id>", methods=("POST",))
+@login_first
+def post_report_learned_bookmark(bookmark_id):
+    return report_learned_bookmark(bookmark_id)
+
+
 @account.route("/delete_bookmark/<bookmark_id>", methods=("POST",))
 @login_first
 def delete(bookmark_id):

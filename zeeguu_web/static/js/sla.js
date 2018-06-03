@@ -1,5 +1,4 @@
-function showStar(starred)
-{
+function showStar(starred) {
     if (starred) {
         $("#star").html('<i style="color:gold" class="icon-star"></i>');
     } else {
@@ -8,21 +7,21 @@ function showStar(starred)
 }
 
 
-$(function() {
+$(function () {
     if (typeof chrome !== "undefined" && !chrome.app.isInstalled) {
-        $("#install-extension").click(function() {
+        $("#install-extension").click(function () {
             chrome.webstore.install();
         });
     } else {
         $("#install-extension").prop("disabled", true).addClass("disabled");
     }
 
-    $('input').focus(function() {
+    $('input').focus(function () {
         $(this).popover('show');
     });
 
 
-    $('input').blur(function() {
+    $('input').blur(function () {
         $(this).popover('hide');
     });
 
@@ -33,24 +32,24 @@ $(function() {
                 email: true
             },
             password: {
-                required:true,
+                required: true,
                 minlength: 4
             }
         },
 
         errorClass: "help-inline",
         errorElement: "span",
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('success');
             $(element).parents('.control-group').addClass('error');
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('error');
             $(element).parents('.control-group').addClass('success');
         }
     });
 
-    $("#login input[type=submit]").click(function() {
+    $("#login input[type=submit]").click(function () {
         return $("form").valid();
     });
 
@@ -62,7 +61,7 @@ $(function() {
                 email: true
             },
             password: {
-                required:true,
+                required: true,
                 minlength: 4
             },
             name: {
@@ -72,17 +71,17 @@ $(function() {
 
         errorClass: "help-inline",
         errorElement: "span",
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('success');
             $(element).parents('.control-group').addClass('error');
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('error');
             $(element).parents('.control-group').addClass('success');
         }
     });
 
-    $("#create_account input[type=submit]").click(function() {
+    $("#create_account input[type=submit]").click(function () {
         return $("form").valid();
     });
 
@@ -91,21 +90,31 @@ $(function() {
 
 function deleteBookmark(id) {
     console.log("deleting " + id);
-    $.post("/delete_bookmark/"+id);
-    $("#bookmark"+id).fadeOut();
+    $.post("/delete_bookmark/" + id);
+    $("#bookmark" + id).fadeOut();
     return false;
 }
+
+
+function reportLearnedBookmark(id) {
+    console.log("marking as learned " + id);
+    var bookmark_div = $("#bookmark" + id);
+    bookmark_div.hide();
+    $.post("/report_learned_bookmark/" + id);
+    return false;
+}
+
 
 function unstarBookmark(id) {
     console.log("unstarring " + id)
     $.post("/unstarred_bookmark/" + id);
-    $("#star"+id).html('<a href="javascript:void(0);" onclick="starBookmark('+id+')"><i style="color:lightgray" class="icon-star-empty"></i></a>');
+    $("#star" + id).html('<a href="javascript:void(0);" onclick="starBookmark(' + id + ')"><i style="color:lightgray" class="icon-star-empty"></i></a>');
 }
 
 function starBookmark(id) {
     console.log("starring " + id)
     $.post("/starred_bookmark/" + id);
-    $("#star"+id).html('<a href="javascript:void(0);" onclick="unstarBookmark('+id+')"><i style="color:gold" class="icon-star"></i></a>');
+    $("#star" + id).html('<a href="javascript:void(0);" onclick="unstarBookmark(' + id + ')"><i style="color:gold" class="icon-star"></i></a>');
 }
 
 
