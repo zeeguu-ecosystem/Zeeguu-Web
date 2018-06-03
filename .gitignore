@@ -14,3 +14,4 @@ node_modules*
 *translators.log
 *errors.translators.log
 .pytest_cache/*
+unsafe_web*
