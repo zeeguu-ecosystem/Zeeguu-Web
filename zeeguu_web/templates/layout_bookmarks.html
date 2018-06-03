@@ -1,5 +1,12 @@
 {% from "common_layout.html" import menu_item, flash_messages, header %}
 
+{% set navigation_bar = [
+            ('/top_bookmarks', 'top', 'Important'),
+            ('/starred_bookmarks', 'starred', 'Starred'),
+            ('/learned_bookmarks', 'learned', 'Learned'),
+            ('/bookmarks', 'bookmarks', 'History')
+    ] -%}
+
 {% set active_page = active_page|default('top') -%}
 
 <html>
@@ -14,16 +21,26 @@
         <!-- The Menu Options on the Left -->
         <ul class="nav navbar-nav">
 
-            <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
-                                                             src="../static/img/white-house-on-gray.jpg"
-                                                             alt="Home"/></a></li>
+            <!-- The Icon -->
+            {% if active_page != "home" %}
+                    <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
+                                                                     src="../static/img/white-house-on-gray.jpg"
+                                                                     alt="Home"/></a></li>
+            {% endif %}
 
-            {% if students %}
+            {% if g.user %}
+                
+                {% for href, id, caption in navigation_bar %}
+                    <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+                {% endfor %}
 
-                {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
 
             {% endif %}
 
+            {% if students %}
+                {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
+            {% endif %}
 
 
         </ul>
@@ -41,7 +58,6 @@
                             <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
                         </ul>
                     </li>
-
             {% elif tab != "login" and tab != "create_account" %}
                 <!-- Don't show login on the login and create_account page :) -->
                 <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>

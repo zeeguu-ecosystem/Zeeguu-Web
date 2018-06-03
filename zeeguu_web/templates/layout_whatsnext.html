@@ -10,6 +10,14 @@
 
     <nav class="navbar navbar-default menu-cassette">
         <div class="container-fluid">
+
+            <ul class="nav navbar-nav">
+
+                <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
+                                                             src="../static/img/white-house-on-gray.jpg"
+                                                             alt="Home"/></a></li>
+            </ul>
+
             <!-- The menu options on the right... -->
             <ul class="nav navbar-nav navbar-right" >
                 {% if g.user %}
@@ -27,7 +35,7 @@
 
                         </ul>
                     </li>
-                {% elif tab != "login" and tab != "create_account" %}
+                {% elif active_page != "login" and tab != "create_account" %}
                     <!-- Don't show login on the login and create_account page :) -->
                     <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
                 {% endif %}
