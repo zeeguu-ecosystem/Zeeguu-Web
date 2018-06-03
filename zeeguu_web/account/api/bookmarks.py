@@ -10,6 +10,7 @@ REPORT_LEARNED_BOOKMARK = "report_learned_bookmark/"
 STAR_BOOKMARK = "star_bookmark/"
 UNSTAR_BOOKMARK = "unstar_bookmark/"
 TOP_BOOKMARKS = "top_bookmarks"
+LEARNED_BOOKMARKS = "learned_bookmarks"
 STARRED_BOOKMARKS = "starred_bookmarks"
 
 
@@ -27,6 +28,18 @@ def get_starred_bookmarks():
 
 def get_top_bookmarks(count):
     resp = get(f"{TOP_BOOKMARKS}/{count}", session_needed=True)
+    _json = json.loads(resp.content)
+
+    bookmarks = []
+    for data in _json:
+        bm = Bookmark.from_json(data)
+        bookmarks.append(bm)
+
+    return bookmarks
+
+
+def get_learned_bookmarks(count=100):
+    resp = get(f"{LEARNED_BOOKMARKS}/{count}", session_needed=True)
     _json = json.loads(resp.content)
 
     bookmarks = []

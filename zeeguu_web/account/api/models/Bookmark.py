@@ -5,7 +5,8 @@ CONTEXT_LENGTH = 42
 
 class Bookmark:
 
-    def __init__(self, id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context):
+    def __init__(self, id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context,
+                 learned_datetime):
         self.id = id
         self.to = to
         self.from_lang = from_lang
@@ -16,6 +17,7 @@ class Bookmark:
         self.from_ = from_
         self.starred = starred
         self.context = context
+        self.learned_datetime = learned_datetime
 
     def set_date(self, date):
         self.date = date
@@ -44,9 +46,11 @@ class Bookmark:
         from_ = _json["from"]
         starred = _json["starred"]
         origin_rank = _json["origin_rank"]
+        learned_datetime = _json["learned_datetime"]
 
         url = URL(_json["url"], _json["title"])
         context = cls.get_first_N_words_of_context(_json["context"])
         origin_importance = cls.string_representation_of_importance(_json["origin_importance"])
 
-        return Bookmark(id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context)
+        return Bookmark(id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context,
+                        learned_datetime)

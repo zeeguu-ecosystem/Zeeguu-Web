@@ -1,6 +1,8 @@
 import datetime
 
-from zeeguu_web.account.api.bookmarks import get_bookmarks_by_date, star_bookmark, report_learned_bookmark, unstar_bookmark, delete_bookmark, \
+from zeeguu_web.account.api.bookmarks import get_learned_bookmarks, get_bookmarks_by_date, star_bookmark, \
+    report_learned_bookmark, \
+    unstar_bookmark, delete_bookmark, \
     get_top_bookmarks, get_starred_bookmarks
 from . import account, login_first
 import flask
@@ -26,6 +28,15 @@ def top_bookmarks():
     bookmarks = get_top_bookmarks(10)
 
     return flask.render_template("top_bookmarks.html",
+                                 bookmarks=bookmarks)
+
+
+@account.route("/learned_bookmarks")
+@login_first
+def learned_bookmarks():
+    bookmarks = get_learned_bookmarks()
+
+    return flask.render_template("learned_bookmarks.html",
                                  bookmarks=bookmarks)
 
 
