@@ -1,0 +1,57 @@
+{% from "common_layout.html" import menu_item, flash_messages, header %}
+
+{% set active_page = active_page|default('top') -%}
+
+<html>
+
+{{ header() }}
+
+<body>
+
+
+<nav class="navbar navbar-default menu-cassette">
+    <div class="container-fluid">
+        <!-- The Menu Options on the Left -->
+        <ul class="nav navbar-nav">
+
+            <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
+                                                             src="../static/img/white-house-on-gray.jpg"
+                                                             alt="Home"/></a></li>
+
+            {% if students %}
+
+                {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
+
+            {% endif %}
+
+
+
+        </ul>
+
+        <!-- The menu options on the right... -->
+        <ul class="nav navbar-nav navbar-right">
+            {% if g.user %}
+
+                {% if active_page == "home" %}
+                    <!-- When user logged in, show the dropdown but only on home -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
+                            <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
+                        </ul>
+                    </li>
+                 {% endif %}
+            {% elif tab != "login" and tab != "create_account" %}
+                <!-- Don't show login on the login and create_account page :) -->
+                <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+
+</body>
+</html>

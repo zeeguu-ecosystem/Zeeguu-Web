@@ -27,7 +27,7 @@ def bookmarks():
 def top_bookmarks():
     bookmarks = get_top_bookmarks(10)
 
-    return flask.render_template("top_bookmarks.html",
+    return flask.render_template("bookmarks_top.html",
                                  bookmarks=bookmarks)
 
 
@@ -36,7 +36,7 @@ def top_bookmarks():
 def learned_bookmarks():
     bookmarks = get_learned_bookmarks()
 
-    return flask.render_template("learned_bookmarks.html",
+    return flask.render_template("bookmarks_learned.html",
                                  bookmarks=bookmarks)
 
 
@@ -45,7 +45,7 @@ def learned_bookmarks():
 def starred_bookmarks():
     bookmarks = get_starred_bookmarks()
 
-    return flask.render_template("starred_bookmarks.html",
+    return flask.render_template("bookmarks_starred.html",
                                  bookmarks=bookmarks)
 
 

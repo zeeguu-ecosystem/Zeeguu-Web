@@ -3,8 +3,10 @@
 <!------------------------------------>
 
     {% macro menu_item(tab_name, url, text) -%}
-        {% if tab == tab_name %}
+        {% if active_page == tab_name %}
             <li class="active"><a href="{{ url_for(url) }}">{{ text }}</a></li>
+        {%  else %}
+            <li><a href="{{ url_for(url) }}">{{ text }}</a></li>
         {% endif %}
     {%- endmacro %}
 
@@ -25,7 +27,7 @@
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <title>Zeeguu</title>
+            <title>{{ active_page }}</title>
 
             <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
