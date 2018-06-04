@@ -10,12 +10,7 @@
     
         {% if sorted_dates %}
 
-            <small>
-                    <span style="background-color:lightgoldenrodyellow; padding: 4px;">
-                        All the words that you ever looked up, with their context, and articles.
-                    </span>
-            </small>
-
+            {{ top_message("All the words that you ever looked up, with their context, and articles.") }}
 
             {% for date in sorted_dates %}
                 {{ date.strftime("%A %B %d, %Y") }}

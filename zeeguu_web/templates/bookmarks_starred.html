@@ -11,13 +11,22 @@
 
         {% if bookmarks %}
 
-            <small>
-                    <span style="background-color:lightgoldenrodyellow; padding: 4px;">
-                        All starred words appear here
-                    </span>
-            </small>
+            {{ top_message("All starred words appear here") }}
 
             <table class="table table-striped table-no-borders">
+
+                <thead>
+                <td></td>
+                <td></td>
+                <td>
+                    <small></small>
+                </td>
+                <td></td>
+                <td>
+                    <small>Rank</small>
+                </td>
+
+                </thead>
 
 
                         {% for bookmark in bookmarks %}
@@ -58,7 +67,7 @@
                                     </td>
 
                                     <td style="text-align: right">
-                                        {{ bookmark.origin_importance | safe }}
+                                        {{ bookmark.origin_rank | safe }}
                                     </td>
 
                                     <td style="text-align: right;">
