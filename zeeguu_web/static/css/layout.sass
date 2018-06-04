@@ -15,19 +15,39 @@ $menu-bar-height: 75px
 #homepagetopspacer
   height: 8em
 
-@media screen and (max-width: $XSMALL_SCREEN)
+#right_dropdown
+  display: block
+
+#left_dropdown
+  display: none
+
+
+
+@media screen and (max-width: $SMALL_SCREEN)
+
+  #zeeguu-logo-li
+    width: 50px
 
   .navbar-nav li
     width: auto
     float: left
 
-  #zeeguu-logo-li
-    width: 50px
-
-@media screen and (max-width: $SMALL_SCREEN)
-
   #homepagetopspacer
     height: 2em
+
+  #right_dropdown
+    display: none
+
+  #left_dropdown
+    display: block
+    float: right
+
+  .navbar-nav li, .navbar-nav li a
+    font-size: 16px
+    padding-right: 4px
+    padding-left: 4px
+
+
 
 //@media screen and (max-width: $SMALL_SCREEN)
 //
@@ -107,3 +127,6 @@ $dropDown: true
       color: $colHighlight
 
 
+.navbar-nav li
+  width: auto
+  float: left

@@ -1,4 +1,4 @@
-{% from "layout_common.html" import menu_item, flash_messages, header %}
+{% from "layout_common.html" import menu_item, flash_messages, header, home_link, dropdown_menu %}
 
 <html>
 
@@ -9,35 +9,34 @@
     {% if not mobile %}
 
     <nav class="navbar navbar-default menu-cassette">
+
         <div class="container-fluid">
 
             <ul class="nav navbar-nav">
+                {{  home_link() }}
 
-                <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
-                                                             src="../static/img/white-house-on-gray.jpg"
-                                                             alt="Home"/></a></li>
+                <li id="left_dropdown" class="dropdown">
+                    {{ dropdown_menu() }}
+                </li>
+
             </ul>
 
-            <!-- The menu options on the right... -->
-            <ul class="nav navbar-nav navbar-right" >
+            <!-- The dropdown menu on the right... -->
+            <ul id="right_dropdown" class="nav navbar-nav navbar-right" >
+
+
+                <!-- When user logged in, show the dropdown -->
                 {% if g.user %}
-                    <!-- When user logged in, show the dropdown -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
 
-                            {% if is_teacher %}
-                                <li><a href="{{ url_for('account.cohorts') }}">My Students</a></li>
-                            {% endif %}
+                <li id="user_dropdown" class="dropdown">
+                    {{ dropdown_menu() }}
+                </li>
 
-                            <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
-
-                        </ul>
-                    </li>
+                <!-- Don't show login on the login and create_account page -->
                 {% elif active_page != "login" and tab != "create_account" %}
-                    <!-- Don't show login on the login and create_account page :) -->
+
                     <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
+
                 {% endif %}
             </ul>
         </div>

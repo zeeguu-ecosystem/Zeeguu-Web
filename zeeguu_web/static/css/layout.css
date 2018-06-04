@@ -11,16 +11,34 @@
 #homepagetopspacer {
   height: 8em; }
 
-@media screen and (max-width: 768px) {
+#right_dropdown {
+  display: block; }
+
+#left_dropdown {
+  display: none; }
+
+@media screen and (max-width: 992px) {
+  #zeeguu-logo-li {
+    width: 50px; }
+
   .navbar-nav li {
     width: auto;
     float: left; }
 
-  #zeeguu-logo-li {
-    width: 50px; } }
-@media screen and (max-width: 992px) {
   #homepagetopspacer {
-    height: 2em; } }
+    height: 2em; }
+
+  #right_dropdown {
+    display: none; }
+
+  #left_dropdown {
+    display: block;
+    float: right; }
+
+  .navbar-nav li, .navbar-nav li a {
+    font-size: 16px;
+    padding-right: 4px;
+    padding-left: 4px; } }
 .navbar-brand, .navbar-nav li a, .navbar-nav li a:visited, .navbar-nav li a:hover {
   line-height: 75px;
   height: 75px;
@@ -67,5 +85,9 @@
     color: white; }
     .navbar-default .navbar-link:hover {
       color: white; }
+
+.navbar-nav li {
+  width: auto;
+  float: left; }
 
 /*# sourceMappingURL=layout.css.map */

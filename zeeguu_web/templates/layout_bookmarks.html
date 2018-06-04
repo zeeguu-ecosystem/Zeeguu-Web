@@ -1,10 +1,10 @@
-{% from "layout_common.html" import menu_item, flash_messages, header %}
+{% from "layout_common.html" import menu_item, flash_messages, header, home_link, dropdown_menu %}
 
 {% set navigation_bar = [
-            ('/top_bookmarks', 'top', 'Important'),
+            ('/top_bookmarks', 'top', 'Top'),
             ('/starred_bookmarks', 'starred', 'Starred'),
             ('/learned_bookmarks', 'learned', 'Learned'),
-            ('/bookmarks', 'bookmarks', 'History')
+            ('/bookmarks', 'bookmarks', 'All')
     ] -%}
 
 {% set active_page = active_page|default('top') -%}
@@ -16,53 +16,37 @@
 <body>
 
 
+
+
 <nav class="navbar navbar-default menu-cassette">
     <div class="container-fluid">
-        <!-- The Menu Options on the Left -->
-        <ul class="nav navbar-nav">
 
-            <!-- The Icon -->
-            {% if active_page != "home" %}
-                    <li id="zeeguu-logo-li"><a href="{{ url_for('account.whatnext') }}"><img id="zeeguu-logo"
-                                                                     src="../static/img/white-house-on-gray.jpg"
-                                                                     alt="Home"/></a></li>
-            {% endif %}
+        <ul class="nav navbar-nav navbar-left">
 
-            {% if g.user %}
-                
-                {% for href, id, caption in navigation_bar %}
-                    <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
-                    </li>
-                {% endfor %}
+            {{ home_link() }}
+
+            {% for href, id, caption in navigation_bar %}
+                <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                </li>
+            {% endfor %}
 
 
-            {% endif %}
-
-            {% if students %}
-                {{ menu_item ("my_groups", "account.cohorts", "My Student Groups") }}
-            {% endif %}
+            <li id="left_dropdown" class="dropdown">
+                {{ dropdown_menu() }}
+            </li>
 
 
         </ul>
 
-        <!-- The menu options on the right... -->
-        <ul class="nav navbar-nav navbar-right">
-            {% if g.user %}
+        <ul id="right_dropdown" class="nav navbar-nav navbar-right">
 
-                    <!-- When user logged in, show the dropdown but only on home -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.user.name }}<b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
-                            <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
-                        </ul>
-                    </li>
-            {% elif tab != "login" and tab != "create_account" %}
-                <!-- Don't show login on the login and create_account page :) -->
-                <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
-            {% endif %}
+            <li id="user_dropdown" class="dropdown">
+                {{ dropdown_menu() }}
+            </li>
+
+
         </ul>
+
     </div>
 </nav>
 
