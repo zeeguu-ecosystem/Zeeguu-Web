@@ -78,14 +78,17 @@
                         <td colspan="2" class="word-details-td">
                             <div class="impression">
 
+<sup style="background-color:green;padding-left:3px;padding-right:3px;border-radius: 4px; color:white;"><small>{{bookmark.created_day}}</small></sup>
 
                                 <b>
                                     <a href="javascript:void(0);" onclick="showInlineAnswer({{ bookmark.id }})">
                                         {{ bookmark.from_ }}
                                     </a>
+
                                 </b>
 
                                 <span style="display: none" id="answer{{ bookmark.id }}">
+
                                                 = {{ bookmark.to }}
                                                 &nbsp;&nbsp;&nbsp;
                                                 <a href="javascript:void(0);"
@@ -95,8 +98,14 @@
                                             </span>
 
 
+
+
                                 <br/>
+
                                 <small>{{ bookmark.context }}</small>
+
+
+
                             </div>
                         </td>
 
