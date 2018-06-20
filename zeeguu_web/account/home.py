@@ -16,7 +16,8 @@ def get_favicon():
 
 @account.route("/")
 def home():
-    if "user_id" in flask.session:
+    print (flask.session)
+    if "session_id" in flask.session:
         return flask.redirect(flask.url_for("account.whatnext"))
     return flask.render_template("index.html")
 
