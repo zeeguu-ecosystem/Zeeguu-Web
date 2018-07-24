@@ -25,5 +25,5 @@ def home():
 @account.route("/whatnext")
 @login_first
 def whatnext():
-    is_teacher = Teacher.from_user(flask.g.user)
+    is_teacher = Teacher.from_user(flask.g.user) is not None
     return flask.render_template("whatnext.html", user=flask.g.user, is_teacher=is_teacher)

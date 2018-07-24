@@ -30,7 +30,7 @@
 
     {%- endmacro %}
 
-    {% macro dropdown_menu() -%}
+    {% macro dropdown_menu(is_teacher) -%}
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
                             id="username">{{ g.user.name }}</span><b
@@ -39,7 +39,7 @@
                         <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
 
                         {% if is_teacher %}
-                            <li><a href="{{ url_for('account.cohorts') }}">My Students</a></li>
+                            <li><a href="/teacher">My Students</a></li>
                         {% endif %}
 
                         <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
