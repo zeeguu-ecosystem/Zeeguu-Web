@@ -33,7 +33,7 @@
     {% macro dropdown_menu(is_teacher) -%}
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                            id="username">{{ g.user.name }}</span><b
+                            id="username">{{ g.username }}</span><b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>

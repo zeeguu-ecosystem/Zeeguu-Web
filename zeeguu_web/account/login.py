@@ -5,6 +5,7 @@ from flask import flash
 from zeeguu_web.account.api import session_management, account_management
 from zeeguu_web.account.api.api_connection import APIException
 from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
+from zeeguu_web.account.api.session_management import user_details
 from zeeguu_web.app import configuration
 from zeeguu_web.constants import *
 
@@ -31,13 +32,14 @@ def login():
         else:
             try:
                 sessionID = session_management.login(email, password)
+                details = user_details(sessionID)
             except APIException as e:
                 flask.flash(e.message)
 
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
-                _set_session_id(sessionID, response)
+                _set_session_data(details, sessionID, response)
 
                 return response
 
@@ -75,11 +77,14 @@ def create_account():
     else:
         try:
 
-            session = account_management.create_account(email, name, password, language,
-                                                        native_language)  # setting registration code is not possible
+            sessionID = account_management.create_account(email, name, password, language,
+                                                          native_language)  # setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
-            _set_session_id(session, response)
+
+            details = user_details(sessionID)
+
+            _set_session_data(details, sessionID, response)
 
             return response
 
@@ -107,6 +112,7 @@ def logout():
     response = make_response(redirect(flask.url_for("account.home")))
     response.delete_cookie(KEY__STAND_ALONE_SESSION_ID)
     response.delete_cookie(KEY__FLASK_SESSION)
+    response.delete_cookie(KEY__NATIVE_LANG)
     return response
 
 
@@ -118,12 +124,15 @@ def logged_in():
     return "NO"
 
 
-def _set_session_id(sessionID, response):
+def _set_session_data(details, sessionID, response):
     """
     Set session information for later usage
     """
+
     flask.session[KEY__SESSION_ID] = sessionID
+    flask.session[KEY__USER_NAME] = details["name"]
 
     flask.session.permanent = True
 
     response.set_cookie(KEY__STAND_ALONE_SESSION_ID, str(sessionID), max_age=31536000)
+    response.set_cookie(KEY__NATIVE_LANG, details["native_language"], max_age=31536000)

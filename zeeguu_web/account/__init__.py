@@ -3,7 +3,8 @@ from functools import wraps
 
 import flask
 
-from zeeguu_web.constants import KEY__SESSION_ID
+from zeeguu_web.account.api.session_management import validate
+from zeeguu_web.constants import KEY__SESSION_ID, KEY__USER_NAME
 
 # we define the blueprint here, and extended it in several files
 account = flask.Blueprint("account", __name__)
@@ -22,14 +23,15 @@ def login_first(fun):
 
     @wraps(fun)
     def decorated_function(*args, **kwargs):
-        from zeeguu.model import Session
 
-        flask.g.user = None
         if KEY__SESSION_ID in flask.session:
-            session = Session.query.get(flask.session[KEY__SESSION_ID])
-            if session is not None:
-                flask.g.user = session.user
-                return fun(*args, **kwargs)
+            try:
+                result = validate()
+                if result:
+                    flask.g.username = flask.session[KEY__USER_NAME]
+                    return fun(*args, **kwargs)
+            except Exception as e:
+                print(e)
 
         next_url = flask.request.url
         login_url = '%s?next=%s' % (flask.url_for('account.login'), next_url)

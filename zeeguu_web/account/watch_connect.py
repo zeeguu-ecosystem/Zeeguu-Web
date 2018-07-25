@@ -1,21 +1,15 @@
+from zeeguu_web.constants import KEY__SESSION_ID
 from . import account, login_first
 import flask
-
-from zeeguu.model import Session
-import zeeguu
 
 
 @account.route("/watch_connect", methods=["GET"])
 @login_first
 def watch_connect():
+    s = flask.session[KEY__SESSION_ID]
 
-    s = Session.find_for_user(flask.g.user)
-    zeeguu.db.session.add(s)
-    zeeguu.db.session.commit()
-
-    session_id = str(s.id).zfill(8)
+    session_id = s.zfill(8)
     watch_connect = session_id[:4] + "-" + session_id[4:]
 
     return flask.render_template("watch_connect.html",
-                                 user=flask.g.user,
                                  smartwatch_login_code=watch_connect)

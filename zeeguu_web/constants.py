@@ -1,6 +1,8 @@
 KEY__USER_ID = "user_id"
 KEY__USER_NAME = "user_name"
 KEY__SESSION_ID = "sessionID"
+KEY__NATIVE_LANG = "native_lang"
+
 KEY__STAND_ALONE_SESSION_ID = "sessionID"
 KEY__FLASK_SESSION = "session"
 

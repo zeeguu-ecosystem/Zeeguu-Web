@@ -26,16 +26,6 @@ print("running with API: " + app.config['ZEEGUU_API'])
 #                              'INVITATION_CODES', 'ZEEGUU_API'])
 
 
-# The zeeguu.model  module relies on an app being injected from outside
-# ----------------------------------------------------------------------
-import zeeguu
-
-zeeguu.app = app
-import zeeguu.model
-
-assert zeeguu.model
-# -----------------
-
 from .account import account
 app.register_blueprint(account)
 

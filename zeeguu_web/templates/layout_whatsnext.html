@@ -2,18 +2,18 @@
 
 <html>
 
-    {{ header() }}
+{{ header() }}
 
-    <body>
+<body>
 
-    {% if not mobile %}
+{% if not mobile %}
 
     <nav class="navbar navbar-default menu-cassette">
 
         <div class="container-fluid">
 
             <ul class="nav navbar-nav">
-                {{  home_link() }}
+                {{ home_link() }}
 
                 <li id="left_dropdown" class="dropdown">
                     {{ dropdown_menu() }}
@@ -22,28 +22,18 @@
             </ul>
 
             <!-- The dropdown menu on the right... -->
-            <ul id="right_dropdown" class="nav navbar-nav navbar-right" >
-
-
-                <!-- When user logged in, show the dropdown -->
-                {% if g.user %}
+            <ul id="right_dropdown" class="nav navbar-nav navbar-right">
 
                 <li id="user_dropdown" class="dropdown">
                     {{ dropdown_menu(is_teacher) }}
                 </li>
 
-                <!-- Don't show login on the login and create_account page -->
-                {% elif active_page != "login" and tab != "create_account" %}
-
-                    <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
-
-                {% endif %}
             </ul>
         </div>
     </nav>
-    {% endif %}
+{% endif %}
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-    </body>
+</body>
 </html>
