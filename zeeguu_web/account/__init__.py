@@ -3,7 +3,7 @@ from functools import wraps
 
 import flask
 
-from zeeguu_web.account.api.session_management import validate
+
 from zeeguu_web.constants import KEY__SESSION_ID, KEY__USER_NAME
 
 # we define the blueprint here, and extended it in several files
@@ -26,6 +26,7 @@ def login_first(fun):
 
         if KEY__SESSION_ID in flask.session:
             try:
+                from zeeguu_web.account.api.session_management import validate
                 result = validate()
                 if result:
                     flask.g.username = flask.session[KEY__USER_NAME]

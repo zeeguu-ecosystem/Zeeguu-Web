@@ -13,6 +13,9 @@ class TestBookmark:
             'url': 'http://www.eluniversal.com.mx/mundo/homenajean-en-los-angeles-actriz-porno-que-enfrenta-trump',
             'origin_importance': 0,
             'starred': False,
+            'origin_rank':1000,
+            'learned_datetime':'2017-10-10T10:10:10',
+            'created_day': '2017-10-10T10:10:10',
             'from': 'supuesta',
             'context': 'Hurpy durpy durp'
         }
