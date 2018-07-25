@@ -1,0 +1,9 @@
+KEY__USER_ID = "user_id"
+KEY__USER_NAME = "user_name"
+KEY__SESSION_ID = "sessionID"
+KEY__STAND_ALONE_SESSION_ID = "sessionID"
+KEY__FLASK_SESSION = "session"
+
+SESSION_KEYS = [KEY__USER_ID, KEY__USER_NAME, KEY__SESSION_ID]
+
+DEFAULT_LANGUAGE = "en"

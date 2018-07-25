@@ -1,7 +1,9 @@
 import os
 
 from flask import send_from_directory
-from zeeguu.model.teacher import Teacher
+
+from zeeguu_web.account.api.teacher import is_teacher
+from zeeguu_web.constants import KEY__SESSION_ID
 
 from . import account, login_first
 import flask
@@ -16,8 +18,8 @@ def get_favicon():
 
 @account.route("/")
 def home():
-    print (flask.session)
-    if "session_id" in flask.session:
+    print(flask.session)
+    if KEY__SESSION_ID in flask.session:
         return flask.redirect(flask.url_for("account.whatnext"))
     return flask.render_template("index.html")
 
@@ -25,5 +27,4 @@ def home():
 @account.route("/whatnext")
 @login_first
 def whatnext():
-    is_teacher = Teacher.from_user(flask.g.user) is not None
-    return flask.render_template("whatnext.html", user=flask.g.user, is_teacher=is_teacher)
+    return flask.render_template("whatnext.html", user=flask.g.user, is_teacher=is_teacher())

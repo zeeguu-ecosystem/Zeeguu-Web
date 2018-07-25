@@ -1,16 +1,20 @@
 import flask
 import requests
 from flask import json
+from zeeguu_web.constants import KEY__SESSION_ID
 
 from zeeguu_web.app import configuration
+
 
 class APIException(Exception):
     """
     Exception for signalling something went wrong while communication with the API
     """
+
     def __init__(self, message):
         super()
         self.message = message
+
 
 def _check_response(response):
     """
@@ -29,8 +33,9 @@ def _check_response(response):
             data = response.reason
         finally:
             raise APIException(data)
-    else :
+    else:
         return response
+
 
 def _api_path(path):
     zeeguu_path = configuration.get("ZEEGUU_API")
@@ -38,10 +43,11 @@ def _api_path(path):
         return zeeguu_path + path
     return zeeguu_path + "/" + path
 
+
 def _api_call(function, path, payload={}, params={}, session_needed=False, session=None):
     if session_needed:
         if session is None:
-            session_id = flask.session["session_id"]
+            session_id = flask.session[KEY__SESSION_ID]
         else:
             session_id = session
         params["session"] = session_id
@@ -56,6 +62,7 @@ def _api_call(function, path, payload={}, params={}, session_needed=False, sessi
         print(traceback.format_exc())
         raise APIException("Exception while performing request.")
     return _check_response(resp)
+
 
 def post(path, payload={}, params={}, session_needed=False, session=None):
     return _api_call("post", path, payload, params, session_needed, session)

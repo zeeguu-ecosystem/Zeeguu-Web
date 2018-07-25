@@ -1,7 +1,7 @@
 from . import account, login_first
 import flask
 
-from zeeguu.model import SimpleKnowledgeEstimator, Session
+from zeeguu.model import SimpleKnowledgeEstimator
 
 
 @account.route("/stats", methods=["GET"])

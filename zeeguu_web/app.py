@@ -1,23 +1,24 @@
 # -*- coding: utf8 -*-
 import os
 import os.path
+import sys
 import flask
 import flask_assets
 from .cross_domain_app import CrossDomainApp
 
-import sys
 if sys.version_info[0] < 3:
-    raise "Must be using Python 3"
-
+    raise Exception("Must be using Python 3")
 
 # *** Starting the App *** #
 app = CrossDomainApp(__name__)
 
-config_file =os.environ['ZEEGUU_WEB_CONFIG']
+config_file = os.environ['ZEEGUU_WEB_CONFIG']
 app.config.from_pyfile(config_file, silent=False)
 configuration = app.config
 
 assert "ZEEGUU_API" in app.config
+
+print("running with API: " + app.config['ZEEGUU_API'])
 
 # load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
 #                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
@@ -28,19 +29,20 @@ assert "ZEEGUU_API" in app.config
 # The zeeguu.model  module relies on an app being injected from outside
 # ----------------------------------------------------------------------
 import zeeguu
+
 zeeguu.app = app
 import zeeguu.model
+
 assert zeeguu.model
 # -----------------
 
 from .account import account
 app.register_blueprint(account)
 
-from .exercises import exercises
-app.register_blueprint(exercises)
 
 from zeeguu_exercises import ex_blueprint
-app.register_blueprint(ex_blueprint, url_prefix="/practice") 
+app.register_blueprint(ex_blueprint, url_prefix="/practice")
+
 
 from umr import umrblue
 app.register_blueprint(umrblue, url_prefix="/read")
@@ -66,7 +68,6 @@ def instance_path(app):
             raise
     return path
 
+
 instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app))
 app.register_blueprint(instance)
-
-
