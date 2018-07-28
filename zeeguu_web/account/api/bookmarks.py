@@ -52,7 +52,8 @@ def get_learned_bookmarks(count=100):
 
 def get_bookmarks_by_date(date=None):
     _payload = {
-        "with_context": True
+        "with_context": True,
+        "with_title": True
     }
     if date:
         _date_string = date.strftime('%Y-%m-%dT%H:%M:%S')

@@ -10,7 +10,7 @@
     
         {% if sorted_dates %}
 
-            {{ top_message("All the words that you ever looked up, with their context, and articles.") }}
+            {{ top_message("The most recent words that you looked up, with their context, and articles.") }}
 
             {% for date in sorted_dates %}
                 {{ date.strftime("%A %B %d, %Y") }}
