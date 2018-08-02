@@ -18,25 +18,19 @@ configuration = app.config
 
 assert "ZEEGUU_API" in app.config
 
-print("running with API: " + app.config['ZEEGUU_API'])
-
-# load_configuration_or_abort(app, 'ZEEGUU_WEB_CONFIG',
-#                             ['HOST', 'PORT', 'DEBUG', 'SECRET_KEY', 'MAX_SESSION',
-#                              'SMTP_SERVER', 'SMTP_USERNAME', 'SMTP_PASSWORD',
-#                              'INVITATION_CODES', 'ZEEGUU_API'])
-
+print(" == Web running with API: " + app.config['ZEEGUU_API'])
 
 from .account import account
+
 app.register_blueprint(account)
 
-
 from zeeguu_exercises import ex_blueprint
+
 app.register_blueprint(ex_blueprint, url_prefix="/practice")
 
-
 from umr import umrblue
-app.register_blueprint(umrblue, url_prefix="/read")
 
+app.register_blueprint(umrblue, url_prefix="/read")
 
 env = flask_assets.Environment(app)
 env.cache = app.instance_path
