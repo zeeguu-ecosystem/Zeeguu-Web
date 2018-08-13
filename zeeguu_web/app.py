@@ -19,6 +19,8 @@ configuration = app.config
 assert "ZEEGUU_API" in app.config
 
 print(" == Web running with API: " + app.config['ZEEGUU_API'])
+# the umr blueprint needs to have the ZEEGUU_API in the os.environ['ZEEGUU_API']
+os.environ['ZEEGUU_API'] = app.config['ZEEGUU_API']
 
 from .account import account
 
