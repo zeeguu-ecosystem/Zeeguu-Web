@@ -68,9 +68,6 @@ def create_account():
     language = form.get("language", None)
     native_language = form.get("native_language", None)
 
-    if not code in configuration.get("INVITATION_CODES"):
-        flash("Invitation code is not recognized. Please contact us.")
-
     if password is None or email is None or name is None:
         flash("Please enter your name, email address, and password")
 
@@ -78,7 +75,7 @@ def create_account():
         try:
 
             sessionID = account_management.create_account(email, name, password, language,
-                                                          native_language)  # setting registration code is not possible
+                                                          native_language, invite_code=code)  # setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
 
@@ -92,7 +89,9 @@ def create_account():
             flash("Username could not be created. Please contact us.")
         except APIException as e:
             flask.flash(e.message)
-        except:
+        except Exception as e:
+            import traceback
+            print(traceback.format_exc())
             flash("Something went wrong. Please contact us.")
 
     return flask.render_template("create_account.html", **template_arguments)
