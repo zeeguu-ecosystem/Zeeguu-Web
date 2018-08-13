@@ -23,6 +23,6 @@ def validate():
     return resp.text
 
 
-def user_details(sessionID):
-    resp = get(USER_DETAILS + "?session=" + sessionID, session_needed=False)
+def user_details(session_id: int):
+    resp = get(USER_DETAILS + "?session=" + str(session_id), session_needed=False)
     return json.loads(resp.text)
