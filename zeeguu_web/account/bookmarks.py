@@ -1,5 +1,3 @@
-import datetime
-
 from zeeguu_web.account.api.bookmarks import get_learned_bookmarks, get_bookmarks_by_date, star_bookmark, \
     report_learned_bookmark, \
     unstar_bookmark, delete_bookmark, \
@@ -18,7 +16,7 @@ def bookmarks():
                                  bookmarks_by_url=data["bookmarks_by_url"],
                                  urls_by_date=data["urls_by_date"],
                                  sorted_dates=data["sorted_dates"],
-                                 bookmark_counts_by_date=data["bookmark_counts_by_date"],
+                                 bookmark_counts_by_date=data["bookmark_counts_by_date"]
                                  )
 
 

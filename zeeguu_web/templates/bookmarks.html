@@ -21,7 +21,7 @@
                     <tr>
                         <td style="border:0px solid white;text-align:left; background-color:white;"></td>
                         <td colspan="4" style="border:0px solid white;text-align:left; background-color:white;">
-                            <small><a href="{{ url.url }}">{{ url.title }}</a></small>
+                            <small><a href="{{ url_for('umrblue.get_article') + "?articleURL=" + url.escaped() }}">{{ url.title }}</a></small>
                         </td>
                     </tr>
 
