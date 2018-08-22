@@ -5,4 +5,4 @@ IS_TEACHER = "is_teacher"
 
 def is_teacher():
     resp = get(IS_TEACHER, session_needed=True)
-    return resp.text
+    return resp.text == "True"
