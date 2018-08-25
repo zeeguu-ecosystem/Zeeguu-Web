@@ -1,0 +1,49 @@
+{% extends "layout_whatsnext.html" %}
+
+{% macro render_field(field) %}
+    <dt style="margin-right: 10px; float:left;">{{ field.label }}
+    <dd>{{ field(**kwargs)|safe }}
+        {% if field.errors %}
+            <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </dd>
+    <div style="clear:both;height:10px;"></div>
+{% endmacro %}
+
+
+{% set active_page = "my_account" %}
+
+{% block body %}
+
+    <div class="col-md-offset-4 col-md-4">
+
+        <br/>
+        <h1>Account Settings</h1>
+        <br/>
+        <form method=post>
+            <dl>
+                {{ render_field(form.name) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.native_language) }}
+
+
+                <h2>Reading Levels </h2>
+
+                {{ render_field(form.dutch) }}
+                {{ render_field(form.english) }}
+                {{ render_field(form.french) }}
+                {{ render_field(form.german) }}
+                {{ render_field(form.spanish) }}
+
+
+            </dl>
+            <p><input type=submit value=Save>
+        </form>
+
+    </div>
+
+{% endblock %}
