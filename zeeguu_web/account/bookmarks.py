@@ -12,11 +12,16 @@ def bookmarks():
     # d = datetime.datetime.now() - datetime.timedelta(days=7)
     data = get_bookmarks_by_date()
 
+    sorted_dates = data["sorted_dates"]
+    urls_by_date = data["urls_by_date"]
+    bookmarks_by_url = data["bookmarks_by_url"]
+    bookmark_counts_by_date = data["bookmark_counts_by_date"]
+
     return flask.render_template("bookmarks.html",
-                                 bookmarks_by_url=data["bookmarks_by_url"],
-                                 urls_by_date=data["urls_by_date"],
-                                 sorted_dates=data["sorted_dates"],
-                                 bookmark_counts_by_date=data["bookmark_counts_by_date"]
+                                 bookmarks_by_url=bookmarks_by_url,
+                                 urls_by_date=urls_by_date,
+                                 sorted_dates=sorted_dates,
+                                 bookmark_counts_by_date=bookmark_counts_by_date
                                  )
 
 
