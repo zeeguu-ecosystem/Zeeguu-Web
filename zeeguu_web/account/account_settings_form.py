@@ -46,8 +46,8 @@ one_to_ten = [(each, each) for each in cefr_levels_no_letters]
 
 
 class AccountSettingsForm(Form):
-    name = StringField('Name', [validators.Length(min=2, max=25)])
-    email = StringField('Email Address', [validators.Length(min=6, max=35)])
+    name = StringField('Name: ', [validators.Length(min=2, max=25)])
+    email = StringField('Email: ', [validators.Length(min=6, max=35)])
 
     native_language = SelectField('Native Language', choices=[
         ('fr', "French"),
