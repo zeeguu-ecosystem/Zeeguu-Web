@@ -72,7 +72,7 @@ def get_bookmarks_by_date(date=None):
         each_date = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
         sorted_dates.append(each_date)
 
-        urls_for_date.setdefault(each_date, set())
+        urls_for_date.setdefault(each_date, [])
 
         for bookmark_json in data["bookmarks"]:
             # try:
@@ -81,10 +81,12 @@ def get_bookmarks_by_date(date=None):
                 each_bookmark.set_date(each_date)
                 each_context = each_bookmark.context
 
-                urls_for_date[each_date].add(each_bookmark.url)
+                if each_bookmark.url not in urls_for_date[each_date]:
+                    urls_for_date[each_date].append(each_bookmark.url)
 
-                contexts_for_url.setdefault(each_bookmark.url, set())
-                contexts_for_url[each_bookmark.url].add(each_context)
+                contexts_for_url.setdefault(each_bookmark.url, [])
+                if not each_context in contexts_for_url.get(each_bookmark.url):
+                    contexts_for_url[each_bookmark.url].append(each_context)
 
                 bookmarks_for_context.setdefault(each_context, [])
                 bookmarks_for_context[each_context].append(each_bookmark)
