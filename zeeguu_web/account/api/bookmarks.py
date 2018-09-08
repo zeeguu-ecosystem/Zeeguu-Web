@@ -63,28 +63,43 @@ def get_bookmarks_by_date(date=None):
     _json = json.loads(resp.content)
 
     sorted_dates = []
-    bookmarks_by_url = {}
-    urls_by_date = {}
+    urls_for_date = {}
+    contexts_for_url = {}
+    bookmarks_for_context = {}
     bookmark_counts_by_date = {}
 
     for data in _json:
-        d = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
-        sorted_dates.append(d)
-        for bm_json in data["bookmarks"]:
-            try:
-                bm = Bookmark.from_json(bm_json)
-                bm.set_date(d)
-                urls_by_date.setdefault(d, set()).add(bm.url)
-                bookmarks_by_url.setdefault(bm.url, []).append(bm)
-            except Exception:
-                print("Parsing bookmark failed")
+        each_date = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
+        sorted_dates.append(each_date)
 
-        bookmark_counts_by_date.setdefault(d, set()).add(len(data["bookmarks"]))
+        urls_for_date.setdefault(each_date, set())
+
+        for bookmark_json in data["bookmarks"]:
+            # try:
+
+                each_bookmark = Bookmark.from_json(bookmark_json)
+                each_bookmark.set_date(each_date)
+                each_context = each_bookmark.context
+
+                urls_for_date[each_date].add(each_bookmark.url)
+
+                contexts_for_url.setdefault(each_bookmark.url, set())
+                contexts_for_url[each_bookmark.url].add(each_context)
+
+                bookmarks_for_context.setdefault(each_context, [])
+                bookmarks_for_context[each_context].append(each_bookmark)
+
+            # except Exception:
+            #     print("Parsing bookmark failed")
+
+
+        bookmark_counts_by_date.setdefault(each_date, set()).add(len(data["bookmarks"]))
 
     return {
         "sorted_dates": sorted_dates,
-        "bookmarks_by_url": bookmarks_by_url,
-        "urls_by_date": urls_by_date,
+        "urls_for_date": urls_for_date,
+        "contexts_for_url": contexts_for_url,
+        "bookmarks_for_context": bookmarks_for_context,
         "bookmark_counts_by_date": bookmark_counts_by_date
     }
 

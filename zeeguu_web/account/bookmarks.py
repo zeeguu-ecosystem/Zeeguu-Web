@@ -13,14 +13,16 @@ def bookmarks():
     data = get_bookmarks_by_date()
 
     sorted_dates = data["sorted_dates"]
-    urls_by_date = data["urls_by_date"]
-    bookmarks_by_url = data["bookmarks_by_url"]
+    urls_for_date = data["urls_for_date"]
+    contexts_for_url = data["contexts_for_url"]
+    bookmarks_for_context = data["bookmarks_for_context"]
     bookmark_counts_by_date = data["bookmark_counts_by_date"]
 
     return flask.render_template("bookmarks.html",
-                                 bookmarks_by_url=bookmarks_by_url,
-                                 urls_by_date=urls_by_date,
                                  sorted_dates=sorted_dates,
+                                 urls_for_date=urls_for_date,
+                                 contexts_for_url=contexts_for_url,
+                                 bookmarks_for_context=bookmarks_for_context,
                                  bookmark_counts_by_date=bookmark_counts_by_date
                                  )
 

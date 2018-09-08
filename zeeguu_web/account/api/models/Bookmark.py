@@ -53,6 +53,8 @@ class Bookmark:
         url = URL(_json["url"], _json["title"])
         context = cls.get_first_N_words_of_context(_json["context"])
         origin_importance = cls.string_representation_of_importance(_json["origin_importance"])
+        if origin_rank:
+            origin_rank = origin_rank // 1000 + 1
 
         return Bookmark(id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context,
                         learned_datetime, created_day)
