@@ -27,7 +27,7 @@
                         <div style="margin-left:0px;color: darkgrey; line-height: 1.2;">
                             {{ context }}
                         </div>
-                        <table width="100%" class="table table-striped table-no-borders">
+                        <table width="100%" class="table table-no-borders">
 
                             {% for bookmark in bookmarks_for_context.get(context) %}
                                 {% if bookmark.date.day == date.day %}
@@ -62,9 +62,9 @@
                                         <td colspan="2" class="word-details-td">
                                             <div class="impression">
 
-                                                <b>{{ bookmark.from_ }}</b><sup style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
-                                                -
-                                                <b>{{ bookmark.to }}</b>
+                                                <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
+                                                <span style="color: red"> &gt; </span>
+                                                {{ bookmark.to }}
                                                 <br/>
 
                                             </div>
