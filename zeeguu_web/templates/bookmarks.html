@@ -24,8 +24,8 @@
 
                     {% for context in contexts_for_url.get(url) %}
 
-                        <div style="margin-left:30px;color: gray; line-height: 1.2;">
-                            <small>{{ context }}</small>
+                        <div style="margin-left:0px;color: darkgrey; line-height: 1.2;">
+                            {{ context }}
                         </div>
                         <table width="100%" class="table table-striped table-no-borders">
 
@@ -34,7 +34,7 @@
                                     <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
 
                                     <tr id="bookmark{{ bookmark.id }}">
-                                        <td style="border:0px solid white;background-color:white;width:20px;"></td>
+                                        <td style="border:0px solid white;background-color:white;width:0px;"></td>
 
 
                                         <td width="40px" class="word-action-buttons-td">
