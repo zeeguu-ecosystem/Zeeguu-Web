@@ -38,34 +38,41 @@
 
 {% block body %}
 
-    <div class="col-md-offset-4 col-md-4">
+    <div class="col-md-4 col-md-offset-4">
 
         <br/>
         <h1>Account Settings</h1>
         <br/>
+
+
         <form method=post>
             <dl>
                 {{ render_field(form.name) }}
                 {{ render_field(form.email) }}
                 {{ render_field(form.native_language) }}
 
-                <h1>Language Levels</h1>
-                <small style="color:gray">Please let us know your level in the following languages
-                </small>
-
-                <table>
-                    {{ render_language(form.dutch) }}
-                    {{ render_language(form.english) }}
-                    {{ render_language(form.french) }}
-                    {{ render_language(form.german) }}
-                    {{ render_language(form.spanish) }}
-                </table>
+                {#                <h1>Language Levels</h1>#}
+                {#                <small style="color:gray">Please let us know your level in the following languages#}
+                {#                </small>#}
+                {##}
+                {#                <table>#}
+                {#                    {{ render_language(form.dutch) }}#}
+                {#                    {{ render_language(form.english) }}#}
+                {#                    {{ render_language(form.french) }}#}
+                {#                    {{ render_language(form.german) }}#}
+                {#                    {{ render_language(form.spanish) }}#}
+                {#                </table>#}
 
 
             </dl>
-            <p><input type=submit value=Save>
+            <p>
+                <input type=submit value=Save>
+
         </form>
 
+
     </div>
+
+
 
 {% endblock %}

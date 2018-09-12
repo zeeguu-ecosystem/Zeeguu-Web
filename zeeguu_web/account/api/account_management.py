@@ -1,8 +1,9 @@
 from zeeguu_web.account.api.api_connection import post, get
 
 CREATE_USER = "add_user/"
-NATIVE_LANGUAGE = "native_language/"
+USER_SETTINGS = "user_settings"
 LEARNED_LANGUAGE = "learned_language/"
+NATIVE_LANGUAGE = "native_language/"
 
 REQUEST_CODE = "send_code/"
 RESET_PASSWORD = "reset_password/"
@@ -36,5 +37,11 @@ def reset_password(code, email, password):
 def get_current_user_settings():
     return get(USER_DETAILS, session_needed=True)
 
-def set_user_settings():
-    post()
+
+def set_user_settings(name: str, email: str, native_language_code: str):
+    return post(USER_SETTINGS,
+                payload={
+                    'name': name,
+                    'native_language_code': native_language_code,
+                    'email': email},
+                session_needed=True)

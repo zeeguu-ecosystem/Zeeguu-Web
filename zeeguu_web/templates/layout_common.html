@@ -36,6 +36,7 @@
                             id="username">{{ g.username }}</span><b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('account.my_settings') }}">My Settings</a></li>
                         <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
 
                         {% if is_teacher %}
