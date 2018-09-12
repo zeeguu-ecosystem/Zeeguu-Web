@@ -18,7 +18,8 @@ def my_settings():
     if flask.request.method == 'POST':
         set_user_settings(form.name.data,
                           form.email.data,
-                          form.native_language.data)
+                          form.native_language.data,
+                          form.learned_language.data)
 
         flask.session[KEY__USER_NAME] = form.name.data
 

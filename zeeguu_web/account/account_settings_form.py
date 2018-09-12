@@ -60,6 +60,18 @@ class AccountSettingsForm(Form):
         ('ro', 'Romanian')
     ])
 
+    learned_language = SelectField('Learned Language', choices=[
+        ('zh-CN', 'Chinese'),
+        ('da', 'Danish'),
+        ('nl', 'Dutch'),
+        ('en', 'English'),
+        ('fr', 'French'),
+        ('de', 'German'),
+        ('es', 'Spanish'),
+        ('ro', 'Romanian')
+    ])
+
+
     french = SelectField('French: ', choices=one_to_ten)
     english = SelectField('English: ', choices=one_to_ten)
     dutch = SelectField('Dutch: ', choices=one_to_ten)

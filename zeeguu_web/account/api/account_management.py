@@ -38,10 +38,11 @@ def get_current_user_settings():
     return get(USER_DETAILS, session_needed=True)
 
 
-def set_user_settings(name: str, email: str, native_language_code: str):
+def set_user_settings(name: str, email: str, native_language_code: str, learned_language_code: str):
     return post(USER_SETTINGS,
                 payload={
                     'name': name,
                     'native_language_code': native_language_code,
+                    'learned_language_code': learned_language_code,
                     'email': email},
                 session_needed=True)
