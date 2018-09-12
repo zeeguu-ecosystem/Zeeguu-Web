@@ -5,6 +5,7 @@ from zeeguu_web.account.api.api_connection import post, get
 from zeeguu_web.account.api.models.Bookmark import Bookmark
 
 BOOKMARKS_BY_DATE = "bookmarks_by_day"
+BOOKMARKS_FOR_ARTICLE = "bookmarks_for_article/"
 DELETE_BOOKMARK = "delete_bookmark/"
 REPORT_LEARNED_BOOKMARK = "report_learned_bookmark/"
 STAR_BOOKMARK = "star_bookmark/"
@@ -60,6 +61,59 @@ def get_bookmarks_by_date(date=None):
         _payload["after_date"] = _date_string
 
     resp = post(BOOKMARKS_BY_DATE, payload=_payload, session_needed=True)
+    _json = json.loads(resp.content)
+
+    sorted_dates = []
+    urls_for_date = {}
+    contexts_for_url = {}
+    bookmarks_for_context = {}
+    bookmark_counts_by_date = {}
+
+    for data in _json:
+        each_date = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
+        sorted_dates.append(each_date)
+
+        urls_for_date.setdefault(each_date, [])
+
+        for bookmark_json in data["bookmarks"]:
+            # try:
+
+                each_bookmark = Bookmark.from_json(bookmark_json)
+                each_bookmark.set_date(each_date)
+                each_context = each_bookmark.context
+
+                if each_bookmark.url not in urls_for_date[each_date]:
+                    urls_for_date[each_date].append(each_bookmark.url)
+
+                contexts_for_url.setdefault(each_bookmark.url, [])
+                if not each_context in contexts_for_url.get(each_bookmark.url):
+                    contexts_for_url[each_bookmark.url].append(each_context)
+
+                bookmarks_for_context.setdefault(each_context, [])
+                bookmarks_for_context[each_context].append(each_bookmark)
+
+            # except Exception:
+            #     print("Parsing bookmark failed")
+
+
+        bookmark_counts_by_date.setdefault(each_date, set()).add(len(data["bookmarks"]))
+
+    return {
+        "sorted_dates": sorted_dates,
+        "urls_for_date": urls_for_date,
+        "contexts_for_url": contexts_for_url,
+        "bookmarks_for_context": bookmarks_for_context,
+        "bookmark_counts_by_date": bookmark_counts_by_date
+    }
+
+
+def get_bookmarks_for_article(article_id):
+    _payload = {
+        "with_context": True,
+        "with_title": True
+    }
+
+    resp = post(BOOKMARKS_FOR_ARTICLE + article_id, payload=_payload, session_needed=True)
     _json = json.loads(resp.content)
 
     sorted_dates = []

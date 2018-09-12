@@ -2,15 +2,13 @@
 
 {% from "layout_common.html" import no_words_yet %}
 
-{% set active_page = "bookmarks" %}
+{% set active_page = "" %}
 
 {% block body %}
 
     <div class="col-md-offset-3 col-md-6">
 
         {% if sorted_dates %}
-
-            {{ top_message("The most recent words that you looked up, with their transations, and contexts.") }}
 
             {% for date in sorted_dates %}
                 <h1>{{ date.strftime("%A %B %d, %Y") }} </h1>

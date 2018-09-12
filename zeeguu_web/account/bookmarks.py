@@ -1,7 +1,7 @@
 from zeeguu_web.account.api.bookmarks import get_learned_bookmarks, get_bookmarks_by_date, star_bookmark, \
     report_learned_bookmark, \
     unstar_bookmark, delete_bookmark, \
-    get_top_bookmarks, get_starred_bookmarks
+    get_top_bookmarks, get_starred_bookmarks, get_bookmarks_for_article
 from . import account, login_first
 import flask
 
@@ -19,6 +19,25 @@ def bookmarks():
     bookmark_counts_by_date = data["bookmark_counts_by_date"]
 
     return flask.render_template("bookmarks.html",
+                                 sorted_dates=sorted_dates,
+                                 urls_for_date=urls_for_date,
+                                 contexts_for_url=contexts_for_url,
+                                 bookmarks_for_context=bookmarks_for_context,
+                                 bookmark_counts_by_date=bookmark_counts_by_date
+                                 )
+
+@account.route("/bookmarks_for_article/<article_id>")
+@login_first
+def bookmarks_for_article(article_id:int):
+    data = get_bookmarks_for_article(article_id)
+
+    sorted_dates = data["sorted_dates"]
+    urls_for_date = data["urls_for_date"]
+    contexts_for_url = data["contexts_for_url"]
+    bookmarks_for_context = data["bookmarks_for_context"]
+    bookmark_counts_by_date = data["bookmark_counts_by_date"]
+
+    return flask.render_template("bookmarks_for_article.html",
                                  sorted_dates=sorted_dates,
                                  urls_for_date=urls_for_date,
                                  contexts_for_url=contexts_for_url,
