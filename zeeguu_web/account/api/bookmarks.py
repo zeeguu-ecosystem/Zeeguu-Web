@@ -115,6 +115,8 @@ def get_bookmarks_for_article(article_id):
 
     resp = post(BOOKMARKS_FOR_ARTICLE + article_id, payload=_payload, session_needed=True)
     _json = json.loads(resp.content)
+    print("****bookmarks for article data: ")
+    print(_json)
 
     sorted_dates = []
     urls_for_date = {}
