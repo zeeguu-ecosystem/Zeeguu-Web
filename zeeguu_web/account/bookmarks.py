@@ -26,29 +26,22 @@ def bookmarks():
                                  bookmark_counts_by_date=bookmark_counts_by_date
                                  )
 
-
-@account.route("/bookmarks_for_article/<article_id>")
+@account.route("/bookmarks_for_article/<int:article_id>")
 @login_first
-def bookmarks_for_article(article_id: int):
+def bookmarks_for_article1(article_id: int):
+
     data = get_bookmarks_for_article(article_id)
 
-    sorted_dates = data["sorted_dates"]
-    urls_for_date = data["urls_for_date"]
-    contexts_for_url = data["contexts_for_url"]
-    bookmarks_for_context = data["bookmarks_for_context"]
-    bookmark_counts_by_date = data["bookmark_counts_by_date"]
-    print(data)
-    print(sorted_dates)
-    print(contexts_for_url)
-    print(bookmarks_for_context)
+    return flask.render_template("bookmarks_for_article.html", **data)
 
-    return flask.render_template("bookmarks_for_article.html",
-                                 sorted_dates=sorted_dates,
-                                 urls_for_date=urls_for_date,
-                                 contexts_for_url=contexts_for_url,
-                                 bookmarks_for_context=bookmarks_for_context,
-                                 bookmark_counts_by_date=bookmark_counts_by_date
-                                 )
+
+@account.route("/bookmarks_for_article/<int:article_id>/<int:user_id>")
+@login_first
+def bookmarks_for_article2(article_id: int, user_id):
+
+    data = get_bookmarks_for_article(article_id, user_id)
+
+    return flask.render_template("bookmarks_for_article.html", **data)
 
 
 @account.route("/top_bookmarks")

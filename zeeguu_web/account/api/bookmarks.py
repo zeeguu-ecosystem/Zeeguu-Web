@@ -107,16 +107,18 @@ def get_bookmarks_by_date(date=None):
     }
 
 
-def get_bookmarks_for_article(article_id):
+def get_bookmarks_for_article(article_id:int, user_id:int = None):
     _payload = {
         "with_context": True,
         "with_title": True
     }
 
-    resp = post(BOOKMARKS_FOR_ARTICLE + article_id, payload=_payload, session_needed=True)
+    if user_id:
+        resp = post(BOOKMARKS_FOR_ARTICLE + f'{article_id}/{user_id}', payload=_payload, session_needed=True)
+    else:
+        resp = post(BOOKMARKS_FOR_ARTICLE + f'{article_id}', payload=_payload, session_needed=True)
+
     _json = json.loads(resp.content)
-    print("****bookmarks for article data: ")
-    print(_json)
 
     sorted_dates = []
     urls_for_date = {}
