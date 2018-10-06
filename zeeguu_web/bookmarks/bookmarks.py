@@ -9,6 +9,7 @@ from zeeguu_web.crosscutting_concerns import login_first
 @bookmarks_blueprint.route("/bookmarks")
 @login_first
 def bookmarks():
+
     data = get_bookmarks_by_date()
 
     sorted_dates = data["sorted_dates"]
