@@ -110,7 +110,7 @@ def logout():
     for key in SESSION_KEYS:
         flask.session.pop(key, None)
 
-    response = make_response(redirect(flask.url_for("account.home")))
+    response = make_response(redirect(flask.url_for("static_pages.index")))
     response.delete_cookie(KEY__STAND_ALONE_SESSION_ID)
     response.delete_cookie(KEY__FLASK_SESSION)
     response.delete_cookie(KEY__NATIVE_LANG)
