@@ -13,3 +13,4 @@ from . import static_pages
 from . import user_stats
 from . import watch_connect
 from . import account_settings
+from . import create_account
