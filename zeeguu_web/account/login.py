@@ -6,13 +6,11 @@ from zeeguu_web.account.api import session_management, account_management
 from zeeguu_web.account.api.api_connection import APIException
 from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
 from zeeguu_web.account.api.session_management import user_details
-from zeeguu_web.app import configuration
 from zeeguu_web.constants import *
 
 from . import account
 
 from zeeguu_web.crosscutting_concerns import login_first
-
 
 
 @account.route("/login", methods=("GET", "POST"))
@@ -46,7 +44,7 @@ def login():
 
                 return response
 
-    return flask.render_template("login.html")
+    return flask.render_template("account/login.html")
 
 
 @account.route("/create_account", methods=("GET", "POST"))
@@ -60,7 +58,7 @@ def create_account():
 
     # GET
     if flask.request.method == "GET":
-        return flask.render_template("create_account.html", **template_arguments)
+        return flask.render_template("account/create_account.html", **template_arguments)
 
     # POST
     form = flask.request.form
@@ -78,7 +76,8 @@ def create_account():
         try:
 
             sessionID = account_management.create_account(email, name, password, language,
-                                                          native_language, invite_code=code)  # setting registration code is not possible
+                                                          native_language,
+                                                          invite_code=code)  # setting registration code is not possible
 
             response = make_response(flask.redirect(flask.url_for("account.whatnext")))
 
@@ -97,7 +96,7 @@ def create_account():
             print(traceback.format_exc())
             flash("Something went wrong. Please contact us.")
 
-    return flask.render_template("create_account.html", **template_arguments)
+    return flask.render_template("account/create_account.html", **template_arguments)
 
 
 @account.route("/logout")

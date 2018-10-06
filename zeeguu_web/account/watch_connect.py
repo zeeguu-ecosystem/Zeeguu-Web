@@ -14,5 +14,5 @@ def watch_connect():
     session_id = s.zfill(8)
     watch_connect = session_id[:4] + "-" + session_id[4:]
 
-    return flask.render_template("watch_connect.html",
+    return flask.render_template("account/watch_connect.html",
                                  smartwatch_login_code=watch_connect)

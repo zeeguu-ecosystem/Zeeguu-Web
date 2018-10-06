@@ -5,7 +5,7 @@ from . import account
 
 @account.route("/install")
 def install():
-    return flask.render_template("install.html")
+    return flask.render_template("static_pages/install.html")
 
 
 @account.route("/chrome")

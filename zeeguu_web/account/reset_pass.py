@@ -36,7 +36,7 @@ def reset_password():
         #generate_code_and_send_email(email)
         account_management.request_code(email)
         flash("Now check your inbox for a one-time code")
-        return flask.render_template("reset_pass.html", code_active=True, email=email)
+        return flask.render_template("account/reset_pass.html", code_active=True, email=email)
 
     if email and code and password:
         try:
@@ -46,7 +46,7 @@ def reset_password():
         except APIException as e:
             flash(e.message)
             traceback.print_exc(file=sys.stdout)
-            return flask.render_template("reset_pass.html", message=True)
+            return flask.render_template("account/reset_pass.html", message=True)
 
     flash("This will be fast. We promise.")
-    return flask.render_template("reset_pass.html")
+    return flask.render_template("account/reset_pass.html")

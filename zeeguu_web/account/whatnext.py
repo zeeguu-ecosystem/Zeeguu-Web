@@ -18,10 +18,10 @@ def get_favicon():
 def home():
     if KEY__SESSION_ID in flask.session:
         return flask.redirect(flask.url_for("account.whatnext"))
-    return flask.render_template("index.html")
+    return flask.render_template("static_pages/index.html")
 
 
 @account.route("/whatnext")
 @login_first
 def whatnext():
-    return flask.render_template("whatnext.html", is_teacher=is_teacher())
+    return flask.render_template("account/whatnext.html", is_teacher=is_teacher())

@@ -11,7 +11,7 @@ def bookmarks_for_article1(article_id: int):
     data = get_bookmarks_for_article(article_id)
     print(data)
 
-    return render_template("bookmarks_for_article.html", **data)
+    return render_template("bookmarks/bookmarks_for_article.html", **data)
 
 
 @bookmarks_blueprint.route("/bookmarks_for_article/<int:article_id>/<int:user_id>")
@@ -19,4 +19,4 @@ def bookmarks_for_article1(article_id: int):
 def bookmarks_for_article2(article_id: int, user_id):
     data = get_bookmarks_for_article(article_id, user_id)
 
-    return render_template("bookmarks_for_article.html", **data)
+    return render_template("bookmarks/bookmarks_for_article.html", **data)

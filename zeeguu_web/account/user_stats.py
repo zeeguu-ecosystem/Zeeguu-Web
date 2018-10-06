@@ -9,5 +9,5 @@ import flask
 @account.route("/stats", methods=["GET"])
 @login_first
 def stats():
-    return flask.render_template("user_stats.html",
+    return flask.render_template("account/user_stats.html",
                                  bookmark_counts_by_date=bookmark_counts_by_date())

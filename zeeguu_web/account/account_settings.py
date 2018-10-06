@@ -32,4 +32,4 @@ def my_settings():
 
         return response
 
-    return flask.render_template("account_settings.html", form=form)
+    return flask.render_template("account/account_settings.html", form=form)

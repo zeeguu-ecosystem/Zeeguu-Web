@@ -17,7 +17,7 @@ def bookmarks():
     bookmarks_for_context = data["bookmarks_for_context"]
     bookmark_counts_by_date = data["bookmark_counts_by_date"]
 
-    return render_template("bookmarks.html",
+    return render_template("bookmarks/bookmarks.html",
                            sorted_dates=sorted_dates,
                            urls_for_date=urls_for_date,
                            contexts_for_url=contexts_for_url,
@@ -31,7 +31,7 @@ def bookmarks():
 def top_bookmarks():
     bookmarks = get_top_bookmarks(10)
 
-    return render_template("bookmarks_top.html",
+    return render_template("bookmarks/bookmarks_top.html",
                            bookmarks=bookmarks)
 
 
@@ -40,7 +40,7 @@ def top_bookmarks():
 def learned_bookmarks():
     bookmarks = get_learned_bookmarks()
 
-    return render_template("bookmarks_learned.html",
+    return render_template("bookmarks/bookmarks_learned.html",
                            bookmarks=bookmarks)
 
 
@@ -49,5 +49,5 @@ def learned_bookmarks():
 def starred_bookmarks():
     bookmarks = get_starred_bookmarks()
 
-    return render_template("bookmarks_starred.html",
+    return render_template("bookmarks/bookmarks_starred.html",
                            bookmarks=bookmarks)

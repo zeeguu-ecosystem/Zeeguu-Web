@@ -1,37 +1,19 @@
-{% extends "layout_bookmarks.html" %}
+{% extends "bookmarks/layout_bookmarks.html" %}
 
 {% from "layout_common.html" import no_words_yet %}
 
-{% set active_page = "top" %}
+{% set active_page = "learned" %}
 
 
 
 {% block body %}
-
-    <script>
-
-        function showInlineAnswer(id) {
-
-            var answer = $("#answer" + id);
-
-            if (answer.is(":visible")) {
-                answer.hide();
-            } else {
-                answer.show();
-            }
-        }
-
-
-    </script>
-
 
     <div class="col-md-offset-2 col-md-8">
 
 
         {% if bookmarks %}
 
-
-            {{ top_message("Your top words. Click to translate or mark as known.") }}
+            {{ top_message("Words that should be known to you") }}
 
             <table class="table table-striped table-no-borders">
 
@@ -78,36 +60,24 @@
                         <td colspan="2" class="word-details-td">
                             <div class="impression">
 
-                                {% if bookmark.created_day != '' %}
-                                    <sup style="background-color:green;padding-left:3px;padding-right:3px;border-radius: 4px; color:white;"><small>{{bookmark.created_day}}</small></sup>
-                                {%  endif %}
 
                                 <b>
                                     <a href="javascript:void(0);" onclick="showInlineAnswer({{ bookmark.id }})">
                                         {{ bookmark.from_ }}
                                     </a>
-
                                 </b>
 
-                                <span style="display: none" id="answer{{ bookmark.id }}">
-
+                                <span id="answer{{ bookmark.id }}">
                                                 = {{ bookmark.to }}
-                                                &nbsp;&nbsp;&nbsp;
-                                                <a href="javascript:void(0);"
-                                                   onclick="reportLearnedBookmark({{ bookmark.id }})">
-                                                    <i style="color:silver" class="icon-check iknowitcheck"></i>
-                                                </a>
+
                                             </span>
 
 
-
-
                                 <br/>
-
                                 <small>{{ bookmark.context }}</small>
-
-
-
+                                <br/>
+                                <i style="color:green" class="icon-check iknowitcheck"></i>
+                                <small>{{ bookmark.learned_datetime }}</small>
                             </div>
                         </td>
 
