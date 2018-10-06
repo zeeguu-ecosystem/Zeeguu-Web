@@ -4,7 +4,7 @@ import os.path
 import sys
 import flask
 import flask_assets
-from .cross_domain_app import CrossDomainApp
+from zeeguu_web.crosscutting_concerns import CrossDomainApp
 
 if sys.version_info[0] < 3:
     raise Exception("Must be using Python 3")
@@ -23,8 +23,10 @@ print(" == Web running with API: " + app.config['ZEEGUU_API'])
 os.environ['ZEEGUU_API'] = app.config['ZEEGUU_API']
 
 from .account import account
+from .bookmarks import bookmarks_blueprint
 
 app.register_blueprint(account)
+app.register_blueprint(bookmarks_blueprint)
 
 from zeeguu_exercises import ex_blueprint
 

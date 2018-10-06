@@ -1,5 +1,8 @@
 from zeeguu_web.account.api.user_stats import bookmark_counts_by_date
-from . import account, login_first
+from . import account
+
+from zeeguu_web.crosscutting_concerns import login_first
+
 import flask
 
 

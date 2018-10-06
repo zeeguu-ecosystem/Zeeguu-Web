@@ -4,7 +4,10 @@ from zeeguu_web.account.account_settings_form import AccountSettingsForm
 from zeeguu_web.account.api.account_management import get_current_user_settings, set_user_settings
 from zeeguu_web.constants import KEY__USER_NAME, KEY__NATIVE_LANG
 
-from . import account, login_first
+from . import account
+
+from zeeguu_web.crosscutting_concerns import login_first
+
 import flask
 
 

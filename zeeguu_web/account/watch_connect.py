@@ -1,5 +1,8 @@
 from zeeguu_web.constants import KEY__SESSION_ID
-from . import account, login_first
+from . import account
+
+from zeeguu_web.crosscutting_concerns import login_first
+
 import flask
 
 

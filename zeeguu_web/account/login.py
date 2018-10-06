@@ -9,7 +9,10 @@ from zeeguu_web.account.api.session_management import user_details
 from zeeguu_web.app import configuration
 from zeeguu_web.constants import *
 
-from . import account, login_first
+from . import account
+
+from zeeguu_web.crosscutting_concerns import login_first
+
 
 
 @account.route("/login", methods=("GET", "POST"))
