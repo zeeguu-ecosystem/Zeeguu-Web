@@ -1,6 +1,6 @@
 from flask import render_template
 
-from zeeguu_web.account.api.bookmarks import get_learned_bookmarks, get_bookmarks_by_date, get_top_bookmarks, \
+from zeeguu_web.api_communication.bookmarks import get_learned_bookmarks, get_bookmarks_by_date, get_top_bookmarks, \
     get_starred_bookmarks
 from zeeguu_web.bookmarks import bookmarks_blueprint
 from zeeguu_web.crosscutting_concerns import login_first

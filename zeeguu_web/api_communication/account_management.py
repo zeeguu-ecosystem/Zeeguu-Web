@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.api_connection import post, get
+from zeeguu_web.api_communication.api_connection import post, get
 
 CREATE_USER = "add_user/"
 USER_SETTINGS = "user_settings"

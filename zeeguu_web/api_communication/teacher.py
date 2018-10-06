@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.api_connection import get
+from zeeguu_web.api_communication.api_connection import get
 
 IS_TEACHER = "is_teacher"
 

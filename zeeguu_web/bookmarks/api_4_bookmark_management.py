@@ -1,6 +1,6 @@
 # These following endpoints are invoked via ajax calls from the bookmarks page
 
-from zeeguu_web.account.api.bookmarks import \
+from zeeguu_web.api_communication.bookmarks import \
     star_bookmark, \
     report_learned_bookmark, \
     unstar_bookmark, \

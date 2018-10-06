@@ -1,7 +1,7 @@
 import pytest
 import requests
-from zeeguu_web.account.api import api_connection
-from zeeguu_web.account.api.api_connection import APIException
+from zeeguu_web.api_communication import api_connection
+from zeeguu_web.api_communication.api_connection import APIException
 
 
 class TestAPIConnection:

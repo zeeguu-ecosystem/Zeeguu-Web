@@ -1,6 +1,6 @@
 import json
 
-from zeeguu_web.account.api.api_connection import get, post
+from zeeguu_web.api_communication.api_connection import get, post
 
 LOGIN = "session/"
 LOGOUT = "logout_session"

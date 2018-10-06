@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.teacher import is_teacher
+from zeeguu_web.api_communication import is_teacher
 
 from . import account
 from zeeguu_web.crosscutting_concerns import login_first

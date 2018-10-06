@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.models.URL import URL
+from zeeguu_web.api_communication.models.URL import URL
 
 CONTEXT_LENGTH = 42
 

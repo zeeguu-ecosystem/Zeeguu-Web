@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.models.Bookmark import Bookmark
+from zeeguu_web.api_communication.models.Bookmark import Bookmark
 
 
 class TestBookmark:

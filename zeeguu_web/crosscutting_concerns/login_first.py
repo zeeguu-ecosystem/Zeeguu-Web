@@ -21,7 +21,7 @@ def login_first(fun):
 
         if KEY__SESSION_ID in flask.session:
             try:
-                from zeeguu_web.account.api.session_management import validate
+                from zeeguu_web.api_communication import validate
                 result = validate()
                 if result:
                     flask.g.username = flask.session[KEY__USER_NAME]

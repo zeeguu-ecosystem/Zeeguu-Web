@@ -1,9 +1,9 @@
 import flask
 from flask import make_response, redirect
 
-from zeeguu_web.account.api import session_management
-from zeeguu_web.account.api.api_connection import APIException
-from zeeguu_web.account.api.session_management import user_details
+from zeeguu_web.api_communication import session_management
+from zeeguu_web.api_communication.api_connection import APIException
+from zeeguu_web.api_communication import user_details
 from zeeguu_web.constants import *
 from zeeguu_web.crosscutting_concerns.session_storage import set_session_data
 

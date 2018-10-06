@@ -1,4 +1,4 @@
-from zeeguu_web.account.api.user_stats import bookmark_counts_by_date
+from zeeguu_web.api_communication.user_stats import bookmark_counts_by_date
 from . import account
 
 from zeeguu_web.crosscutting_concerns import login_first

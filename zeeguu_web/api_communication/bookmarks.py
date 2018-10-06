@@ -1,8 +1,8 @@
 import datetime
 from flask import json
 
-from zeeguu_web.account.api.api_connection import post, get
-from zeeguu_web.account.api.models.Bookmark import Bookmark
+from zeeguu_web.api_communication.api_connection import post, get
+from zeeguu_web.api_communication.models.Bookmark import Bookmark
 
 BOOKMARKS_BY_DATE = "bookmarks_by_day"
 BOOKMARKS_FOR_ARTICLE = "bookmarks_for_article/"

@@ -1,6 +1,6 @@
 from flask import render_template
 
-from zeeguu_web.account.api.bookmarks import get_bookmarks_for_article
+from zeeguu_web.api_communication.bookmarks import get_bookmarks_for_article
 from zeeguu_web.bookmarks import bookmarks_blueprint
 from zeeguu_web.crosscutting_concerns import login_first
 

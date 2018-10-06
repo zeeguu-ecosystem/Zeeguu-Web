@@ -2,10 +2,10 @@ import flask
 from flask import make_response
 from flask import flash
 
-from zeeguu_web.account.api import account_management
-from zeeguu_web.account.api.api_connection import APIException
-from zeeguu_web.account.api.languages import get_available_languages, get_available_native_languages
-from zeeguu_web.account.api.session_management import user_details
+from zeeguu_web.api_communication import account_management
+from zeeguu_web.api_communication.api_connection import APIException
+from zeeguu_web.api_communication import get_available_languages, get_available_native_languages
+from zeeguu_web.api_communication import user_details
 from zeeguu_web.constants import *
 from zeeguu_web.crosscutting_concerns.session_storage import set_session_data
 
