@@ -5,6 +5,7 @@ from zeeguu_web.account.api import session_management
 from zeeguu_web.account.api.api_connection import APIException
 from zeeguu_web.account.api.session_management import user_details
 from zeeguu_web.constants import *
+from zeeguu_web.crosscutting_concerns.session_storage import set_session_data
 
 from . import account
 
@@ -15,8 +16,7 @@ from zeeguu_web.crosscutting_concerns import login_first
 def login():
     """
     
-        check user credentials 
-        
+        check user credentials
         if next=... parameter is present redirect on success
         
     """
@@ -38,7 +38,7 @@ def login():
             else:
                 response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
-                _set_session_data(details, sessionID, response)
+                set_session_data(details, sessionID, response)
 
                 return response
 
@@ -69,17 +69,3 @@ def logged_in():
     if flask.session.get(KEY__SESSION_ID, None):
         return "YES"
     return "NO"
-
-
-def _set_session_data(details, sessionID, response):
-    """
-    Set session information for later usage
-    """
-
-    flask.session[KEY__SESSION_ID] = sessionID
-    flask.session[KEY__USER_NAME] = details["name"]
-
-    flask.session.permanent = True
-
-    response.set_cookie(KEY__STAND_ALONE_SESSION_ID, str(sessionID), max_age=31536000)
-    response.set_cookie(KEY__NATIVE_LANG, details["native_language"], max_age=31536000)
