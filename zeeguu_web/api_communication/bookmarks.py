@@ -1,5 +1,6 @@
 import datetime
 from flask import json
+from collections import OrderedDict
 
 from zeeguu_web.api_communication.api_connection import post, get
 from zeeguu_web.api_communication.models.Bookmark import Bookmark
@@ -125,7 +126,7 @@ def get_bookmarks_for_article(article_id:int, user_id:int = None):
 
     dates = set()
 
-    contexts_for_date = {}
+    contexts_for_date = OrderedDict()
     bookmarks_for_context = {}
 
     for each in bookmarks:
@@ -133,9 +134,10 @@ def get_bookmarks_for_article(article_id:int, user_id:int = None):
         dates.add(each.date)
 
         if each.date not in contexts_for_date:
-            contexts_for_date[each.date] = set()
+            contexts_for_date[each.date] = []
 
-        contexts_for_date[each.date].add(each.context)
+        if each.context not in contexts_for_date[each.date]:
+            contexts_for_date[each.date].append(each.context)
 
         if each.context not in bookmarks_for_context:
             bookmarks_for_context[each.context] = []
