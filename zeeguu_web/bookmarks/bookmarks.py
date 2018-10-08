@@ -9,21 +9,9 @@ from zeeguu_web.crosscutting_concerns import login_first
 @bookmarks_blueprint.route("/bookmarks")
 @login_first
 def bookmarks():
-
     data = get_bookmarks_by_date()
 
-    sorted_dates = data["sorted_dates"]
-    urls_for_date = data["urls_for_date"]
-    contexts_for_url = data["contexts_for_url"]
-    bookmarks_for_context = data["bookmarks_for_context"]
-    bookmark_counts_by_date = data["bookmark_counts_by_date"]
-
-    return render_template("bookmarks/bookmarks.html",
-                           sorted_dates=sorted_dates,
-                           urls_for_date=urls_for_date,
-                           contexts_for_url=contexts_for_url,
-                           bookmarks_for_context=bookmarks_for_context,
-                           bookmark_counts_by_date=bookmark_counts_by_date
+    return render_template("bookmarks/bookmarks.html", **data
                            )
 
 

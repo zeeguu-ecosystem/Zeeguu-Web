@@ -69,6 +69,7 @@ def get_bookmarks_by_date(date=None):
     contexts_for_url = {}
     bookmarks_for_context = {}
     bookmark_counts_by_date = {}
+    article_ids_for_urls = {}
 
     for data in _json:
         each_date = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
@@ -93,6 +94,8 @@ def get_bookmarks_by_date(date=None):
                 bookmarks_for_context.setdefault(each_context, [])
                 bookmarks_for_context[each_context].append(each_bookmark)
 
+                article_ids_for_urls[each_bookmark.url] = each_bookmark.article_id
+
             # except Exception:
             #     print("Parsing bookmark failed")
 
@@ -104,7 +107,8 @@ def get_bookmarks_by_date(date=None):
         "urls_for_date": urls_for_date,
         "contexts_for_url": contexts_for_url,
         "bookmarks_for_context": bookmarks_for_context,
-        "bookmark_counts_by_date": bookmark_counts_by_date
+        "bookmark_counts_by_date": bookmark_counts_by_date,
+        "article_ids_for_urls":article_ids_for_urls
     }
 
 
