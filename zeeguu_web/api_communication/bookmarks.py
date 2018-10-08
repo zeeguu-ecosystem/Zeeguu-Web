@@ -119,48 +119,36 @@ def get_bookmarks_for_article(article_id:int, user_id:int = None):
         resp = post(BOOKMARKS_FOR_ARTICLE + f'{article_id}', payload=_payload, session_needed=True)
 
     _json = json.loads(resp.content)
+    print(_json)
 
-    sorted_dates = []
-    urls_for_date = {}
-    contexts_for_url = {}
+    bookmarks = [Bookmark.from_json(each) for each in _json['bookmarks']]
+
+    dates = set()
+
+    contexts_for_date = {}
     bookmarks_for_context = {}
-    bookmark_counts_by_date = {}
 
-    for data in _json:
-        each_date = datetime.datetime.strptime(data["date"], "%A, %d %B %Y")
-        sorted_dates.append(each_date)
+    for each in bookmarks:
 
-        urls_for_date.setdefault(each_date, [])
+        dates.add(each.date)
 
-        for bookmark_json in data["bookmarks"]:
-            # try:
+        if each.date not in contexts_for_date:
+            contexts_for_date[each.date] = set()
 
-                each_bookmark = Bookmark.from_json(bookmark_json)
-                each_bookmark.set_date(each_date)
-                each_context = each_bookmark.context
+        contexts_for_date[each.date].add(each.context)
 
-                if each_bookmark.url not in urls_for_date[each_date]:
-                    urls_for_date[each_date].append(each_bookmark.url)
+        if each.context not in bookmarks_for_context:
+            bookmarks_for_context[each.context] = []
 
-                contexts_for_url.setdefault(each_bookmark.url, [])
-                if not each_context in contexts_for_url.get(each_bookmark.url):
-                    contexts_for_url[each_bookmark.url].append(each_context)
+        bookmarks_for_context[each.context].append(each)
 
-                bookmarks_for_context.setdefault(each_context, [])
-                bookmarks_for_context[each_context].append(each_bookmark)
-
-            # except Exception:
-            #     print("Parsing bookmark failed")
-
-
-        bookmark_counts_by_date.setdefault(each_date, set()).add(len(data["bookmarks"]))
 
     return {
-        "sorted_dates": sorted_dates,
-        "urls_for_date": urls_for_date,
-        "contexts_for_url": contexts_for_url,
+        "sorted_dates": dates,
+        "contexts_for_date": contexts_for_date,
         "bookmarks_for_context": bookmarks_for_context,
-        "bookmark_counts_by_date": bookmark_counts_by_date
+        "article_title":_json['article_title'],
+        "article_id":article_id
     }
 
 

@@ -9,7 +9,6 @@ from zeeguu_web.crosscutting_concerns import login_first
 @login_first
 def bookmarks_for_article1(article_id: int):
     data = get_bookmarks_for_article(article_id)
-    print(data)
 
     return render_template("bookmarks/bookmarks_for_article.html", **data)
 

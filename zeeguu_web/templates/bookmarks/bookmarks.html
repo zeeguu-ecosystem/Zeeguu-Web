@@ -18,7 +18,7 @@
                 {% for url in urls_for_date.get(date) %}
 
                     <h2>
-                        <a href="{{ url_for('umrblue.get_article') + "?articleURL=" + url.escaped() }}">{{ url.title }}</a>
+                        <a href="{{ url_for('umrblue.get_article') + "?articleURL=" + url.url }}">{{ url.title }}</a>
                     </h2>
                     <br/>
 

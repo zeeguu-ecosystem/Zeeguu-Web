@@ -1,102 +1,89 @@
-{% extends "bookmarks/layout_bookmarks.html" %}
+{% extends "layout_whatsnext.html" %}
 
-{% from "layout_common.html" import no_words_yet %}
-
-{% set active_page = "" %}
 
 {% block body %}
 
     <div class="col-md-offset-3 col-md-6">
 
-        {% if sorted_dates %}
+        <a href="/read"> < To Article List</a>
 
-            {% for date in sorted_dates %}
-                <h1>{{ date.strftime("%A %B %d, %Y") }} </h1>
+        <br/><br/>
 
-                {% for url in urls_for_date.get(date) %}
+        <h2><a href="/read/article?articleID={{ article_id }}"> {{ article_title }}</a></h2>
 
-                    <h2>
-                        <a href="{{ url_for('umrblue.get_article') + "?articleURL=" + url.escaped() }}">{{ url.title }}</a>
-                    </h2>
-                    <br/>
+        {% for date in sorted_dates %}
+            <h1>{{ date }} </h1>
 
-                    {% for context in contexts_for_url.get(url) %}
+            {% for context in contexts_for_date.get(date) %}
 
-                        <div style="margin-left:0px;color: darkgrey; line-height: 1.2;">
-                            {{ context }}
-                        </div>
-                        <table width="100%" class="table table-no-borders">
+                <div style="margin-left:0px;color: darkgrey; line-height: 1.2;">
+                    {{ context }}
+                </div>
+                <table width="100%" class="table table-no-borders">
 
-                            {% for bookmark in bookmarks_for_context.get(context) %}
-                                {% if bookmark.date.day == date.day %}
-                                    <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
+                    {% for bookmark in bookmarks_for_context.get(context) %}
+                        {% if bookmark.date.day == date.day %}
+                            <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
 
-                                    <tr id="bookmark{{ bookmark.id }}">
-                                        <td style="border:0px solid white;background-color:white;width:1px;padding-left:0px; padding-right:0px;"></td>
+                            <tr id="bookmark{{ bookmark.id }}">
+                                <td style="border:0px solid white;background-color:white;width:1px;padding-left:0px; padding-right:0px;"></td>
 
 
-                                        <td width="40px" class="word-action-buttons-td">
-                                            <div class="word-action-buttons">
+                                <td width="40px" class="word-action-buttons-td">
+                                    <div class="word-action-buttons">
 
-                                                <div id="star{{ bookmark.id }}">
-                                                    {% if bookmark.starred %}
+                                        <div id="star{{ bookmark.id }}">
+                                            {% if bookmark.starred %}
 
-                                                        <a href="javascript:void(0);"
-                                                           onclick="unstarBookmark({{ bookmark.id }})">
-                                                            <i style="color:gold" class="icon-star"></i>
-                                                        </a>
+                                                <a href="javascript:void(0);"
+                                                   onclick="unstarBookmark({{ bookmark.id }})">
+                                                    <i style="color:gold" class="icon-star"></i>
+                                                </a>
 
-                                                    {% else %}
-                                                        <a href="javascript:void(0);"
-                                                           onclick="starBookmark({{ bookmark.id }})">
-                                                            <i style="color:lightgray" class="icon-star-empty"></i>
-                                                        </a>
-                                                    {% endif %}
-                                                </div>
+                                            {% else %}
+                                                <a href="javascript:void(0);"
+                                                   onclick="starBookmark({{ bookmark.id }})">
+                                                    <i style="color:lightgray" class="icon-star-empty"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
 
-                                            </div>
+                                    </div>
 
-                                        </td>
-                                        <td colspan="2" class="word-details-td">
-                                            <div class="impression">
+                                </td>
+                                <td colspan="2" class="word-details-td">
+                                    <div class="impression">
 
-                                                <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
-                                                <span style="color: red"> &gt; </span>
-                                                {{ bookmark.to }}
-                                                <br/>
+                                        <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup
+                                            style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
+                                        <span style="color: red"> &gt; </span>
+                                        {{ bookmark.to }}
+                                        <br/>
 
-                                            </div>
-                                        </td>
-
-
-                                        <td style="text-align: right;">
-
-                                            <a href="javascript:void(0);"
-                                               onclick="deleteBookmark({{ bookmark.id }})"
-                                               id="trash">
-                                                <i class="icon-trash button-disabled"></i>
-                                            </a>
+                                    </div>
+                                </td>
 
 
-                                        </td>
+                                <td style="text-align: right;">
 
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
+                                    <a href="javascript:void(0);"
+                                       onclick="deleteBookmark({{ bookmark.id }})"
+                                       id="trash">
+                                        <i class="icon-trash button-disabled"></i>
+                                    </a>
 
-                        </table>
 
+                                </td>
 
-
+                            </tr>
+                        {% endif %}
                     {% endfor %}
 
+                </table>
 
-                {% endfor %}
             {% endfor %}
+        {% endfor %}
 
 
-            </div>
-        {% else %}
-            {{ no_words_yet() }}
-        {% endif %}
+    </div>
 {% endblock %}

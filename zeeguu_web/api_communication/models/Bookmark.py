@@ -1,12 +1,16 @@
+import datetime
+
 from zeeguu_web.api_communication.models.URL import URL
 
 CONTEXT_LENGTH = 42
+
+JSON_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
 
 
 class Bookmark:
 
     def __init__(self, id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context,
-                 learned_datetime, created_day):
+                 learned_datetime, created_day, article_id, time, date):
         self.id = id
         self.to = to
         self.from_lang = from_lang
@@ -19,6 +23,9 @@ class Bookmark:
         self.context = context
         self.learned_datetime = learned_datetime
         self.created_day = created_day
+        self.article_id = article_id
+        self.time = time
+        self.date = date
 
     def set_date(self, date):
         self.date = date
@@ -49,6 +56,9 @@ class Bookmark:
         origin_rank = _json["origin_rank"]
         learned_datetime = _json["learned_datetime"]
         created_day = _json["created_day"]
+        article_id = _json['article_id']
+        time = datetime.datetime.strptime(_json["time"], JSON_TIME_FORMAT)
+        date = time.date()
 
         url = URL(_json["url"], _json["title"])
         context = cls.get_first_N_words_of_context(_json["context"])
@@ -57,4 +67,4 @@ class Bookmark:
             origin_rank = origin_rank // 1000 + 1
 
         return Bookmark(id, to, from_lang, to_lang, url, origin_importance, origin_rank, from_, starred, context,
-                        learned_datetime, created_day)
+                        learned_datetime, created_day, article_id, time, date)
