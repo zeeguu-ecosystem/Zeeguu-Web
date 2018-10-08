@@ -128,14 +128,15 @@ def get_bookmarks_for_article(article_id:int, user_id:int = None):
 
     bookmarks = [Bookmark.from_json(each) for each in _json['bookmarks']]
 
-    dates = set()
+    dates = []
 
     contexts_for_date = OrderedDict()
     bookmarks_for_context = {}
 
     for each in bookmarks:
 
-        dates.add(each.date)
+        if each.date not in dates:
+            dates.append(each.date)
 
         if each.date not in contexts_for_date:
             contexts_for_date[each.date] = []
@@ -150,7 +151,7 @@ def get_bookmarks_for_article(article_id:int, user_id:int = None):
 
 
     return {
-        "sorted_dates": dates,
+        "sorted_dates": dates[::-1],
         "contexts_for_date": contexts_for_date,
         "bookmarks_for_context": bookmarks_for_context,
         "article_title":_json['article_title'],
