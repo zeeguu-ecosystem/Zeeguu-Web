@@ -8,9 +8,9 @@
 
     <div class="col-md-offset-3 col-md-6">
 
-        {% if sorted_dates %}
+        {{ top_message("Words looked up recently, with transations, and contexts.") }}
 
-            {{ top_message("The most recent words that you looked up, with their transations, and contexts.") }}
+        {% if sorted_dates %}
 
             {% for date in sorted_dates %}
                 <h1>{{ date.strftime("%A %B %d, %Y") }} </h1>
@@ -18,7 +18,9 @@
                 {% for url in urls_for_date.get(date) %}
 
                     <h2>
-                        <a href="{{ url_for('umrblue.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">{{ url.title }}</a>
+                        <a href="
+
+                                {{ url_for('umrblue.get_article') + "?articleID=" }}{{ article_ids_for_urls[url] }}">{{ url.title }}</a>
                     </h2>
                     <br/>
 
@@ -62,7 +64,8 @@
                                         <td colspan="2" class="word-details-td">
                                             <div class="impression">
 
-                                                <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
+                                                <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup
+                                                    style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
                                                 <span style="color: red"> &gt; </span>
                                                 {{ bookmark.to }}
                                                 <br/>
