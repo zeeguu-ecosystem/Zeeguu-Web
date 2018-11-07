@@ -34,9 +34,9 @@ from zeeguu_exercises import ex_blueprint
 
 app.register_blueprint(ex_blueprint, url_prefix="/practice")
 
-from umr import umrblue
+from umr import reader_blueprint
 
-app.register_blueprint(umrblue, url_prefix="/read")
+app.register_blueprint(reader_blueprint, url_prefix="/read")
 
 env = flask_assets.Environment(app)
 env.cache = app.instance_path

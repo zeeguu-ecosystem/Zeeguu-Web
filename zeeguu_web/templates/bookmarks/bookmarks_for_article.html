@@ -5,11 +5,11 @@
 
     <div class="col-md-offset-3 col-md-6">
 
-        <a href="{{ url_for('umrblue.articles') }}"> < To Article List</a>
+        <a href="{{ url_for('reader_blueprint.articles') }}"> < To Article List</a>
 
         <br/><br/>
 
-        <h2><a href={{url_for('umrblue.get_article') + "?articleID="}}{{ article_id }}> {{ article_title }}</a></h2>
+        <h2><a href={{url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_id }}> {{ article_title }}</a></h2>
 
         {% for date in sorted_dates %}
             <h1>{{ date }} </h1>
