@@ -16,8 +16,10 @@ class TestBookmark:
             'origin_rank':1000,
             'learned_datetime':'2017-10-10T10:10:10',
             'created_day': '2017-10-10T10:10:10',
+            'time': '2017-10-10T10:10:35.750065Z',
             'from': 'supuesta',
-            'context': 'Hurpy durpy durp'
+            'context': 'Hurpy durpy durp',
+            'article_id': '47891'
         }
         bm = Bookmark.from_json(json_dict)
         assert bm.id == 47891

@@ -3,8 +3,6 @@ import requests
 from flask import json
 from zeeguu_web.constants import KEY__SESSION_ID
 
-from zeeguu_web.app import configuration
-
 
 class APIException(Exception):
     """
@@ -38,6 +36,7 @@ def _check_response(response):
 
 
 def _api_path(path):
+    from zeeguu_web.app import configuration
     zeeguu_path = configuration.get("ZEEGUU_API")
     if zeeguu_path.endswith("/"):
         return zeeguu_path + path
