@@ -4,7 +4,7 @@ jieba3k
 nltk
 requests
 setuptools==18.5
-WTForms==1.0.5
+WTForms==2.2.1
 git+https://github.com/zeeguu-ecosystem/zeeguu-core.git@master#egg=zeeguu
 # https://pip.readthedocs.io/en/stable/reference/pip_install/#vcs-support
 git+https://github.com/zeeguu-ecosystem/Unified-Multilanguage-Reader.git@master#egg=umr&subdirectory=src
