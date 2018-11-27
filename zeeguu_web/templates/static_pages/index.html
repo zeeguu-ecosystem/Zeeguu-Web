@@ -16,9 +16,9 @@
 
     <!-- Macros Used on this Page -->
     {% macro memberlink(name, role, link) -%}
-        <div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
+        <div class="member" xmlns="http://www.w3.org/1999/html"><b><a href='{{ link }}'>{{ name }}</a></b></div>
         <div class="member">
-            <small><a href='{{ link }}'>{{ role }}</a></small>
+            <small>{{ role }}</small>
         </div>
         <br/>
     {%- endmacro %}
