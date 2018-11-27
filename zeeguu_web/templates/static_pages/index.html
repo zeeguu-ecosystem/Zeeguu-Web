@@ -14,6 +14,15 @@
     {%- endmacro %}
     <!-- Macros Used on this Page -->
 
+    <!-- Macros Used on this Page -->
+    {% macro memberlink(name, role, link) -%}
+        <div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
+        <div class="member">
+            <small><a href='{{ link }}'>{{ role }}</a></small>
+        </div>
+        <br/>
+    {%- endmacro %}
+    <!-- Macros Used on this Page -->
 
     <!--UP-PAGE PRESENTATION-->
 
@@ -285,7 +294,7 @@
             <div class="col-sm-4 col-md-3">
                 {{ member("Jeroen van Engen", "Education Feedback") }}
                 {{ member("Flask", "Web Development with Python") }}
-                {{ member("<a href='https://github.com/flask-dashboard/'>Flask Monitoring Dashboard</a>", "Internal API monitor") }}
+                {{ memberlink("Flask Monitoring Dashboard", "Internal API monitor", "https://github.com/flask-dashboard") }}
             </div>
 
 
