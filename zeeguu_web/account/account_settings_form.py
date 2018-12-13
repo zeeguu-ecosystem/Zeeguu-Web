@@ -53,12 +53,7 @@ class AccountSettingsForm(Form):
         ('zh-CN', 'Chinese'),
         ('da', 'Danish'),
         ('nl', 'Dutch'),
-        ('en', 'English'),
-        ('fr', 'French'),
-        ('de', 'German'),
-        ('es', 'Spanish'),
-        ('ro', 'Romanian')
-    ])
+        ('en', 'English')])
 
     learned_language = SelectField('Learned Language', choices=[
         ('zh-CN', 'Chinese'),
