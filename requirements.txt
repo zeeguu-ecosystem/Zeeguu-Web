@@ -5,7 +5,7 @@ nltk
 requests
 setuptools==18.5
 WTForms==2.2.1
-git+https://github.com/zeeguu-ecosystem/zeeguu-core.git@master#egg=zeeguu_web
+git+https://github.com/zeeguu-ecosystem/zeeguu-core.git@master#egg=zeeguu_core
 # https://pip.readthedocs.io/en/stable/reference/pip_install/#vcs-support
 git+https://github.com/zeeguu-ecosystem/Unified-Multilanguage-Reader.git@master#egg=umr&subdirectory=src
 git+https://github.com/zeeguu-ecosystem/Exercises-Platform.git@master#egg=zeeguu_exercises&subdirectory=src
