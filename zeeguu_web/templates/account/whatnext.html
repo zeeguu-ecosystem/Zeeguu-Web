@@ -3,13 +3,53 @@
 {% block body %}
 
     <script>
+
+        function prepare_hideable_message(message_id) {
+            $('#hide-message-button').on('click', function (event) {
+                $('#' + message_id).hide();
+                Cookies.set(message_id, "hidden_by_user");
+            });
+
+            if (!Cookies.get(message_id)) {
+                $('#' + message_id).show();
+            }
+
+        }
+
         $(document).ready(function () {
             $("#successMessage").delay(5000).slideUp(300);
+
+            prepare_hideable_message($(".hideable-message").attr('id'));
+
         });
 
     </script>
 
+
+    <div class="hideable-message" id="moved-to-zorg">
+
+        <span>
+            <span style="color: gray; font-size: x-small">
+                (April 3rd) </span>
+
+             We have moved to <a href="https://zeeguu.org">zeeguu.org</a> 🎉
+
+        </span>
+
+        <span id="hide-message-button" style="float: right;">
+            <a style="color: gray; font-size: small;" href="#">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </a>
+        </span>
+
+    </div>
+
+
+
     <div class="container welcome-message">
+
 
         <div style="margin-left: auto; margin-right:auto; text-align: center; max-width: 300px;">
             {{ flash_messages() }}
