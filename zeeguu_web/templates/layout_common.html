@@ -36,12 +36,11 @@
                             id="username">{{ g.username }}</span><b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('account.my_settings') }}">My Settings</a></li>
-                        <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
+                        <li><a href="{{ url_for('account.my_settings') }}">⚙ Settings️</a></li>
+                        <li><a href="{{ url_for('account.stats') }}">📈 My Stats</a></li>
 
                         {% if is_teacher %}
-                            <li><a href="/teacher">My Students</a></li>
-                            <li><a href="/teacher-react">My Students <sup>New</sup></a></li>
+                            <li><a href="/teacher">👩‍🎓 My Students </a></li>
                         {% endif %}
 
                         <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
