@@ -28,7 +28,7 @@
                     <div class="input-group ">
                       <label for="code" class="control-label">Invite Code
                       <small>(contact <a href="mail:zeeguu.team@gmail.com">zeeguu.team@gmail.com</a> for code)</small></label>
-                      <input id="code" name="code" type="code" placeholder="Code" class="form-control input-lg" />
+                      <input autofocus id="code" name="code" type="code" placeholder="Code" class="form-control input-lg" />
                     </div>
 
                     <hr/>
@@ -54,16 +54,16 @@
                         <label class="control-label">The language you are learning</label>
                             <select autofocus id="language" required name="language" class="form-control input-lg">
                                 {% for l in languages %}
-                                    <option {% if l == default_learned %} selected {% endif %} value="{{l}}">{{l}}</option>
+                                    <option {% if l[0] == default_learned %} selected {% endif %} value="{{l[0]}}">{{l[1]}}</option>
                                 {% endfor %}
                             </select>
                     </div>
 
                     <div class="input-group" >
-                        <label class="control-label">Your base language</label>
+                        <label class="control-label">Your base language <small>(in which you receive translations)</small></label>
                             <select autofocus id="native_language" required name="native_language" class="form-control input-lg">
                                 {% for l in native_languages %}
-                                    <option value="{{l}}">{{l}}</option>
+                                    <option value="{{l[0]}}">{{l[1]}}</option>
                                 {% endfor %}
                             </select>
                     </div>

@@ -11,13 +11,29 @@ from zeeguu_web.crosscutting_concerns.session_storage import set_session_data
 
 from . import account
 
+language_names_map = {
+    'en': 'English',
+    'de': 'German',
+    'it': 'Italian',
+    'es': 'Spanish',
+    'fr': 'French',
+    'nl': 'Dutch',
+    'da': 'Danish',
+    'pt': 'Portughese',
+    'zh-CN': 'Chinese'
+}
+
+
+def code_language_pairs(code_list):
+    return [(code, language_names_map[code]) for code in code_list]
+
 
 @account.route("/create_account", methods=("GET", "POST"))
 def create_account():
     # A cool way of passing the arguments to the flask template
     template_arguments = dict(
-        languages=get_available_languages(),
-        native_languages=get_available_native_languages(),
+        languages=code_language_pairs(get_available_languages()),
+        native_languages=code_language_pairs(get_available_native_languages()),
         default_learned=DEFAULT_LANGUAGE
     )
 
@@ -44,7 +60,7 @@ def create_account():
                                                           native_language,
                                                           invite_code=code)  # setting registration code is not possible
 
-            response = make_response(flask.redirect(flask.url_for("account.whatnext")))
+            response = make_response(flask.redirect(flask.url_for("account.my_settings")))
 
             details = user_details(sessionID)
 
