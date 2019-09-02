@@ -56,7 +56,7 @@ class AccountSettingsForm(Form):
         ('ro', 'Romanian'),
         ('en', 'English')])
 
-    learned_language = SelectField('Learned Language', choices=[
+    learned_language = SelectField('Currently Learned Language', choices=[
         ('zh-CN', 'Chinese'),
         ('da', 'Danish'),
         ('nl', 'Dutch'),
