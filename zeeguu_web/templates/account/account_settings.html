@@ -3,13 +3,6 @@
 {% macro render_field(field) %}
     <dt style="margin-right: 10px; float:left;">{{ field.label }}
     <dd>{{ field(**kwargs)|safe }}
-        {% if field.errors %}
-            <ul class=errors>
-                {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
     </dd>
     <div style="clear:both;height:10px;"></div>
 {% endmacro %}
@@ -17,20 +10,23 @@
 {% macro render_language(field) %}
     <tr>
         <td>
-            <dt style="margin-right: 10px; float:left;">{{ field.label }}
+            <span style="text-align: right; margin-right: 10px; float:left; width: 100px;">{{ field.label }} </span>
         </td>
+
         <td>
-            <dd>{{ field(**kwargs)|safe }}
-                {% if field.errors %}
-                    <ul class=errors>
-                        {% for error in field.errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </dd>
+        {{ field(**kwargs)|safe }}
+        {% if field.errors %}
+            <ul class=errors>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         </td>
     </tr>
+    <div style="clear:both;height:10px;"></div>
+
 {% endmacro %}
 
 
@@ -38,36 +34,43 @@
 
 {% block body %}
 
-    <div class="col-md-4 col-md-offset-4">
-
-        <br/>
-        <h1>Account Settings</h1>
-        <br/>
-
+    <div class="col-sm-6 col-md-offset-4">
 
         <form method=post>
-            <dl>
+
+            <h1>Account Settings</h1>
+            <small>
+
                 {{ render_field(form.name) }}
                 {{ render_field(form.email) }}
                 {{ render_field(form.native_language) }}
                 {{ render_field(form.learned_language) }}
 
-                {#                <h1>Language Levels</h1>#}
-                {#                <small style="color:gray">Please let us know your level in the following languages#}
-                {#                </small>#}
-                {##}
-                {#                <table>#}
-                {#                    {{ render_language(form.dutch) }}#}
-                {#                    {{ render_language(form.english) }}#}
-                {#                    {{ render_language(form.french) }}#}
-                {#                    {{ render_language(form.german) }}#}
-                {#                    {{ render_language(form.spanish) }}#}
-                {#                </table>#}
+            </small>
 
 
-            </dl>
-            <p>
-                <input type=submit value=Save>
+            <h1>Language Levels</h1>
+
+            {% if not at_least_one_cefr_level %}
+                <div class="col-sm-8" style="background-color: yellow; font-size: small;">
+                    Please select a level for your learned language
+                    but also for the other languages you know.<br/>
+                </div>
+                <div style="clear:both;height:10px;"></div>
+            {% endif %}
+
+            <small>
+                {{ render_language(form.da_cefr_level) }}
+                {{ render_language(form.nl_cefr_level) }}
+                {{ render_language(form.en_cefr_level) }}
+                {{ render_language(form.fr_cefr_level) }}
+                {{ render_language(form.de_cefr_level) }}
+                {{ render_language(form.it_cefr_level) }}
+                {{ render_language(form.ro_cefr_level) }}
+                {{ render_language(form.es_cefr_level) }}
+            </small>
+
+            <input type=submit value=Save>
 
         </form>
 

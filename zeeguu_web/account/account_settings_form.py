@@ -26,13 +26,13 @@ levels_no_letters = ['None',
                      'Superior',
                      'Distinguished']
 
-cefr_levels = ['None',
-               'A1 - Beginner',
-               'A2 - Elementary',
-               'B1 - Intermediate',
-               'B2 - Upper Intermediate',
-               'C1 - Advanced ',
-               'C2 - Proficient']
+cefr_levels = [(0, 'None'),
+               (1, 'Beginner (A1)'),
+               (2, 'Elementary (A2)'),
+               (3, 'Intermediate (B1)'),
+               (4, 'Upper Intermediate (B2)'),
+               (5, 'Advanced (C1)'),
+               (6, 'Proficient (C2)')]
 
 cefr_levels_no_letters = ['None',
                           'Beginner',
@@ -53,6 +53,7 @@ class AccountSettingsForm(Form):
         ('zh-CN', 'Chinese'),
         ('da', 'Danish'),
         ('nl', 'Dutch'),
+        ('ro', 'Romanian'),
         ('en', 'English')])
 
     learned_language = SelectField('Learned Language', choices=[
@@ -63,13 +64,15 @@ class AccountSettingsForm(Form):
         ('fr', 'French'),
         ('de', 'German'),
         ('es', 'Spanish'),
-        ('ro', 'Romanian')
+        ('ro', 'Romanian'),
+        ('pt', 'Portughese')
     ])
 
-
-    french = SelectField('French: ', choices=one_to_ten)
-    english = SelectField('English: ', choices=one_to_ten)
-    dutch = SelectField('Dutch: ', choices=one_to_ten)
-    italian = SelectField('Italian: ', choices=one_to_ten)
-    german = SelectField('German: ', choices=one_to_ten)
-    spanish = SelectField('Spanish: ', choices=one_to_ten)
+    da_cefr_level = SelectField('Danish', choices=cefr_levels)
+    nl_cefr_level = SelectField('Dutch', choices=cefr_levels)
+    en_cefr_level = SelectField('English', choices=cefr_levels)
+    fr_cefr_level = SelectField('French', choices=cefr_levels)
+    de_cefr_level = SelectField('German', choices=cefr_levels)
+    es_cefr_level = SelectField('Spanish', choices=cefr_levels)
+    it_cefr_level = SelectField('Italian', choices=cefr_levels)
+    ro_cefr_level = SelectField('Romanian', choices=cefr_levels)
