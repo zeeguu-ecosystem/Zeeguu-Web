@@ -23,7 +23,7 @@ def my_settings():
     cefr_values = [user_info_dict[key] for key in cefr_levels]
 
     at_least_one_cefr_level = False
-    if any(int(each) > 0 for each in cefr_values):
+    if any((each != '0' and each!= 0) for each in cefr_values):
         at_least_one_cefr_level = True
 
     form = AccountSettingsForm(flask.request.form, **user_info.json())
@@ -39,7 +39,8 @@ def my_settings():
             ('ro', form.ro_cefr_level.data),
             ('es', form.es_cefr_level.data)]
 
-        language_level_data = [each for each in language_level_data if int(each[1]) > 0]
+        # if this is left uncommented, one can't swich to None for a given language...
+        # language_level_data = [each for each in language_level_data if int(each[1]) > 0]
 
         set_user_settings(form.name.data,
                           form.email.data,
