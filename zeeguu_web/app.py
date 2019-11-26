@@ -5,6 +5,7 @@ import sys
 import flask
 import flask_assets
 from zeeguu_web.crosscutting_concerns import CrossDomainApp
+import tempfile
 
 if sys.version_info[0] < 3:
     raise Exception("Must be using Python 3")
@@ -26,7 +27,7 @@ from .account import account
 from .bookmarks import bookmarks_blueprint
 from .static_pages import static_pages
 
-app.instance_path="/tmp/zeeguu-web-instance-path"
+app.instance_path = tempfile.gettempdir() + "/zeeguu-web-instance-path"
 app.register_blueprint(account)
 app.register_blueprint(bookmarks_blueprint)
 app.register_blueprint(static_pages)
