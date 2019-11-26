@@ -26,6 +26,7 @@ from .account import account
 from .bookmarks import bookmarks_blueprint
 from .static_pages import static_pages
 
+app.instance_path="/tmp/zeeguu-web-instance-path"
 app.register_blueprint(account)
 app.register_blueprint(bookmarks_blueprint)
 app.register_blueprint(static_pages)
