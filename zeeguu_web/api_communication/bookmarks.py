@@ -8,7 +8,7 @@ from zeeguu_web.api_communication.models.Bookmark import Bookmark
 BOOKMARKS_BY_DATE = "bookmarks_by_day"
 BOOKMARKS_FOR_ARTICLE = "bookmarks_for_article/"
 DELETE_BOOKMARK = "delete_bookmark/"
-REPORT_LEARNED_BOOKMARK = "report_learned_bookmark/"
+REPORT_LEARNED_BOOKMARK = "report_correct_mini_exercise/"
 STAR_BOOKMARK = "star_bookmark/"
 UNSTAR_BOOKMARK = "unstar_bookmark/"
 TOP_BOOKMARKS = "top_bookmarks"
@@ -165,7 +165,7 @@ def delete_bookmark(bookmark_id):
     return resp.text
 
 
-def report_learned_bookmark(bookmark_id):
+def report_correct_mini_exercise(bookmark_id):
     path = REPORT_LEARNED_BOOKMARK + str(bookmark_id)
     resp = post(path, session_needed=True)
     return resp.text

@@ -96,11 +96,11 @@ function deleteBookmark(id) {
 }
 
 
-function reportLearnedBookmark(id) {
-    console.log("marking as learned " + id);
+function reportCorrectMiniExercise(id) {
+    console.log("Reporting correct mini exercise " + id);
     var bookmark_div = $("#bookmark" + id);
     bookmark_div.hide();
-    $.post("/report_learned_bookmark/" + id);
+    $.post("/report_correct_mini_exercise/" + id);
     return false;
 }
 

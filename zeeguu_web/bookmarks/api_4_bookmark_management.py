@@ -2,17 +2,17 @@
 
 from zeeguu_web.api_communication.bookmarks import \
     star_bookmark, \
-    report_learned_bookmark, \
+    report_correct_mini_exercise, \
     unstar_bookmark, \
     delete_bookmark
 
 from zeeguu_web.bookmarks import bookmarks_blueprint, login_first
 
 
-@bookmarks_blueprint.route("/report_learned_bookmark/<bookmark_id>", methods=("POST",))
+@bookmarks_blueprint.route("/report_correct_mini_exercise/<bookmark_id>", methods=("POST",))
 @login_first
-def post_report_learned_bookmark(bookmark_id):
-    return report_learned_bookmark(bookmark_id)
+def post_report_correct_mini_exercise(bookmark_id):
+    return report_correct_mini_exercise(bookmark_id)
 
 
 @bookmarks_blueprint.route("/delete_bookmark/<bookmark_id>", methods=("POST",))
