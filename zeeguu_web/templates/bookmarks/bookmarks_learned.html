@@ -36,21 +36,9 @@
                         <td class="word-action-buttons-td">
                             <div class="word-action-buttons">
 
-                                <div id="star{{ bookmark.id }}">
-                                    {% if bookmark.starred %}
-
-                                        <a href="javascript:void(0);"
-                                           onclick="unstarBookmark({{ bookmark.id }})">
-                                            <i style="color:gold" class="icon-star"></i>
-                                        </a>
-
-                                    {% else %}
-                                        <a href="javascript:void(0);"
-                                           onclick="starBookmark({{ bookmark.id }})">
-                                            <i style="color:lightgray" class="icon-star-empty"></i>
-                                        </a>
-                                    {% endif %}
-                                </div>
+                                <small>
+                                    {{ bookmarks|length - loop.index + 1 }}
+                                </small>
 
 
                             </div>
