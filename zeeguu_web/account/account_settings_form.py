@@ -50,29 +50,38 @@ class AccountSettingsForm(Form):
     email = StringField('Email ', [validators.Length(min=6, max=35)])
 
     native_language = SelectField('Native Language', choices=[
-        ('zh-CN', 'Chinese'),
+
         ('da', 'Danish'),
+        ('en', 'English'),
         ('nl', 'Dutch'),
         ('ro', 'Romanian'),
-        ('en', 'English')])
+        ('zh-CN', 'Chinese'),
+
+    ])
 
     learned_language = SelectField('Currently Learned Language', choices=[
-        ('zh-CN', 'Chinese'),
+
         ('da', 'Danish'),
-        ('nl', 'Dutch'),
-        ('en', 'English'),
-        ('fr', 'French'),
         ('de', 'German'),
+        ('en', 'English'),
         ('es', 'Spanish'),
+        ('fr', 'French'),
+        ('it', 'Italian'),
+        ('nl', 'Dutch'),
+        ('pl', 'Polish'),
+        ('pt', 'Portuguese'),
         ('ro', 'Romanian'),
-        ('pt', 'Portughese')
+        ('zh-CN', 'Chinese')
     ])
 
     da_cefr_level = SelectField('Danish', choices=cefr_levels)
-    nl_cefr_level = SelectField('Dutch', choices=cefr_levels)
-    en_cefr_level = SelectField('English', choices=cefr_levels)
-    fr_cefr_level = SelectField('French', choices=cefr_levels)
     de_cefr_level = SelectField('German', choices=cefr_levels)
+    en_cefr_level = SelectField('English', choices=cefr_levels)
     es_cefr_level = SelectField('Spanish', choices=cefr_levels)
+    fr_cefr_level = SelectField('French', choices=cefr_levels)
     it_cefr_level = SelectField('Italian', choices=cefr_levels)
+    nl_cefr_level = SelectField('Dutch', choices=cefr_levels)
+    pl_cefr_level = SelectField('Polish', choices=cefr_levels)
+    pt_cefr_level = SelectField('Portuguese', choices=cefr_levels)
     ro_cefr_level = SelectField('Romanian', choices=cefr_levels)
+    cn_cefr_level = SelectField('Chinese', choices=cefr_levels)

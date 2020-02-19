@@ -31,13 +31,17 @@ def my_settings():
     if flask.request.method == 'POST':
         language_level_data = [
             ('da', form.da_cefr_level.data),
-            ('nl', form.nl_cefr_level.data),
-            ('en', form.en_cefr_level.data),
-            ('fr', form.fr_cefr_level.data),
             ('de', form.de_cefr_level.data),
+            ('en', form.en_cefr_level.data),
+            ('es', form.es_cefr_level.data),
+            ('fr', form.fr_cefr_level.data),
             ('it', form.it_cefr_level.data),
+            ('nl', form.nl_cefr_level.data),
+            ('pl', form.pl_cefr_level.data),
+            ('pt', form.pt_cefr_level.data),
             ('ro', form.ro_cefr_level.data),
-            ('es', form.es_cefr_level.data)]
+            ('cn', form.cn_cefr_level.data)
+        ]
 
         # if this is left uncommented, one can't swich to None for a given language...
         # language_level_data = [each for each in language_level_data if int(each[1]) > 0]

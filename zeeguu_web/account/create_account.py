@@ -11,21 +11,25 @@ from zeeguu_web.crosscutting_concerns.session_storage import set_session_data
 
 from . import account
 
-language_names_map = {
-    'en': 'English',
+LANGUAGE_NAMES_MAP = {
+
+    'da': 'Danish',
     'de': 'German',
-    'it': 'Italian',
+    'en': 'English',
     'es': 'Spanish',
     'fr': 'French',
+    'it': 'Italian',
     'nl': 'Dutch',
-    'da': 'Danish',
-    'pt': 'Portughese',
+    'pl': 'Polish',
+    'pt': 'Portuguese',
+    'ro': 'Romanian',
     'zh-CN': 'Chinese'
+
 }
 
 
 def code_language_pairs(code_list):
-    return [(code, language_names_map[code]) for code in code_list]
+    return [(code, LANGUAGE_NAMES_MAP[code]) for code in code_list]
 
 
 @account.route("/create_account", methods=("GET", "POST"))
