@@ -1,16 +1,25 @@
-{% extends "layout_simple.html" %}
 
-{% set active_page = "login" %}
+<html>
+{% from "layout_common.html" import menu_item, flash_messages, header %}
 
-{% block body %}
+{{ header() }}
+
+
+<body>
+
 
 {% assets filters="cssmin", output="instance/login.css", "css/login.css"-%}
     <link rel="stylesheet" href="{{ ASSET_URL }}" />
 {% endassets -%}
 
 
+
+            <img style="display: block;  margin-left: auto;  margin-right: auto; width:200px;" src="../static/img/Zeeguu-logo-red.png"/>
+
+
         <div class="col-md-offset-3 col-md-6">
             <div class="centered-inner-div">
+
 
             <form id="login" class="form-horizontal" action="" method="post" role="form" >
 
@@ -18,15 +27,16 @@
 
                         <div class="inner-center authentification-box">
 
+
                             <p id="authentification-box-title">Sign In</p>
                             <div class="input-group">
-                                <label>Email</label>
+{#                                <label>Email</label>#}
                                 <!--<div class="col-s`email" name="email" class="form-control " id="email" placeholder="Email">-->
-                                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Email">
+                                <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Email" autofocus/>
                             </div>
 
                             <div class="input-group">
-                                <label>Password</label>
+{#                                <label>Password</label>#}
                                 <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
                             </div>
 
@@ -54,6 +64,5 @@
         </div>
     </div>
 
-
-
-{% endblock %}
+</body>
+</html>
