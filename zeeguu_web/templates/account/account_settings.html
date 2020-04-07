@@ -1,61 +1,92 @@
-{% extends "layout_whatsnext.html" %}
+<!DOCTYPE html>
 
-{% macro render_field(field) %}
-    <dt style="margin-right: 10px; float:left;">{{ field.label }}
-    <dd>{{ field(**kwargs)|safe }}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ active_page }}</title>
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/newSettings.css">
+
+    <!--FONT LINK-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400&display=swap" rel="stylesheet" />
+
+
+    {% assets "js/jquery.js", "js/jquery.validate.js", "js/bootstrap.js", "js/flippant.js", "js/select2.js", "js/sla.js" -%}
+    <script src="{{ ASSET_URL }}"></script>
+    {% endassets -%}
+
+    <link rel="chrome-webstore-item"
+        href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89557275-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-89557275-2');
+    </script>
+
+</head>
+
+<body>
+    {% macro render_field(field) %}
+    <dt class="inputLabel" style="margin-right: 10px; float:left;">{{ field.label }}
+    <dd class="inputField">{{ field(**kwargs)|safe }}
     </dd>
     <div style="clear:both;height:10px;"></div>
-{% endmacro %}
+    {% endmacro %}
 
-{% macro render_language(field) %}
+    {% macro render_language(field) %}
     <tr>
         <td>
-            <span style="text-align: right; margin-right: 10px; float:left; width: 100px;">{{ field.label }} </span>
+            <span style="text-align: right; margin-right: 10px; float:left; ">{{ field.label }} </span>
         </td>
 
         <td>
-        {{ field(**kwargs)|safe }}
-        {% if field.errors %}
+            {{ field(**kwargs)|safe }}
+            {% if field.errors %}
             <ul class=errors>
                 {% for error in field.errors %}
-                    <li>{{ error }}</li>
+                <li>{{ error }}</li>
                 {% endfor %}
             </ul>
-        {% endif %}
+            {% endif %}
 
         </td>
     </tr>
     <div style="clear:both;height:10px;"></div>
 
-{% endmacro %}
+    {% endmacro %}
 
 
-{% set active_page = "my_account" %}
+    {% set active_page = "my_account" %}
 
-{% block body %}
+    {% block body %}
 
-    <div class="col-sm-6 col-md-offset-4">
+    <div class="content">
 
         <form method=post>
 
-            <h1>Account Settings</h1>
+            <h1 class="category">Account Settings</h1>
             <small>
-
                 {{ render_field(form.name) }}
                 {{ render_field(form.email) }}
                 {{ render_field(form.native_language) }}
                 {{ render_field(form.learned_language) }}
-
             </small>
 
-
-            <h1>Language Levels</h1>
-
+            <h1 class="category">Language Levels</h1>
             {% if not at_least_one_cefr_level %}
-                <div class="col-sm-8" style="background-color: yellow; font-size: small;">
-                    Please select a level for your learned languages.<br/>
-                </div>
-                <div style="clear:both;height:10px;"></div>
+            <div class="col-sm-8" style="background-color: yellow; font-size: small;">
+                Please select a level for your learned languages.<br />
+            </div>
+            <div style="clear:both;height:10px;"></div>
             {% endif %}
 
             <small>
@@ -73,13 +104,15 @@
 
             </small>
 
-            <input type=submit value=Save>
+            <input class="saveButton" type=submit value=Save>
 
         </form>
 
 
     </div>
 
+    {% endblock %}
 
+</body>
 
-{% endblock %}
+</html>

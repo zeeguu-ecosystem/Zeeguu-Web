@@ -1,0 +1,75 @@
+body {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.content {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.category {
+    font-size: 1.5em;
+    font-family: Montserrat;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.inputLabel {
+    font-size: 1em;
+    font-family: Montserrat;
+
+}
+
+.inputField {
+    font-size: 1em;
+    font-family: Montserrat;
+}
+
+form {
+    margin-top: -1em;
+}
+
+input {
+    float: right;
+    border: 0.15em solid #ffbb54;
+    border-radius: 5em;
+    width: 15em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    font-family: Montserrat;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    overflow: hidden;
+}
+
+label {
+    font-family: Montserrat;
+}
+
+select {
+    float: right;
+    font-size: 0.8em;
+    font-family: Montserrat;
+    border: 0.2em solid #ffbb54;
+}
+
+.saveButton {
+    width: 10em;
+    float: left;
+    margin-left: 31.5%;
+    margin-top: 0.5em;
+    height: 2em;
+    font-size: 0.8em;
+    text-transform: lowercase;
+    font-weight: 600;
+    background: #ffbb54;
+}
+
+
+.saveButton:hover {
+    cursor: pointer;
+}
