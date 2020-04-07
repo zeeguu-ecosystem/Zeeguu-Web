@@ -55,7 +55,7 @@ def my_settings():
         flask.session[KEY__USER_NAME] = form.name.data
 
         flash("Successfully changed settings")
-        response = make_response(flask.redirect(flask.url_for("account.whatnext")))
+        response = make_response(flask.redirect(flask.url_for('reader_blueprint.articles')))
         response.set_cookie(KEY__NATIVE_LANG, form.native_language.data, max_age=31536000)
 
         return response
