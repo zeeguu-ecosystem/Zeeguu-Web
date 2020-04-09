@@ -6,102 +6,88 @@
 
 {% block body %}
 
-    <div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-3 col-md-6">
 
-        {{ top_message("All your translations.") }}
-        {{ top_message("Star a word to ensure it appears in exercises.") }}
-
-
-        {% if sorted_dates %}
-
-            {% for date in sorted_dates %}
-                <h1>{{ date.strftime("%A %B %d, %Y") }} </h1>
-
-                {% for url in urls_for_date.get(date) %}
-
-                    <h2>
-                        <a href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">{{ url.title }}</a>
-                    </h2>
-                    <br/>
-
-                    {% for context in contexts_for_url.get(url) %}
-
-                        <div style="margin-left:0px;color: darkgrey; line-height: 1.2;">
-                            {{ context }}
-                        </div>
-                        <table width="100%" class="table table-no-borders">
-
-                            {% for bookmark in bookmarks_for_context.get(context) %}
-                                {% if bookmark.date.day == date.day %}
-                                    <!-- #small hack to make sure we don't bundle all the bookmarks with the same url in the same day... -->
-
-                                    <tr id="bookmark{{ bookmark.id }}">
-                                        <td style="border:0px solid white;background-color:white;width:1px;padding-left:0px; padding-right:0px;"></td>
-
-
-                                        <td width="40px" class="word-action-buttons-td">
-                                            <div class="word-action-buttons">
-
-                                                <div id="star{{ bookmark.id }}">
-                                                    {% if bookmark.starred %}
-
-                                                        <a href="javascript:void(0);"
-                                                           onclick="unstarBookmark({{ bookmark.id }})">
-                                                            <i style="color:gold" class="icon-star"></i>
-                                                        </a>
-
-                                                    {% else %}
-                                                        <a href="javascript:void(0);"
-                                                           onclick="starBookmark({{ bookmark.id }})">
-                                                            <i style="color:lightgray" class="icon-star-empty"></i>
-                                                        </a>
-                                                    {% endif %}
-                                                </div>
-
-                                            </div>
-
-                                        </td>
-                                        <td colspan="2" class="word-details-td">
-                                            <div class="impression">
-
-                                                <b style="font-size: 110%;">{{ bookmark.from_ }}</b><sup
-                                                    style="color:#9a9a9a"> {{ bookmark.origin_rank }}</sup>
-                                                <span style="color: red"> &gt; </span>
-                                                {{ bookmark.to }}
-                                                <br/>
-
-                                            </div>
-                                        </td>
-
-
-                                        <td style="text-align: right;">
-
-                                            <a href="javascript:void(0);"
-                                               onclick="deleteBookmark({{ bookmark.id }})"
-                                               id="trash">
-                                                <i class="icon-trash button-disabled"></i>
-                                            </a>
-
-
-                                        </td>
-
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
-
-                        </table>
-
-
-
-                    {% endfor %}
-
-
-                {% endfor %}
-            {% endfor %}
-
-
+    <div class="wordsHeader">
+        <div>
+            <h1 class="titleHeader">Review Your Words</h1>
+            <div class="pagesContainer">
+                <a class="wordpagesLinks active" href="/bookmarks">Translated Words</a>
+                <a class="seperator">|</a>
+                <a class="wordpagesLinks" href="/starred_bookmarks">Starred Words</a>
+                <a class="seperator">|</a>
+                <a class="wordpagesLinks" href="/learned_bookmarks">Learned Words</a>
+                <a class=" seperator">|</a>
+                <a class="wordpagesLinks" href="/top_bookmarks">Top Words</a>
             </div>
-        {% else %}
-            {{ no_words_yet() }}
-        {% endif %}
+        </div>
+
+        {{ top_message("Star a word to ensure it appears in your exercises.") }}
+
+    </div>
+
+    {% if sorted_dates %}
+
+    {% for date in sorted_dates %}
+    <div class="dateContainer">
+        <h1 class="date">{{ date.strftime("%A %B %d, %Y") }} </h1>
+    </div>
+    {% for url in urls_for_date.get(date) %}
+
+    <div class="articleContainer">
+        <div class="verticalLine"></div>
+        <div class=titleContainer>
+            <a href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">
+                <h2 class="articleTitle">{{ url.title }}</h2>
+            </a>
+        </div>
+    </div>
+
+    {% for context in contexts_for_url.get(url) %}
+    <table width="100%" class="table table-no-borders">
+        {% for bookmark in bookmarks_for_context.get(context) %}
+        <tr id="bookmark{{ bookmark.id }}">
+            <td style="text-align: left; width: 1em; padding-left: 1em;">
+
+                <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
+                    <i class="icon-trash button-disabled" style="color: black"></i>
+                </a>
+            </td>
+
+            <td width="40px" class="word-action-buttons-td">
+                <div class="word-action-buttons">
+
+                    <div id="star{{ bookmark.id }}">
+                        {% if bookmark.starred %}
+                        <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
+                            <i style="color:#ffbb54" class="icon-star"></i>
+                        </a>
+                        {% else %}
+                        <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
+                            <i style="color:lightgray" class="icon-star-empty"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </td>
+
+            <td colspan="2" class="word-details-td">
+                <div class="impression">
+                    {{ bookmark.from_ }}
+                    <span style="color: black"> – </span>
+                    {{ bookmark.to }}
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
+
+
+</div>
+{% else %}
+{{ no_words_yet() }}
+{% endif %}
 {% endblock %}
