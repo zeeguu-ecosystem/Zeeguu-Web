@@ -1,6 +1,6 @@
 function showStar(starred) {
     if (starred) {
-        $("#star").html('<i style="color:gold" class="icon-star"></i>');
+        $("#star").html('<i style="color:#ffbb54" class="icon-star"></i>');
     } else {
         $("#star").html('<i style="color:lightgray" class="icon-star-empty"></i>');
     }
@@ -114,7 +114,7 @@ function unstarBookmark(id) {
 function starBookmark(id) {
     console.log("starring " + id)
     $.post("/starred_bookmark/" + id);
-    $("#star" + id).html('<a href="javascript:void(0);" onclick="unstarBookmark(' + id + ')"><i style="color:gold" class="icon-star"></i></a>');
+    $("#star" + id).html('<a href="javascript:void(0);" onclick="unstarBookmark(' + id + ')"><i style="color:#ffbb54" class="icon-star"></i></a>');
 }
 
 
