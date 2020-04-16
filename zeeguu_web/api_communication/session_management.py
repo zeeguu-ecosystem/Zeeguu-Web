@@ -26,3 +26,20 @@ def validate():
 def user_details(session_id: int):
     resp = get(USER_DETAILS + "?session=" + str(session_id), session_needed=False)
     return json.loads(resp.text)
+
+
+def upload_user_activity_data(data):
+    """
+                    time: '2016-05-05T10:11:12',
+                event: "User Read Article",
+                value: "300s",
+                extra_data: "{article_source: 2, ...}"
+
+    :return:
+    """
+
+    resp = post("upload_user_activity_data", payload={'event': 'Aiki Interception',
+                                                      'value':'',
+                                                      'extra_data':data},
+                session_needed=True)
+    return resp.text
