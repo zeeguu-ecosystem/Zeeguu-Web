@@ -29,20 +29,11 @@
 }
 
 .wordpagesLinks:hover {
-    color: black;
-    font-weight: 400;
-    font-size: 1em;
+    color: #ffbb54;
 }
 
 .wordpagesLinks.active {
     text-decoration: underline;
-}
-
-.wordpagesLinks.active:hover {
-    text-decoration: underline;
-    color: black;
-    font-weight: 400;
-    font-size: 1em;
 }
 
 .seperator {
