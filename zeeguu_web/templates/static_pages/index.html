@@ -4,299 +4,323 @@
 
 {% block body %}
 
-    <!-- Macros Used on this Page -->
-    {% macro member(name, role) -%}
-        <div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
-        <div class="member">
-            <small>{{ role }}</small>
-        </div>
-        <br/>
-    {%- endmacro %}
-    <!-- Macros Used on this Page -->
+<!-- Macros Used on this Page -->
+{% macro member(name, role) -%}
+<div class="member" xmlns="http://www.w3.org/1999/html"><b>{{ name }}</b></div>
+<div class="member">
+    <small>{{ role }}</small>
+</div>
+<br />
+{%- endmacro %}
+<!-- Macros Used on this Page -->
 
-    <!-- Macros Used on this Page -->
-    {% macro memberlink(name, role, link) -%}
-        <div class="member" xmlns="http://www.w3.org/1999/html"><b><a href='{{ link }}'>{{ name }}</a></b></div>
-        <div class="member">
-            <small>{{ role }}</small>
-        </div>
-        <br/>
-    {%- endmacro %}
-    <!-- Macros Used on this Page -->
+<!-- Macros Used on this Page -->
+{% macro memberlink(name, role, link) -%}
+<div class="member" xmlns="http://www.w3.org/1999/html"><b><a href='{{ link }}'>{{ name }}</a></b></div>
+<div class="member">
+    <small>{{ role }}</small>
+</div>
+<br />
+{%- endmacro %}
+<!-- Macros Used on this Page -->
 
-    <!--UP-PAGE PRESENTATION-->
+<!--UP-PAGE PRESENTATION-->
+<nav class="navbar navbar-default menu-cassette">
+    <div class="container-fluid">
 
-    <div style="text-align: center; background-color: rgba(255,255,0,0.16); padding: 10px; margin-top: -15px;margin-bottom: 25px;">
+        <!-- The menu options on the right... -->
+        <ul class="nav navbar-nav navbar-right">
+            {% if g.user %}
 
-        <h1>Latest News</h1>
-
-        <p>
-            <span>
-                <span style="color: gray; font-size: x-small">
-                    (August 20th) </span>
-
-                 Mircea will talk about Zeeguu at <a href="https://sites.uclouvain.be/eurocall2019/">EuroCALL</a> and
-                    <a href="https://easeai.github.io">EASEAI</a> 🎉
-
-            </span>
-
-            {#            <small>October 2018</small>#}
-            {#            Mircea presented#}
-            {#            <a href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">#}
-            {#                a paper about Zeeguu</a>#}
-            {#            at CHI'18 in Montreal!#}
-        </p>
-
+            <!-- When user logged in, show the dropdown but only on home -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ g.username }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('account.stats') }}">My Statistics</a></li>
+                    <li><a href="{{ url_for('account.logout') }}">Sign Out</a></li>
+                </ul>
+            </li>
+            {% elif tab != "login" and tab != "create_account" %}
+            <!-- Don't show login on the login and create_account page :) -->
+            <li id="login"><a href="{{ url_for('account.login') }}">Sign In</a></li>
+            {% endif %}
+        </ul>
     </div>
+</nav>
 
-    <div class="container-img-block">
+<div
+    style="text-align: center; background-color: rgba(255,255,0,0.16); padding: 10px; margin-top: -15px;margin-bottom: 25px;">
 
+    <h1>Latest News</h1>
 
-        <img id="logo-elephantu" class="inner-center" src="../static/img/Zeeguu-logo-red.png"/>
+    <p>
+        <span>
+            <span style="color: gray; font-size: x-small">
+                (August 20th) </span>
 
-        <h2 id="main-message" class="inner-center">
-            A research project designed to<br/>
-            speed & fun up vocabulary learning in a new language
-        </h2>
+            Mircea will talk about Zeeguu at <a href="https://sites.uclouvain.be/eurocall2019/">EuroCALL</a> and
+            <a href="https://easeai.github.io">EASEAI</a> 🎉
 
-        {% if not g.user %}
-            <h3 id="extra-button" class="inner-center">
-                <a href="http://bit.ly/1UFL5GW">Become a Beta Tester</a>
-            </h3>
-        {% endif %}
+        </span>
 
-    </div>
+        {#            <small>October 2018</small>#}
+        {#            Mircea presented#}
+        {#            <a href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">#}
+        {#                a paper about Zeeguu</a>#}
+        {#            at CHI'18 in Montreal!#}
+    </p>
 
+</div>
 
-
-    <!--THREE STEPS PRESENTATION-->
-
-    <div class="container">
-
-        <div class="three-steps-presentation">
-
-            <h1 style="text-align:center">Our approach is designed around three fundamental principles
-            </h1>
-
-            <div class="row feature">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
-                    <h3>Only Read The Stuff You Like</h3>
-                    <p>
-                        Unlike most traditional learning materials based on pre-defined, standardized and let's admit
-                        it: boring texts, we think that you should read only the stuff that you love: eBooks, blogs,
-                        articles and news in the desired language. In each of these contexts and on any chosen device,
-                        you should have translations of unfamiliar terms “at the touch of a fingertip”.
+<div class="container-img-block">
 
 
-                    </p>
-                </div>
+    <img id="logo-elephantu" class="inner-center" src="../static/img/Zeeguu-logo-red.png" />
 
-                <div class=" col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3 ">
-                    <img id="eleph-booklover" src="../static/img/eleph-reader-lover.png"/>
-                </div>
+    <h2 id="main-message" class="inner-center">
+        A research project designed to<br />
+        speed & fun up vocabulary learning in a new language
+    </h2>
 
+    {% if not g.user %}
+    <h3 id="extra-button" class="inner-center">
+        <a href="http://bit.ly/1UFL5GW">Become a Beta Tester</a>
+    </h3>
+    {% endif %}
+
+</div>
+
+
+
+<!--THREE STEPS PRESENTATION-->
+
+<div class="container">
+
+    <div class="three-steps-presentation">
+
+        <h1 style="text-align:center">Our approach is designed around three fundamental principles
+        </h1>
+
+        <div class="row feature">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
+                <h3>Only Read The Stuff You Like</h3>
+                <p>
+                    Unlike most traditional learning materials based on pre-defined, standardized and let's admit
+                    it: boring texts, we think that you should read only the stuff that you love: eBooks, blogs,
+                    articles and news in the desired language. In each of these contexts and on any chosen device,
+                    you should have translations of unfamiliar terms “at the touch of a fingertip”.
+
+
+                </p>
             </div>
 
-
-            <div class="row feature">
-
-                <div class="hidden-sm hidden-xs col-md-offset-0 col-md-3">
-                    <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
-                </div>
-
-                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-0 info-cassette">
-                    <h3>Have Your Words Everywhere With You</h3>
-                    <p>
-                        Words that you have once translated, will be available to you always (read as “from any of your
-                        devices”) and they will go into your own, private dictionary.
-                        The information about the context where you encountered a given new word will also be
-                        synchronized among the applications and devices. There is no doubt we understand and remember so
-                        much better words in context.
-                    </p>
-                </div>
-
-                <div class="visible-sm visible-xs col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
-                    <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
-                </div>
-
-            </div>
-
-
-            <div class="row feature">
-
-                <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
-                    <h3>Practice with Personalized Exercices</h3>
-                    <p>
-                        Based on the texts you read, the words you translate, and lists of word frequencies, Zeeguu will
-                        use machine learning to build a model of your current vocabulary in the target language.
-                        Applying this model and using spaced repetition, you will receive personalized exercises that
-                        will help you learn, practice and retain the new words, ranked according to their importance.
-                    </p>
-                </div>
-
-
-                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
-                    <img id="eleph-redpants" src="../static/img/eleph-sport-dessert.png"/>
-                </div>
-
-
+            <div class=" col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3 ">
+                <img id="eleph-booklover" src="../static/img/eleph-reader-lover.png" />
             </div>
 
         </div>
 
+
+        <div class="row feature">
+
+            <div class="hidden-sm hidden-xs col-md-offset-0 col-md-3">
+                <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
+            </div>
+
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-0 info-cassette">
+                <h3>Have Your Words Everywhere With You</h3>
+                <p>
+                    Words that you have once translated, will be available to you always (read as “from any of your
+                    devices”) and they will go into your own, private dictionary.
+                    The information about the context where you encountered a given new word will also be
+                    synchronized among the applications and devices. There is no doubt we understand and remember so
+                    much better words in context.
+                </p>
+            </div>
+
+            <div class="visible-sm visible-xs col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3">
+                <img id="eleph-carrier" src="../static/img/eleph-carrier-words.png">
+            </div>
+
+        </div>
+
+
+        <div class="row feature">
+
+            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-sm-offset-0 col-md-offset-3 col-md-6 info-cassette">
+                <h3>Practice with Personalized Exercices</h3>
+                <p>
+                    Based on the texts you read, the words you translate, and lists of word frequencies, Zeeguu will
+                    use machine learning to build a model of your current vocabulary in the target language.
+                    Applying this model and using spaced repetition, you will receive personalized exercises that
+                    will help you learn, practice and retain the new words, ranked according to their importance.
+                </p>
+            </div>
+
+
+            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
+                <img id="eleph-redpants" src="../static/img/eleph-sport-dessert.png" />
+            </div>
+
+
+        </div>
+
     </div>
 
-
-    <!--HOW DOES IT WORK STEPS-->
-
-    <!--<div class="container">-->
-    <!--<div class="row grey-backgroung-strip-steps">-->
-
-    <!--<div class="container">-->
-
-    <!--<div class="col-sm-12 col-md-12">-->
-    <!--<h1 style="text-align:center">How does it work?</h1>-->
-    <!--</div>-->
-
-    <!--<div class="row step1">-->
-    <!--<div class="col-sm-6 col-md-4">-->
-    <!--<h3>Step1</h3>-->
-    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Get started</span>-->
-    <!--creating your Zeeguu account and setting your preferences for your Language-Building Program</p>-->
-    <!--</div>-->
-
-    <!--<div class="col-sm-6 col-md-4">-->
-    <!--<!--<img id="foot2" src ="../static/img/foot2.png">-->
-    <!--<!--<img id="foot4" src ="../static/img/foot4.png">-->
-    <!--<!--<img id="foot5" src ="../static/img/foot5.png">-->
-    <!--</div>-->
-    <!--</div>-->
+</div>
 
 
-    <!--<div class="row step2">-->
-    <!--<div class="col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2">-->
-    <!--<!--<img id="foot6" src ="../static/img/foot5.png">-->
-    <!--<!--<img id="foot7" src ="../static/img/foot6.png">-->
-    <!--</div>-->
+<!--HOW DOES IT WORK STEPS-->
+
+<!--<div class="container">-->
+<!--<div class="row grey-backgroung-strip-steps">-->
+
+<!--<div class="container">-->
+
+<!--<div class="col-sm-12 col-md-12">-->
+<!--<h1 style="text-align:center">How does it work?</h1>-->
+<!--</div>-->
+
+<!--<div class="row step1">-->
+<!--<div class="col-sm-6 col-md-4">-->
+<!--<h3>Step1</h3>-->
+<!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Get started</span>-->
+<!--creating your Zeeguu account and setting your preferences for your Language-Building Program</p>-->
+<!--</div>-->
+
+<!--<div class="col-sm-6 col-md-4">-->
+<!--<!--<img id="foot2" src ="../static/img/foot2.png">-->
+<!--<!--<img id="foot4" src ="../static/img/foot4.png">-->
+<!--<!--<img id="foot5" src ="../static/img/foot5.png">-->
+<!--</div>-->
+<!--</div>-->
 
 
-    <!--<div class="col-sm-6 col-md-4">-->
-    <!--<h3>Step2</h3>-->
-    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Freely navigate</span>-->
-    <!--on the websites you like, reading the texts you want: the latest news, favourite blogs,-->
-    <!--your e-books, in the selected learning language on your chosen device</p>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="row step3">-->
-    <!--<div class="col-sm-offset-1 col-sm-5 col-md-offset-4 col-md-4">-->
-    <!--<!--<img id="foot8" src ="../static/img/foot8.png">-->
-    <!--<!--<img id="foot9" src ="../static/img/foot9.png">-->
-    <!--</div>-->
-
-    <!--<div class="col-sm-6 col-md-4">-->
-    <!--<h3>Step3</h3>-->
-    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Find an unknown word</span>, select it and get the translation.Not 100% satisfied with the-->
-    <!--translation? Contribute your own translation for the selected word.</p>-->
-    <!--</div>-->
-    <!--</div>-->
+<!--<div class="row step2">-->
+<!--<div class="col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2">-->
+<!--<!--<img id="foot6" src ="../static/img/foot5.png">-->
+<!--<!--<img id="foot7" src ="../static/img/foot6.png">-->
+<!--</div>-->
 
 
-    <!--<div class="row step4">-->
-    <!--<div class="col-sm-6 col-md-4">-->
-    <!--<h3>Step4</h3>-->
-    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Bookmark the word</span>. Once bookmarked, the word will be stored along with the given-->
-    <!--translation and the word’s context on your online profile</p>-->
-    <!--</div>-->
-    <!--</div>-->
+<!--<div class="col-sm-6 col-md-4">-->
+<!--<h3>Step2</h3>-->
+<!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Freely navigate</span>-->
+<!--on the websites you like, reading the texts you want: the latest news, favourite blogs,-->
+<!--your e-books, in the selected learning language on your chosen device</p>-->
+<!--</div>-->
+<!--</div>-->
 
-    <!--<div class="row step5">-->
-    <!--<div class="col-sm-offset-4 col-sm-6 col-md-offset-4 col-md-4">-->
-    <!--<h3>Step5</h3>-->
-    <!--<p>Go whenever you want to your Words Gym to see your words.-->
-    <!--<span class="capitalized-phrase" font style="text-transform: uppercase">Get personalized exercises</span>-->
-    <!--in the <b>Words Gym</b> with the words until you know them.</p>-->
+<!--<div class="row step3">-->
+<!--<div class="col-sm-offset-1 col-sm-5 col-md-offset-4 col-md-4">-->
+<!--<!--<img id="foot8" src ="../static/img/foot8.png">-->
+<!--<!--<img id="foot9" src ="../static/img/foot9.png">-->
+<!--</div>-->
 
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div class="row step6">-->
-    <!--<div class="col-sm-6 col-md-offset-8 col-md-4">-->
-    <!--<h3>Step6</h3>-->
-    <!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Track your progress</span> and get feedback on your workout, by checking the Performance Progress Indicators</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+<!--<div class="col-sm-6 col-md-4">-->
+<!--<h3>Step3</h3>-->
+<!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Find an unknown word</span>, select it and get the translation.Not 100% satisfied with the-->
+<!--translation? Contribute your own translation for the selected word.</p>-->
+<!--</div>-->
+<!--</div>-->
 
 
-    <div class="container">
+<!--<div class="row step4">-->
+<!--<div class="col-sm-6 col-md-4">-->
+<!--<h3>Step4</h3>-->
+<!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Bookmark the word</span>. Once bookmarked, the word will be stored along with the given-->
+<!--translation and the word’s context on your online profile</p>-->
+<!--</div>-->
+<!--</div>-->
 
-        <div class="news">
+<!--<div class="row step5">-->
+<!--<div class="col-sm-offset-4 col-sm-6 col-md-offset-4 col-md-4">-->
+<!--<h3>Step5</h3>-->
+<!--<p>Go whenever you want to your Words Gym to see your words.-->
+<!--<span class="capitalized-phrase" font style="text-transform: uppercase">Get personalized exercises</span>-->
+<!--in the <b>Words Gym</b> with the words until you know them.</p>-->
 
-            <div class="row">
-                <h1 class="section-title">Read More in our CHI'18 Paper</h1>
-
-                <a href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">
-                    <img style="width: 460px;"
-                         src="../static/img/chi-paper-cover.png"/>
-                </a>
+<!--</div>-->
+<!--</div>-->
 
 
-            </div>
+<!--<div class="row step6">-->
+<!--<div class="col-sm-6 col-md-offset-8 col-md-4">-->
+<!--<h3>Step6</h3>-->
+<!--<p><span class="capitalized-phrase" font style="text-transform: uppercase">Track your progress</span> and get feedback on your workout, by checking the Performance Progress Indicators</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="container">
+
+    <div class="news">
+
+        <div class="row">
+            <h1 class="section-title">Read More in our CHI'18 Paper</h1>
+
+            <a
+                href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">
+                <img style="width: 460px;" src="../static/img/chi-paper-cover.png" />
+            </a>
+
+
         </div>
     </div>
+</div>
 
 
-    <div class="container">
+<div class="container">
 
-        <div class="news">
+    <div class="news">
 
-            <div class="row">
-                <h1 class="section-title">News</h1>
-
-
-                <div class="news-item">
-                    <span class="news-item-date">(August 2019)</span>
-                    Mircea will talk about Zeeguu at <a href="https://sites.uclouvain.be/eurocall2019/">EuroCALL</a> and
-                    <a href="https://easeai.github.io">EASEAI</a> 🎉
-                </div>
+        <div class="row">
+            <h1 class="section-title">News</h1>
 
 
-                <div class="news-item">
-                    <span class="news-item-date">(April 2019)</span>
-                    We have moved to <a href="https://zeeguu.org">zeeguu.org</a> 🎉
-                </div>
+            <div class="news-item">
+                <span class="news-item-date">(August 2019)</span>
+                Mircea will talk about Zeeguu at <a href="https://sites.uclouvain.be/eurocall2019/">EuroCALL</a> and
+                <a href="https://easeai.github.io">EASEAI</a> 🎉
+            </div>
 
-                <div class="news-item">
-                    <span class="news-item-date">(April 2018)</span>
 
-                    Mircea presents
-                    <a href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">
-                        a paper about Zeeguu</a>
-                    at CHI'18 in Montreal!
+            <div class="news-item">
+                <span class="news-item-date">(April 2019)</span>
+                We have moved to <a href="https://zeeguu.org">zeeguu.org</a> 🎉
+            </div>
 
-                </div>
+            <div class="news-item">
+                <span class="news-item-date">(April 2018)</span>
 
-                <div class="news-item">
-                    <span class="news-item-date">(January 2018)</span>
-
-                    Paper about Zeeguu accepted to CHI 2018!
-
-                </div>
-
+                Mircea presents
+                <a
+                    href="https://www.researchgate.net/publication/322489283_As_We_May_Study_Towards_the_Web_as_a_Personalized_Language_Textbook">
+                    a paper about Zeeguu</a>
+                at CHI'18 in Montreal!
 
             </div>
+
+            <div class="news-item">
+                <span class="news-item-date">(January 2018)</span>
+
+                Paper about Zeeguu accepted to CHI 2018!
+
+            </div>
+
+
         </div>
     </div>
+</div>
 
 
 
-    <!--TEAM-->
+<!--TEAM-->
 
-    <div class="container">
+<div class="container">
 
     <div class="team-members">
 
@@ -308,7 +332,7 @@
                 Some of them are listed here:
             </small>
 
-            <br/><br/><br/>
+            <br /><br /><br />
 
             <div class="col-sm-4 col-sm-offset-2 col-md-2 col-md-offset-2">
                 {{ member("Mircea Lungu", "Production, maintenance") }}
@@ -359,18 +383,18 @@
             <h1 class="section-title">Acknowledgements</h1>
 
             <small>zeeguu.org is hosted in the Google Cloud Platform</small>
-            <br/>
+            <br />
 
             <small>Zeeguu uses many open source libraries and free APIs.</small>
-            <br/>
+            <br />
 
             <small>Some of them are listed below.</small>
-            <br/>
+            <br />
 
 
 
 
-            <br/><br/><br/>
+            <br /><br /><br />
 
             <div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
                 {{ member("Glosbe", "Online translation API") }}
@@ -388,4 +412,4 @@
 
     <a href="m_home">_</a>
 
-{% endblock %}
+    {% endblock %}
