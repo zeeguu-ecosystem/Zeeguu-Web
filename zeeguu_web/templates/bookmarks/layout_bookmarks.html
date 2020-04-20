@@ -2,20 +2,13 @@
 
 {% macro top_message(message) -%}
 
-    <div style="text-align:center; margin: auto; ">
-        <div style="background-color:lightgoldenrodyellow; padding: 4px; line-height: 1.3">
-            {{ message }}
-        </div>
+<div class="topMessageContainer">
+    <div class="topMessage">
+        {{ message }}
     </div>
+</div>
 
 {%- endmacro %}
-
-{% set navigation_bar = [
-            ('/top_bookmarks', 'top', 'Top'),
-            ('/starred_bookmarks', 'starred', 'Starred'),
-            ('/learned_bookmarks', 'learned', 'Learned'),
-            ('/bookmarks', 'bookmarks', 'History')
-    ] -%}
 
 {% set active_page = active_page|default('top') -%}
 
@@ -23,44 +16,9 @@
 
 {{ header() }}
 
+
 <body>
-
-
-
-
-<nav class="navbar navbar-default menu-cassette">
-    <div class="container-fluid">
-
-        <ul class="nav navbar-nav navbar-left">
-
-            {{ home_link() }}
-
-            {% for href, id, caption in navigation_bar %}
-                <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
-                </li>
-            {% endfor %}
-
-
-            <li id="left_dropdown" class="dropdown">
-                {{ dropdown_menu() }}
-            </li>
-
-
-        </ul>
-
-        <ul id="right_dropdown" class="nav navbar-nav navbar-right">
-
-            <li id="user_dropdown" class="dropdown">
-                {{ dropdown_menu() }}
-            </li>
-
-
-        </ul>
-
-    </div>
-</nav>
-
-{% block body %}{% endblock %}
-
+    {% block body %}{% endblock %}
 </body>
+
 </html>
