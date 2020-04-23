@@ -21,10 +21,9 @@
                 <a class="wordpagesLinks" href="/top_bookmarks">Top Words</a>
             </div>
         </div>
-
-        {{ top_message("Star a word to ensure it appears in your exercises.") }}
-
     </div>
+    {{ top_message("Star a word to ensure it appears in your exercises.") }}
+
 
     {% if sorted_dates %}
 
@@ -37,10 +36,15 @@
     <div class="articleContainer">
         <div class="verticalLine"></div>
         <div class=titleContainer>
-            <a href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">
-                <h2 class="articleTitle">{{ url.title }}</h2>
+            <h2 class="articleTitle">{{ url.title }}</h2>
+        </div>
+        <div class="openArticle">
+            <a class="open"
+                href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">
+                <p>Open</p>
             </a>
         </div>
+
     </div>
 
     {% for context in contexts_for_url.get(url) %}
@@ -64,7 +68,7 @@
                         </a>
                         {% else %}
                         <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
-                            <i style="color:lightgray" class="icon-star-empty"></i>
+                            <i style="color:#ffbb54" class="icon-star-empty"></i>
                         </a>
                         {% endif %}
                     </div>
