@@ -1,3 +1,10 @@
+.mainWordsContainer {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .wordsHeader {
     position: sticky;
     top: 0;
@@ -302,10 +309,21 @@
 
 
 @media only screen and (max-width: 1024px) {
+    
     .pagesContainer {
         font-size: .7em;
     }
 
+}
+
+@media (min-width: 992px) {
+    
+    .mainWordsContainer{
+        margin-left: 25%;
+        float: left;
+        width: 50%;
+    
+    }
 }
 
 @media only screen and (max-width: 414px) {
