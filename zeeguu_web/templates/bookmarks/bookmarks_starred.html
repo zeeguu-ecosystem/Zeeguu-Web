@@ -21,45 +21,48 @@
                 <a class="wordpagesLinks" href="/top_bookmarks">Top Words</a>
             </div>
         </div>
-
-
-        {{ top_message("Starred Words have priority in your exercises later on.") }}
-
-        {% if bookmarks %}
-
-        {% for bookmark in bookmarks %}
-        <div id="bookmark{{ bookmark.id }}" class="StarredContainer">
-            <div class="one verticalLine"></div>
-            <div class="two" id="star{{ bookmark.id }}">
-                {% if bookmark.starred %}
-
-                <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
-                    <i style="color:#ffbb54" class="icon-star"></i>
-                </a>
-
-                {% else %}
-                <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
-                    <i style="color:lightgray" class="icon-star-empty"></i>
-                </a>
-                {% endif %}
-            </div>
-            <div class="three impression">
-
-                {{ bookmark.from_ }}
-                -
-                {{ bookmark.to }}
-            </div>
-            <div class="five delete"><a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})"
-                    id="trash">
-                    <i class="icon-trash button-disabled" style="color:black"></i>
-                </a>
-            </div>
-        </div>
-        {% endfor %}
-
-        {%  else %}
-        {{ no_words_yet() }}
-        {% endif %}
-
     </div>
-    {% endblock %}
+
+
+    {{ top_message("Starred Words have priority in your exercises later on.") }}
+
+    {% if bookmarks %}
+
+    {% for bookmark in bookmarks %}
+    <div id="bookmark{{ bookmark.id }}" class="StarredContainer">
+        <div class="one verticalLine"></div>
+        <div class="two" id="star{{ bookmark.id }}">
+            {% if bookmark.starred %}
+
+            <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
+                <i style="color:#ffbb54" class="icon-star"></i>
+            </a>
+
+            {% else %}
+            <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
+                <i style="color:lightgray" class="icon-star-empty"></i>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="three impression">
+
+            {{ bookmark.from_ }}
+            -
+            {{ bookmark.to }}
+
+        </div>
+
+        <div class="five delete"><a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
+                <i class="icon-trash button-disabled" style="color:black"></i>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+
+    {%  else %}
+    {{ no_words_yet() }}
+    {% endif %}
+
+</div>
+{% endblock %}
