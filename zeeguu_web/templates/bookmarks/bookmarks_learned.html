@@ -4,11 +4,9 @@
 
 {% set active_page = "learned" %}
 
-
-
 {% block body %}
 
-<div class="col-md-offset-3 col-md-6">
+<div class="mainWordsContainer">
 
     <div class="wordsHeader">
         <div>
@@ -23,86 +21,44 @@
                 <a class="wordpagesLinks" href="/top_bookmarks">Top Words</a>
             </div>
         </div>
+    </div>
 
-        {{ top_message("Words that were correct in exercises in 4 different days") }}
+    {{ top_message("Learned words are words that were correct in exercises in 4 different days.")}}
 
-        {% if bookmarks %}
+    {% if bookmarks %}
+    <div class="learnedWordsContainer">
+        <div class="amount">
+            <p>You have learned <b>{{ bookmarks|length}}</b> words so far.</p>
+        </div>
 
-        <table class="table table-striped table-no-borders">
+        {% for bookmark in bookmarks %}
 
-            <thead>
-                <td></td>
-                <td></td>
-                <td>
-                    <small></small>
-                </td>
-                <td></td>
-                <td>
-                    <small>Importance</small>
-                </td>
+        <div class="oneLearnedWord" id="bookmark{{ bookmark.id }}">
+            <div class="verticalLine learned"></div>
 
-            </thead>
+            <div class="learnedWords">
+                <div class="translation">
+                    <b>{{ bookmark.from_ }}</b> - {{ bookmark.to }}
+                    <br />
+                </div>
+                <div>
+                    <p class="learnedDate">Learned the following dates: <small>{{ bookmark.learned_datetime }}</small>
+                </div>
+            </div>
 
-            {% for bookmark in bookmarks %}
+            <div class="deleteLearned">
+                <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
+                    <i style="color:black" class="icon-trash button-disabled"></i>
+                </a>
+            </div>
+        </div>
 
-            <tr id="bookmark{{ bookmark.id }}">
-                <td style="border:0px solid white;background-color:white;"></td>
-                <td class="word-action-buttons-td">
-                    <div class="word-action-buttons">
-
-                        <small>
-                            {{ bookmarks|length - loop.index + 1 }}
-                        </small>
-
-
-                    </div>
-
-                </td>
-                <td colspan="2" class="word-details-td">
-                    <div class="impression">
-
-
-                        <b>
-                            <a href="javascript:void(0);" onclick="showInlineAnswer({{ bookmark.id }})">
-                                {{ bookmark.from_ }}
-                            </a>
-                        </b>
-
-                        <span id="answer{{ bookmark.id }}">
-                            = {{ bookmark.to }}
-
-                        </span>
-
-
-                        <br />
-                        <small>{{ bookmark.context }}</small>
-                        <br />
-                        <i style="color:green" class="icon-check iknowitcheck"></i>
-                        <small>{{ bookmark.learned_datetime }}</small>
-                    </div>
-                </td>
-
-                <td style="text-align: right">
-                    <small>{{ bookmark.origin_rank | safe }}</small>
-                </td>
-
-                <td style="text-align: right;">
-
-                    <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
-                        <i style="color:silver" class="icon-trash button-disabled"></i>
-                    </a>
-
-
-                </td>
-
-
-            </tr>
-            {% endfor %}
-
-        </table>
+        {% endfor %}
 
     </div>
-    {% else %}
-    {{ no_words_yet() }}
-    {% endif %}
-    {% endblock %}
+
+</div>
+{% else %}
+{{ no_words_yet() }}
+{% endif %}
+{% endblock %}
