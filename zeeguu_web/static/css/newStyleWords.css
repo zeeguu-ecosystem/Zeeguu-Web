@@ -3,7 +3,6 @@
     top: 0;
     z-index: 1;
     background-color: white;
-    padding-bottom: 1em;
 }
 
 .titleHeader {
@@ -78,8 +77,8 @@
 }
 
 .articleContainer {
-    width: 700px;
-    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
     margin-top: 0.5em;;
 }
 
@@ -99,15 +98,32 @@
 
 .articleTitle {
     font-family: Montserrat;
-    font-size: 0.9em;
-    margin-top: 1.5em;
-    margin-left: 1.5em;
+    font-size: .9em;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
     font-weight: 400;
     color: black;
 }
 
-.articleTitle a {
+.openArticle {
+    background-color: #ffbb54;
+    background-color: #ffbb54;
+    height: 2em;
+    width: 5em;
+    border-radius: 2em;
+    text-align: center;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.open {
     color: black;
+}
+
+.open:hover {
+    color: black;
+    font-weight: 400;
 }
 
 .openButton {
@@ -156,6 +172,8 @@
 }
 
 .StarredContainer {
+    display: flex;
+    justify-content: space-between;
     font-family: Montserrat;
     font-size: 0.9em;
     font-weight: 300;
@@ -178,7 +196,7 @@
 
 .three {
     float: left;
-    width: 400px;
+    flex-grow: 2;
     overflow: hidden;
     margin-left: 1em;
     margin-top: 1em;
@@ -206,6 +224,7 @@
     width: 1.5em;
     border: .1em solid #ffbb54;
     margin-top: 1.3em;
+    margin-right: 5em;
 }
 
 .rank p {
@@ -217,7 +236,7 @@
 }
 
 .topWords {
-    margin-left: 4em;
+    margin-left: 2em;
     height: 3.5em;
 }
 
@@ -226,7 +245,6 @@
     font-size: 0.8em;
     text-align: right;
     color: black;
-    margin-right: 3em;
     margin-top: 1em;
     margin-bottom: -0.5em;
 }
@@ -258,19 +276,27 @@
     font-size: 0.9em;
     color: black;
     text-transform: lowercase;
+    font-weight: 300;
 }
 
 .learnedDate {
     font-size: 0.8em;
+    font-weight: 300;
 }
 
 .deleteLearned {
     margin-top: 1em;
     margin-right: 1em;
+    font-size: 0.9em;
 }
 
 .learned {
     height: 4em;
+}
+
+.top {
+    margin-right: 1em;
+    margin-left: 0em;
 }
 
 
@@ -279,4 +305,207 @@
     .pagesContainer {
         font-size: .7em;
     }
+
+}
+
+@media only screen and (max-width: 414px) {
+
+    .wordsHeader {
+        padding-bottom: 0.5em;
+        position: relative;
+    }
+
+    .pagesContainer {
+        font-size: .62em;
+        margin-left: -5em;
+        margin-right: -5em;
+    }
+
+    .dateContainer {
+        margin: auto;
+    }
+
+    .verticalLine {
+        margin-left: 0em;
+    }
+
+    .openArticle {
+        width: 7em;
+        margin-right: 0em;
+    }
+
+    .table {
+        margin-left: 1em;
+    }
+
+    .StarredContainer {
+        height: 3em;
+        margin-top: .8em;
+    }
+
+    .translation {
+        font-size: .8em;
+    }
+
+    .learnedDate {
+        font-size: .7em;
+    }
+
+    .learned {
+        height: 3.5em;
+    }
+
+    .topMessage {
+        font-size: .7em;
+    }
+
+    
+}
+
+@media only screen and (max-width: 375px) {
+
+    .pagesContainer {
+        margin-right: -1em;
+        margin-left: -1em;
+        font-size: 0.64em;
+    }
+
+    .wordpagesLinks {
+        margin-right: 0em;
+        margin-left: 0em;
+    }
+
+    .learnedWords {
+        margin-left: 0.4em;
+    }
+
+    .learnedDate {
+        font-size: .66em;
+    }
+
+    .StarredContainer {
+        margin-left: 1em;
+    }
+    
+    .rank {
+        margin-right: 3em;
+    }
+
+    .openArticle {
+        width: 8em;
+    }
+    
+    .articleTitle {
+        font-size: .8em;
+        margin-top: 0.7em;
+        margin-left: 0.5em;
+    }
+
+    .dateContainer {
+        margin-bottom: 1em;
+        width: 15em;
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+
+    .titleHeader {
+        font-size: 1.5em;
+    }
+
+    .pagesContainer {
+        font-size: 0.61em;
+    }
+
+    .topMessage {
+        font-size: .66em;
+    }
+    
+    .importance {
+        font-size: 0.6em;
+        margin-right: -0.7em;
+        margin-bottom: -1.5em;
+    }
+
+    .topWords {
+        margin-left: 0.5em;
+    }
+
+    .rank {
+        margin-right: 1.5em;
+    }
+
+    small {
+        font-weight: 400;
+        font-size: 75%;
+        color: black;
+    }
+
+    .verticalLine {
+        width: 4px;
+    }
+
+    .topMessage {
+        font-size: 0.65em;
+    }
+
+    .one {
+        width: 3px;
+    }
+
+    .top {
+        width: 3px;
+        margin-right: 0.5em;
+    }
+
+    .trash {
+        margin-right: 0.5em;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+
+    .pagesContainer {
+        font-size: .54em;
+    }
+
+    .topMessage {
+        font-size: .58em;
+    }
+
+    .topWords {
+        height: 3em;
+    }
+
+    .learned {
+        width: 0.1em;
+        height: 4em;    
+    }
+    
+    .translation {
+        font-size: .7em;
+    }
+
+    .learnedDate {
+        font-size: 0.65em;
+    }
+
+    .deleteLearned {
+        margin-right: 0em;
+    }
+
+    .impression {
+        font-size: .8em;
+    }
+
+    .open {
+        font-size: .9em;
+    }
+
+    .openArticle {
+        height: 1.8em;
+    }
+
 }
