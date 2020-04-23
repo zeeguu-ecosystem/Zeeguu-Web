@@ -40,48 +40,53 @@
                 <a class="wordpagesLinks active" href="/top_bookmarks">Top Words</a>
             </div>
         </div>
-
-        {{ top_message("Top Words are the words that are important to learn in the language you are practicing. Words marked as 1 are frequently used words in the language.") }}
-
-
-        {% if bookmarks %}
-
-        {% for bookmark in bookmarks %}
-        <div id="bookmark{{ bookmark.id }}" class="StarredContainer topWords">
-            <div class="one trash">
-                <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
-                    <i class="icon-trash button-disabled" style="color:black"></i>
-                </a>
-
-            </div>
-            <div class="two" id="star{{ bookmark.id }}">
-                {% if bookmark.starred %}
-
-                <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
-                    <i style="color:#ffbb54" class="icon-star"></i>
-                </a>
-
-                {% else %}
-                <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
-                    <i style="color:lightgray" class="icon-star-empty"></i>
-                </a>
-                {% endif %}
-            </div>
-            <div class="three impression">
-                {{ bookmark.from_ }}
-                -
-                {{ bookmark.to }}
-            </div>
-            <div class="four rank">
-                <p>{{ bookmark.origin_rank | safe }}</p>
-            </div>
-        </div>
-        {% endfor %}
-
-        {%  else %}
-        {{ no_words_yet() }}
-        {% endif %}
-
     </div>
 
-    {% endblock %}
+
+    {{ top_message("Top Words are the words that are important to learn in the language you are practicing. Words marked as 1 are frequently used words in the language.") }}
+
+
+    {% if bookmarks %}
+    <div class="importance">
+        <p>Importance</p>
+    </div>
+
+    {% for bookmark in bookmarks %}
+    <div id="bookmark{{ bookmark.id }}" class="StarredContainer topWords">
+        <div class="one trash">
+            <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
+                <i class="icon-trash button-disabled" style="color:black"></i>
+            </a>
+
+        </div>
+        <div class="two" id="star{{ bookmark.id }}">
+            {% if bookmark.starred %}
+
+            <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
+                <i style="color:#ffbb54" class="icon-star"></i>
+            </a>
+
+            {% else %}
+            <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
+                <i style="color:lightgray" class="icon-star-empty"></i>
+            </a>
+            {% endif %}
+        </div>
+        <div class="three impression">
+            {{ bookmark.from_ }}
+            -
+            {{ bookmark.to }}
+        </div>
+        <div class="four rank">
+            <p>{{ bookmark.origin_rank | safe }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+    {%  else %}
+    {{ no_words_yet() }}
+    {% endif %}
+
+</div>
+
+{% endblock %}
