@@ -65,6 +65,10 @@ label {
   border: 0.1em solid #ffbb54;
 }
 
+.field:focus {
+  outline: none;
+}
+
 .formControl:focus {
   border-color: #ffbb54;
   box-shadow: none;
