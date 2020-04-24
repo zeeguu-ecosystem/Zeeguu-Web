@@ -17,3 +17,18 @@ h1 img {
     padding: 0px 0px;
     font-size: 18px;
 }
+
+button:active {
+    outline: none;
+    border-style: none;
+}
+
+button:focus {
+    border-style: none;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    border-style: none;
+}
