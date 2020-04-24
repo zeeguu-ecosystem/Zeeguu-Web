@@ -8,47 +8,48 @@
      3. message = "..." -> after the user has input a code
 -->
 {% block body %}
-<div class="col-md-offset-3 col-md-6">
-    <div class="centered-inner-div">
-        <form id="reset_pass" class="form-horizontal" role="form" action="reset_pass" method="post">
-            <div class="outer-block">
-                <div class="inner-center authentification-box">
-                    <h2>Password Reset</h2>
-                    <br/>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
-                        <div class="col-sm-9">
 
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{email}}">
-                        </div>
+{% assets filters="cssmin", output="instance/login.css", "css/login.css"-%}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets -%}
+
+<div>
+    <div class="logoContainer">
+        <img class="zeeguuLogo" src="{{ url_for('reader_blueprint.static',filename='images/zeeguuLogo.svg') }}"
+            alt="Zeeguu Logo - The Elephant" />
+    </div>
+    <div>
+        <form id="reset_pass" class="form-horizontal" role="form" action="reset_pass" method="post">
+            <div class="outerContainer">
+                <div class="innerContainer authentificationBox">
+                    <p id="authentificationBoxTitle">Reset Password</p>
+                    <div class="inputField">
+                        <label>Email</label>
+                        <input type="email" name="email" class="field" id="email" placeholder="Email" value="{{email}}">
                     </div>
 
                     {% if code_active %}
-                        <div class="form-group">
-                            <label for="code" class="col-sm-3 control-label">Code</label>
-                            <div class="col-sm-9">
-                                <input type="code" class="form-control" id="code" name="code" placeholder="Code you received over email" value="{{code}}">
-                            </div>
-                        </div>
+                    <div class="inputField">
+                        <label>Code</label>
+                        <input type="code" class="field" id="code" name="code"
+                            placeholder="Code you received over email" value="{{code}}">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="password" class="col-sm-3 control-label">New Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="New Password">
-                            </div>
-                        </div>
+                    <div class="inputField">
+                        <label>New Password</label>
+                        <input type="password" class="field" id="password" name="password" placeholder="New Password">
+                    </div>
+
                     {% endif %}
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-10">
-                            <button type="submit" name="reset_pass" value="reset_pass" class="btn btn-success">Reset Password</button>
-                        </div>
+                    <div class="inputField">
+                        <button type="submit" name="reset_pass" value="reset_pass" class="resetButton loginButton">Reset
+                            Password</button>
                     </div>
+                    {{ flash_messages() }}
                 </div>
-                {{ flash_messages() }}
             </div>
         </form>
-
     </div>
 </div>
 {% endblock %}

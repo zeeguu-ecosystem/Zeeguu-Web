@@ -9,33 +9,31 @@
 {% endassets -%}
 
 <div>
-    <div class="centered-inner-div">
+    <div>
         <div class="logoContainer">
             <img class="zeeguuLogo" src="{{ url_for('reader_blueprint.static',filename='images/zeeguuLogo.svg') }}"
                 alt="Zeeguu Logo - The Elephant" />
         </div>
 
-        <form id="login" class="form-horizontal" action="" method="post" role="form">
+        <form id="login" action="" method="post" role="form">
 
-            <div class="outer-block">
+            <div class="outerContainer">
 
-                <div class="inner-center authentification-box">
+                <div class="innerContainer authentificationBox">
 
-                    <p id="authentification-box-title">Sign In</p>
-                    <div class="input">
+                    <p id="authentificationBoxTitle">Sign In</p>
+                    <div class="inputField">
                         <label>Email</label>
-                        <input type="email" class="form-control input-lg custom" id="email" name="email"
-                            placeholder="Email">
+                        <input type="email" class="field" id="email" name="email" placeholder="Email">
                     </div>
 
-                    <div class="input">
+                    <div class="inputField">
                         <label>Password</label>
-                        <input type="password" class="form-control input-lg custom" id="password" name="password"
-                            placeholder="Password">
+                        <input type="password" class="field" id="password" name="password" placeholder="Password">
                     </div>
-                    <div class="input">
-                        <button type="submit" name="login" value="Login"
-                            class="loginButton btn btn-success sign-in-button"> Sign In
+
+                    <div class="inputField">
+                        <button type="submit" name="login" value="Login" class="loginButton"> Sign In
                         </button>
                     </div>
                     {{ flash_messages() }}
