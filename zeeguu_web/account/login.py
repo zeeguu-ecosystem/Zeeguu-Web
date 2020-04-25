@@ -36,7 +36,7 @@ def login():
                 flask.flash(e.message)
 
             else:
-                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account/read")))
+                response = make_response(redirect(flask.request.args.get("next") or flask.url_for("account.whatnext")))
 
                 set_session_data(details, sessionID, response)
 

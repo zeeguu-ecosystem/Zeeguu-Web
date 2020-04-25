@@ -6,7 +6,9 @@
 
 {% block body %}
 
+{% include  "sideBar.html" %}
 <div class="mainWordsContainer">
+
 
     <div class="wordsHeader">
         <div>
@@ -23,7 +25,6 @@
         </div>
     </div>
     {{ top_message("Star a word to ensure it appears in your exercises.") }}
-
 
     {% if sorted_dates %}
 
