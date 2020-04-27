@@ -6,10 +6,7 @@
 
 {% block body %}
 
-{% include  "sideBar.html" %}
-
-
-<div class="mainWordsContainer">
+<div class="mainWordsContainer" id="wordsContainer">
 
     <div class="wordsHeader">
         <div>
@@ -26,8 +23,10 @@
         </div>
     </div>
 
-
     {{ top_message("Starred Words have priority in your exercises later on.") }}
+
+    {% include  "sideBar.html" %}
+
 
     {% if bookmarks %}
 

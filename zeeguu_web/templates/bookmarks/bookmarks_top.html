@@ -4,12 +4,9 @@
 
 {% set active_page = "top" %}
 
-
 {% block body %}
 
-{% include  "sideBar.html" %}
-
-<div class="mainWordsContainer">
+<div class="mainWordsContainer" id="wordsContainer">
 
     <div class="wordsHeader">
         <div>
@@ -26,9 +23,9 @@
         </div>
     </div>
 
-
     {{ top_message("Top Words are the words that are important to learn in the language you are practicing. Words marked as 1 are frequently used words in the language.") }}
 
+    {% include  "sideBar.html" %}
 
     {% if bookmarks %}
     <div class="importance">

@@ -6,8 +6,7 @@
 
 {% block body %}
 
-{% include  "sideBar.html" %}
-<div class="mainWordsContainer">
+<div class="mainWordsContainer" id="wordsContainer">
 
 
     <div class="wordsHeader">
@@ -26,6 +25,8 @@
     </div>
     {{ top_message("Star a word to ensure it appears in your exercises.") }}
 
+    {% include  "sideBar.html" %}
+
     {% if sorted_dates %}
 
     {% for date in sorted_dates %}
@@ -42,7 +43,7 @@
         <div class="openArticle">
             <a class="open"
                 href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">
-                <p>Open</p>
+                <p class="customP">Open</p>
             </a>
         </div>
 
