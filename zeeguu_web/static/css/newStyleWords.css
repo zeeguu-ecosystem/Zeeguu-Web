@@ -1,8 +1,11 @@
 .mainWordsContainer {
-    position: relative;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.customP {
+    margin-block-start: 0.5em;
 }
 
 .wordsHeader {
@@ -236,6 +239,7 @@
 
 .rank p {
     line-height: 1.5em;
+    margin-block-start: 0.1em;
 }
 
 .one.trash {
@@ -319,7 +323,7 @@
 @media (min-width: 992px) {
     
     .mainWordsContainer{
-        margin-left: 25%;
+        margin-left: 22em;
         float: left;
         width: 50%;
     
@@ -327,6 +331,14 @@
 }
 
 @media only screen and (max-width: 414px) {
+
+    body {
+        margin: 0px !important;
+    }
+
+    .mainWordsContainer{
+        margin-left: 0em !important;
+    }
 
     .wordsHeader {
         padding-bottom: 0.5em;
@@ -382,7 +394,12 @@
 
 @media only screen and (max-width: 375px) {
 
+    .titleHeader {
+        margin-top: 1em;
+    }
+
     .pagesContainer {
+        margin-top: 2em;
         margin-right: -1em;
         margin-left: -1em;
         font-size: 0.64em;
