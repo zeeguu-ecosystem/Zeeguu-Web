@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<div class="mainWordsContainer">
+<div class="mainWordsContainer" id="wordsContainer">
 
     <div class="wordsHeader">
         <div>
@@ -24,6 +24,8 @@
     </div>
 
     {{ top_message("Learned words are words that were correct in exercises in 4 different days.")}}
+
+    {% include  "sideBar.html" %}
 
     {% if bookmarks %}
     <div class="learnedWordsContainer">

@@ -7,6 +7,10 @@
   top: 0;
 }
 
+fieldset {
+  border: none;
+}
+
 .innerContainer {
   display: block;
   margin: 0px auto; 
@@ -25,7 +29,7 @@
 
 #authentificationBoxTitle {
   margin-top: -0.8em;
-  margin-bottom: 0.4em;
+  margin-bottom: 1.5em;
   font-size: 1.3em;
 }
 
@@ -37,7 +41,7 @@
   border-radius: 1em;
   border: 0.3em solid white;
   color: black;
-      width: 23em;
+  width: 20em;
 }
 
 label {
@@ -49,6 +53,7 @@ label {
 }
 
 .field {
+  font-family: Montserrat;
   display: block;
   width: 100%;
   height: 34px;
@@ -67,6 +72,7 @@ label {
 
 .field:focus {
   outline: none;
+  border: 0.1em solid #ffbb54;
 }
 
 .formControl:focus {
@@ -78,9 +84,12 @@ label {
   margin-bottom: 10px; }
 
 label {
-  font-size: 16px; }
+  font-size: 16px; 
+  margin-bottom: 0.5em;
+}
 
 .loginButton {
+  line-height: 2em;
   font-size: 16px;
   margin-top: 30px;
   font-size: 16px;
@@ -89,6 +98,7 @@ label {
   border-color: #ffbb54;
   border-radius: 2em;
   width: 7em; 
+  font-family: Montserrat;
 }
 
 .resetButton {
@@ -127,7 +137,8 @@ label {
 .alert-warning {
   color: black;
   background-color: #ffe086;
-  padding: .5em;
+  border-radius: 0.3em;
+  padding: 1em;
   font-size: .8em;
   margin-bottom: 1em;
   margin-top: 1.3em;
@@ -136,9 +147,13 @@ label {
 }
 
 .close {
+  float: right;
+  font-size: 1em;
+  border: none;
+  background: transparent;
   font-weight: 400;
-  margin-top: -0.3em;
-  margin-right: -0.1em;
+  margin-top: -0.55em;
+  margin-right: -0.7em;
   color: black;
   opacity: 1;
   text-shadow: none;
@@ -176,7 +191,15 @@ label {
 }
 
 .createAccBtn {
-  margin-left: 8em;
+  margin-left: 10.5em;
+}
+
+.reset {
+  margin-top: -0.5em;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 420px) {
@@ -194,6 +217,7 @@ label {
   .loginButton {
     font-size: 15px;
     padding: 5px 5px; 
+    margin-left: 1em;
   }
 
   .field {
