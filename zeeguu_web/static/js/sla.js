@@ -2,7 +2,7 @@ function showStar(starred) {
     if (starred) {
         $("#star").html('<i style="color:#ffbb54" class="icon-star"></i>');
     } else {
-        $("#star").html('<i style="color:lightgray" class="icon-star-empty"></i>');
+        $("#star").html('<i style="color:#ffbb54" class="icon-star-empty"></i>');
     }
 }
 
@@ -108,7 +108,7 @@ function reportCorrectMiniExercise(id) {
 function unstarBookmark(id) {
     console.log("unstarring " + id)
     $.post("/unstarred_bookmark/" + id);
-    $("#star" + id).html('<a href="javascript:void(0);" onclick="starBookmark(' + id + ')"><i style="color:lightgray" class="icon-star-empty"></i></a>');
+    $("#star" + id).html('<a href="javascript:void(0);" onclick="starBookmark(' + id + ')"><i style="color:#ffbb54" class="icon-star-empty"></i></a>');
 }
 
 function starBookmark(id) {

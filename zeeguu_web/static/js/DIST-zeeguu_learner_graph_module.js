@@ -4,15 +4,15 @@
 */
 
 
-function append_css_for_activity_graph(appendTo){
-    $(appendTo).append('<style> body {    font: 10px sans-serif;    shape-rendering: crispEdges;}.wday {    box-sizing: border-box;    display: block;    text-anchor: middle;    font: 11px sans-serif;    padding: 2px 0px 4px;}.day {    fill: #dddddd;    stroke: #ffffff;}.month {    fill: none;    stroke: #A6A6A6;    stroke-width: 1px;}/* 1 - 9 */.RdYlGn .q0-5 {    fill: #d6e685}/* 10 - 19 */.RdYlGn .q1-5 {    fill: #8cc665}/* 20 - 29 */.RdYlGn .q2-5 {    fill: #44a340}/* 30 - 39 */.RdYlGn .q3-5 {    fill: #1e6823}/* 40+ */.RdYlGn .q4-5 {    fill: #304030}/*stylesheet style.css?e51a6469*/a {    background-color: transparent;}a:active, a:hover {    outline: 0px;}small {    font-size: 80%;}svg:not(:root) {    overflow: hidden;}* {    box-sizing: border-box;}h3, h4 {    font-family: sans-serif;    font-weight: 500;    line-height: 20px;    color: #4A4A4A;}h3 {    margin-top: 20px;    margin-bottom: 10px;}h4 {    margin-top: 10px;    margin-bottom: 10px;}h3 {    font-size: 24px;}h4 {    font-size: 18px;}.row {    margin-right: -15px;    margin-left: -15px;}.col-xs-4, .col-md-4, .col-xs-6, .col-md-10 {    position: relative;    min-height: 1px;    padding-right: 15px;    padding-left: 15px;}.col-xs-4, .col-xs-6 {    float: left;}.col-xs-6 {    width: 50%;}.col-xs-4 {    width: 33.3333%;} </style>');
+function append_css_for_activity_graph(appendTo) {
+    $(appendTo).append('<style> body {    font-size: 10px;  shape-rendering: crispEdges;}.wday {    box-sizing: border-box;    display: block;    text-anchor: middle;    font: 11px sans-serif;    padding: 2px 0px 4px;}.day {    fill: #dddddd;    stroke: #ffffff;}.month {    fill: none;    stroke: #A6A6A6;    stroke-width: 1px;}/* 1 - 9 */.RdYlGn .q0-5 {    fill: #d6e685}/* 10 - 19 */.RdYlGn .q1-5 {    fill: #8cc665}/* 20 - 29 */.RdYlGn .q2-5 {    fill: #44a340}/* 30 - 39 */.RdYlGn .q3-5 {    fill: #1e6823}/* 40+ */.RdYlGn .q4-5 {    fill: #304030}/*stylesheet style.css?e51a6469*/a {    background-color: transparent;}a:active, a:hover {    outline: 0px;}small {    font-size: 80%;}svg:not(:root) {    overflow: hidden;}row {    box-sizing: border-box;}h3, h4 {      line-height: 20px;    color: black;}h3 {    margin-top: 20px;    margin-bottom: 10px;}h4 {    margin-top: 10px;    margin-bottom: 10px;}h3 {    font-size: 24px;}h4 {    font-size: 18px;}.row {    margin-right: -15px;    margin-left: -15px;}.col-xs-4, .col-md-4, .col-xs-6, .col-md-10 {    position: relative;    min-height: 1px;    padding-right: 15px;    padding-left: 15px;}.col-xs-4, .col-xs-6 {    float: left;}.col-xs-6 {    width: 50%;}.col-xs-4 {    width: 33.3333%;} </style>');
 }
 
-function append_css_for_line_graph(appendTo){
+function append_css_for_line_graph(appendTo) {
     $(appendTo).append('<style>     .axis path {        fill: none;        stroke: #49524c;        shape-rendering: crispEdges;    }    .axis text {        font-family: Lato;        font-size: 13px;    }    .legend {        font-size: 14px;        font-weight: bold;        font-family: "PT Sans", sans-serif;        color: #4A4A4A;        line-height: 2;    } </style>');
 }
 
-function append_css_for_piechart_graph(appendTo){
+function append_css_for_piechart_graph(appendTo) {
     $(appendTo).append('<style> .pie_graph {    height: 360px;    position: relative;    width: 360px;    text-align: center;}.arc path {    stroke: #fff;}.legend {    font-size: 12px;    font-weight: bold;    font-family: "PT Sans", sans-serif;    color: #4A4A4A;    line-height: 2;}rect {    stroke-width: 2;}.pie_tooltip {    background: #eee;    box-shadow: 0 0 5px #999999;    color: #333;    display: none;    font-size: 12px;    font-family: "PT Sans", sans-serif;    padding-left: 2px;    position: absolute;    text-align: center;    margin-top: 100px;    width: 100px;    z-index: 1000;    margin-left: -430px;} </style>');
 }
 
@@ -52,10 +52,10 @@ function week_number(date) {
 
     if ((year_format(date) - year + 1) == 0) {
         week_count_in_displayed_interval = week_format(new Date(year, month, day));
-        result = ( cellSize * ( +week_format(date) - parseInt(week_count_in_displayed_interval) ) );
+        result = (cellSize * (+week_format(date) - parseInt(week_count_in_displayed_interval)));
     } else {
         week_count_in_displayed_interval = week_format(new Date(year - 1, months_in_year - month - 1, days_in_month - day + 1));
-        result = ( cellSize * ( +week_format(date) + parseInt(week_count_in_displayed_interval) - 1 ) );
+        result = (cellSize * (+week_format(date) + parseInt(week_count_in_displayed_interval) - 1));
     }
 
     return result;
@@ -188,10 +188,11 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
         .attr("width", width)
         .attr("height", height)
         .attr("class", "RdYlGn")
+        .attr("id", "containerStats")
         .append("g")
         .attr("transform", "translate(" + graph_table_x + "," + graph_table_y + ")");
 
-    var starting_date = new Date(year-1 , month + months_offset, day + 1);
+    var starting_date = new Date(year - 1, month + months_offset, day + 1);
     var week_offset = week_number(starting_date);
 
     var day_rectangles = activity_graph.selectAll(".day")
@@ -291,7 +292,7 @@ function draw_activity_graph(input_data_a, appendTo, months_to_show) {
 
     html += "</div>";
 
-    $(html).appendTo( document.getElementById(appendTo.substring(1)) );
+    $(html).appendTo(document.getElementById(appendTo.substring(1)));
 
 }
 
@@ -312,7 +313,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
     // setting up graph and its parameters
     // graph's width adjusts based on the client window size
     // max graph width is 1200px and min is 500px
-    var WIDTH = Math.max(500 ,Math.min(1200, win_width));
+    var WIDTH = Math.max(500, Math.min(1200, win_width));
     var HEIGHT = 500;
 
     // how many months to show
@@ -325,7 +326,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
     if (months_to_show != 1) {
         // check months limits
         months_to_show = Math.min(months_to_show, Math.round(win_width / 100));
-        months_to_show = Math.max(5, Math.min(12,months_to_show));
+        months_to_show = Math.max(5, Math.min(12, months_to_show));
 
         // slice array and take only part we need based on how many months to show
         input_data_nested.forEach(function (element) {
@@ -333,7 +334,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
         });
         // add attribute type to the graph for resize functionality
         d3.select(appendTo).attr("type", "line");
-    }else{
+    } else {
         extraHeight = 55; // added extraHeight for better displaying date names for month
         // add attribute type to the graph for resize functionality
         d3.select(appendTo).attr("type", "line_month");
@@ -346,7 +347,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
     var line_graph = d3.select(appendTo)
         .append("svg")
         .attr("width", WIDTH)
-        .attr("height", HEIGHT+extraHeight);
+        .attr("height", HEIGHT + extraHeight);
 
     // offsets of the graph
     var MARGINS = {
@@ -367,10 +368,10 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
 
     if (months_to_show == 1) {
         var date = date_of_today.getDate();
-        var date_one_year_ago = new Date(year, month-1, date);
-    }else{
+        var date_one_year_ago = new Date(year, month - 1, date);
+    } else {
         // in this case we don't care about precise day(date) ,because only months and year are used for this graph
-        var date_one_year_ago = new Date(year - 1, month+(12-months_to_show), 1);
+        var date_one_year_ago = new Date(year - 1, month + (12 - months_to_show), 1);
     }
 
 
@@ -393,7 +394,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
             .scale(xScale)
             .orient("bottom").ticks(15)
             .tickFormat(d3.time.format("%d %b %Y"));
-    }else{
+    } else {
         var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient("bottom")
@@ -412,13 +413,13 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
             .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
             .call(xAxis)
             .selectAll("text") // added to month
-                    .style("text-anchor", "end")
-                    .attr("dx", "-.8em")
-                    .attr("dy", ".15em")
-                    .attr("transform", function(d) {
-                        return "rotate(-65)"
-                    });
-    }else{
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function (d) {
+                return "rotate(-65)"
+            });
+    } else {
         line_graph.append("svg:g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
@@ -438,7 +439,7 @@ function draw_line_graph(input_data, appendTo, months_to_show) {
                 var entry_day = entry.date.split(" ")[0];
                 var entry_month_number = month_names.indexOf(entry.date.split(" ")[1]) + 1;
                 var entry_year = entry.date.split(" ")[2];
-            }else {
+            } else {
                 var entry_day = 1;
                 var entry_month_number = month_names.indexOf(entry.date.split(" ")[0]) + 1;
                 var entry_year = entry.date.split(" ")[1];
@@ -615,7 +616,7 @@ $("head").append('<link href="https://fonts.googleapis.com/css?family=PT+Sans" r
 // initialization function for activity graph
 // input json entry format should be :
 // [{"date": "2016-05-28", "count": "123"}]
-function activity_graph(input_data, appendTo, months_to_show){
+function activity_graph(input_data, appendTo, months_to_show) {
     append_css_for_activity_graph(appendTo);
     d3.select(appendTo).attr("input_data", input_data);     // save pointer to the input data for resizing purposes
     draw_activity_graph(window[input_data], appendTo, months_to_show);
@@ -624,7 +625,7 @@ function activity_graph(input_data, appendTo, months_to_show){
 // initialization function for line graph
 // input json entry format should be :
 // [{"name": "Example", "amount": "123", "date": "Jan 2016"}]
-function line_graph(input_data, appendTo, months_to_show){
+function line_graph(input_data, appendTo, months_to_show) {
     append_css_for_line_graph(appendTo);
     d3.select(appendTo).attr("input_data", input_data);     // save pointer to the input data for resizing purposes
     draw_line_graph(window[input_data], appendTo, width, months_to_show);
@@ -633,7 +634,7 @@ function line_graph(input_data, appendTo, months_to_show){
 // initialization function for piechart graph
 // input json entry format should be :
 // [{"label": "Example", "value": 111 }]
-function piechart_graph(input_data, appendTo, label){
+function piechart_graph(input_data, appendTo, label) {
     append_css_for_piechart_graph(appendTo);
     draw_piechart_graph(input_data, appendTo, label);
 }
