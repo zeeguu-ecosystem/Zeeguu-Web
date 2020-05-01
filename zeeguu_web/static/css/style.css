@@ -3,13 +3,13 @@ body {
     font-family: Montserrat;
 }
 
-h1 img {
-    height: 40px;
+a:hover {
+    cursor: pointer;
 }
 
-.btn-lg {
-    padding: 0px 0px;
-    font-size: 18px;
+
+button:hover {
+    cursor: pointer;
 }
 
 button:active {
@@ -29,4 +29,5 @@ input:focus {
 
 .noWordsYet {
     margin-top: 3em;
-}   
+}  
+
