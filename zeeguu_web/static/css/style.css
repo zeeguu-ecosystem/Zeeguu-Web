@@ -153,6 +153,7 @@ body {
 }
 
 .article {
+    border: 0.05em solid black;
     width: 23em;
     margin-top: 3em;
     margin-right: 3em;
@@ -168,6 +169,7 @@ body {
 .newsContainer h1 {
     font-size: 2em;
     font-weight: 400;
+    margin-left: 0.5em;
 }
 
 .newsItem {
@@ -208,6 +210,10 @@ body {
 .teamMembers div {
     margin-top: 1em;
     width: 15em;
+}
+
+.member b a{
+    color: black;
 }
 
 .acknowledgements {
