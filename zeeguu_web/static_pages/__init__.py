@@ -7,4 +7,5 @@ import flask
 static_pages = flask.Blueprint("static_pages", __name__)
 
 from .index import *
+from .about import *
 from .conferences import *

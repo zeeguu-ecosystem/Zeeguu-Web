@@ -183,7 +183,6 @@ a:hover {
     font-weight: 300;
     color: black;
     text-transform: lowercase;
-    margin-top: -0.2em;
     margin-left: -1em;
 }
 
@@ -215,7 +214,7 @@ a:hover {
     flex-grow: 2;
     overflow: hidden;
     margin-left: 1em;
-    margin-top: 1.35em;
+    margin-top: 1.45em;
 }
 
 .four {
@@ -249,7 +248,7 @@ a:hover {
 }
 
 .one.trash {
-    margin-top: 1.3em;
+    margin-top: 1.16em;
 }
 
 .topWords {
