@@ -50,7 +50,7 @@
 
             <div class="deleteLearned">
                 <a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
-                    <i style="color:black" class="icon-trash button-disabled"></i>
+                    <img src="{{ url_for('static', filename='img/trash.svg') }}" alt="trash" />
                 </a>
             </div>
         </div>

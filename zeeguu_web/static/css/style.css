@@ -1,12 +1,274 @@
 body {
     font-size: 18px;
     font-family: Montserrat;
+    margin: 0;
+}
+
+.loginHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 4em;
+    background: #ffbb54;
+    color: white;
+}
+
+.loginHeader p {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 1em;
+    margin-top: 0.6em;
+}
+
+.signin a {
+    color: #ffbb54;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.signin a:hover {
+    text-decoration: underline;
+}
+
+.signin {
+    background: white;
+    width: 6em;
+    height: 2em;
+    border-radius: 1em;
+    text-align: center;
+    line-height: 2em;
+    margin-top: 0.9em;
+    margin-right: 1em;
+}
+
+.banner {
+    text-align: center;
+}
+
+.banner a {
+    color: black;
+    font-weight: 600;
+}
+
+.latestNews {
+    margin-top: 0.5em;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.dateSpan {
+    color: gray;
+    font-size: x-small;
+    margin-right: 0.5em;
+}
+
+.logoContainer {
+    text-align: center;
+}
+
+.logoElephant {
+    padding: 2em;
+    height: auto;
+    width: 12em;
+    margin: 0px auto;
+}
+
+.logoContainer h1 {
+    color: #ffbb54;
+    margin-top: -0.5em;
+}
+
+.logoContainer h2 {
+    font-weight: 100;
+    font-size: 1.3em;
+    margin: 2em 14em 1em 14em;
+}
+
+.becomeBeta {
+    height: 4em;
+    width: 25em;
+    background: #ffbb54;
+    border: .3em solid #ffbb54;
+    border-radius: 7em;
+    margin-bottom: 3em;
+}
+
+.becomeBeta a {
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: white;
+}
+
+.howTo {
+    background: #ffbb54;
+    color: white;
+    font-family: Montserrat;
+    text-align: center;
+    padding-bottom: 3em;
+}
+
+.howTo h1 {
+    padding-top: 1.5em;
+    font-size: 1.7em;
+    padding-bottom: 0.5em;
+}
+
+.containers {
+    display: flex;
+}
+
+.htContainer {
+    background: white;
+    color: black;
+    width: 22em;
+    height: 18em;
+    margin: 1em;
+    text-align: center;
+    border-radius: 3em;
+}
+
+.htContainer h3 {
+    font-size: 1em;
+    font-weight: 500;
+    padding-top: 1em;
+}
+
+.htContainer p {
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.5em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+}
+
+.articleContain {
+    display: flex;
+    justify-content: space-around;
+}
+
+.articleContain h1 {
+    font-weight: 400;
+    margin-top: 1em;   
+}
+
+.article {
+    width: 23em;
+    margin-top: 3em;
+    margin-right: 3em;
+}
+
+.newsContainer {
+    background: #ffbb54;
+    margin-top: 2em;
+    padding-top: 0.1em;
+    padding-bottom: 1em;
+}
+
+.newsContainer h1 {
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.newsItem {
+    display: flex;
+    margin-left: 2em;
+    margin-bottom: 0.5em;
+}
+
+.newsItem p {
+    padding-left: 1em;
+    font-size: .9em;
+}
+
+.newsItem a {
+    color: black;
+    font-weight: 600;
+}
+
+.new {
+    width: 8em;
+    line-height: 5.5em;
+}
+
+.teamContainer {
+    text-align: center;
+}
+
+.teamContainer h1 {
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.teamMembers {
+    display: flex;
+    justify-content: center;
+}
+
+.teamMembers div {
+    margin-top: 1em;
+    width: 15em;
+}
+
+.acknowledgements {
+    margin-top: 2em;
+}
+
+.acknowledgements small{
+    line-height: 2em;
+}
+
+.other {
+    display: flex;
+    justify-content: center;
+}
+
+.other div {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    width: 15em;
+}
+
+.footer {
+    background: #ffbb54;
+    height: 3em;
+    width: 100%;
+}
+
+#aboutContainer {
+    background-color: white;
+    height: 100%;
+    margin-left: 10em;
+}
+
+#aboutContainer h1 {
+    color: black;
+}
+
+.aboutHt {
+    background-color: #ffbb54;
+    color: white;
+    margin: 0.5em;
+    height: 24em;
+}
+
+.aboutHt h3 {
+    color: white;
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+    font-size: 0.9em;
+}
+
+.aboutHt p {
+    font-size: .85em;
+    line-height: 1.8em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 a:hover {
     cursor: pointer;
 }
-
 
 button:hover {
     cursor: pointer;

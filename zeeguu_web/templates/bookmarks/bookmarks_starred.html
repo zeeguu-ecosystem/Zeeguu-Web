@@ -35,16 +35,16 @@
         <div class="one verticalLine"></div>
         <div class="two" id="star{{ bookmark.id }}">
             {% if bookmark.starred %}
-
             <a href="javascript:void(0);" onclick="unstarBookmark({{ bookmark.id }})">
-                <i style="color:#ffbb54" class="icon-star"></i>
+                <img src="{{ url_for('static', filename='img/star.svg') }}" alt="star" />
             </a>
-
             {% else %}
             <a href="javascript:void(0);" onclick="starBookmark({{ bookmark.id }})">
-                <i style="color:#ffbb54" class="icon-star-empty"></i>
+                <img src="{{ url_for('static', filename='img/star_empty.svg') }}" alt="star" />
             </a>
             {% endif %}
+
+
         </div>
 
         <div class="three impression">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="five delete"><a href="javascript:void(0);" onclick="deleteBookmark({{ bookmark.id }})" id="trash">
-                <i class="icon-trash button-disabled" style="color:black"></i>
+                <img src="{{ url_for('static', filename='img/trash.svg') }}" alt="trash" />
             </a>
         </div>
     </div>
