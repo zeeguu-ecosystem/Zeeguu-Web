@@ -1,8 +1,8 @@
 function showStar(starred) {
     if (starred) {
-        $("#star").html('<i style="color:#ffbb54" class="icon-star"></i>');
+        $("#star").html('<img src="/static/img/star.svg" alt="star"/>');
     } else {
-        $("#star").html('<i style="color:#ffbb54" class="icon-star-empty"></i>');
+        $("#star").html('<img src="/static/img/star_empty.svg" alt="star"/>');
     }
 }
 
@@ -108,15 +108,12 @@ function reportCorrectMiniExercise(id) {
 function unstarBookmark(id) {
     console.log("unstarring " + id)
     $.post("/unstarred_bookmark/" + id);
-    $("#star" + id).html('<a href="javascript:void(0);" onclick="starBookmark(' + id + ')"><i style="color:#ffbb54" class="icon-star-empty"></i></a>');
+    $("#star" + id).html('<a href=\"javascript:void(0);\" onclick=\"starBookmark(' + id + ')\"><img src="/static/img/star_empty.svg" alt="star"/></a>');
 }
+
 
 function starBookmark(id) {
     console.log("starring " + id)
     $.post("/starred_bookmark/" + id);
-    $("#star" + id).html('<a href="javascript:void(0);" onclick="unstarBookmark(' + id + ')"><i style="color:#ffbb54" class="icon-star"></i></a>');
+    $("#star" + id).html('<a href=\"javascript:void(0);\" onclick=\"unstarBookmark(' + id + ')\"><img src="/static/img/star.svg" alt="star"/></a>');
 }
-
-
-
-

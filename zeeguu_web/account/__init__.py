@@ -6,7 +6,6 @@ import flask
 # we define the blueprint here, and extended it in several files
 account = flask.Blueprint("account", __name__)
 
-from . import whatnext
 from . import login
 from . import reset_pass
 from . import static_pages

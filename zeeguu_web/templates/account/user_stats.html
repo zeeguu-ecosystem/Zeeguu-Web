@@ -1,8 +1,12 @@
-{% extends "layout_whatsnext.html" %}
+{% extends "layout_simple_white.html" %}
 
 {% set active_page = "user_stats" %}
 
 {% block body %}
+
+{% assets filters="cssmin", output="instance/login.css", "css/login.css"-%}
+<link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets -%}
 
 {% include  "sideBar.html" %}
 

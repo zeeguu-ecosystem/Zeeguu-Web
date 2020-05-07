@@ -53,6 +53,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a {
+    text-decoration: none;
+}
+
 .seperator {
     color: #ACACAC;
     font-size: 1.5em;
@@ -77,7 +81,7 @@ a:hover {
 .dateContainer {
     background-color: #ffbb54;
     text-align: center;
-    width: 12em;
+    width: 15em;
     height: 1.5em;
     border-radius: 1em;
 }
@@ -183,7 +187,6 @@ a:hover {
     font-weight: 300;
     color: black;
     text-transform: lowercase;
-    margin-top: -0.2em;
     margin-left: -1em;
 }
 
@@ -215,7 +218,7 @@ a:hover {
     flex-grow: 2;
     overflow: hidden;
     margin-left: 1em;
-    margin-top: 1.35em;
+    margin-top: 1.45em;
 }
 
 .four {
@@ -249,7 +252,7 @@ a:hover {
 }
 
 .one.trash {
-    margin-top: 1.3em;
+    margin-top: 1.16em;
 }
 
 .topWords {
@@ -317,8 +320,6 @@ a:hover {
     margin-left: 0em;
 }
 
-
-
 @media only screen and (max-width: 1024px) {
     
     .pagesContainer {
@@ -330,9 +331,9 @@ a:hover {
 @media (min-width: 992px) {
     
     .mainWordsContainer{
-        margin-left: 22em;
+        margin-left: 3.5em;
         float: left;
-        width: 50%;
+        width: 100%;
     
     }
 }
