@@ -6,8 +6,9 @@
 
 {% block body %}
 
-<div class="mainWordsContainer" id="wordsContainer">
 
+
+<div class="mainWordsContainer" id="wordsContainer">
 
     <div class="wordsHeader">
         <div>
@@ -23,15 +24,18 @@
             </div>
         </div>
     </div>
-    {{ top_message("Star a word to ensure it appears in your exercises.") }}
 
     {% include  "sideBar.html" %}
+
+    {{ top_message("Star a word to ensure it appears in your exercises.") }}
 
     {% if sorted_dates %}
 
     {% for date in sorted_dates %}
-    <div class="dateContainer">
-        <h1 class="date">{{ date.strftime("%A %B %d, %Y") }} </h1>
+    <div class="outerDate">
+        <div class="dateContainer">
+            <h1 class="date">{{ date.strftime("%A %B %d, %Y") }} </h1>
+        </div>
     </div>
     {% for url in urls_for_date.get(date) %}
 

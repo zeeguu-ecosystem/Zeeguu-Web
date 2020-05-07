@@ -1,7 +1,6 @@
 .mainWordsContainer {
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    margin: auto;
+    margin-left: 7.5em;
 }
 
 a:hover {
@@ -17,6 +16,7 @@ a:hover {
     top: 0;
     z-index: 1;
     background-color: white;
+    margin-top: 1em;
 }
 
 .titleHeader {
@@ -68,6 +68,8 @@ a {
     margin: auto;
     background-color: #ffbe007a;
     border-radius: 0.9em;
+    width: 29em;
+    margin-bottom: 0.5em;
 }
 
 .topMessage {
@@ -78,12 +80,18 @@ a {
     color: black;
 }
 
+.outerDate {
+    margin: auto;
+    width: 29em;
+}
+
 .dateContainer {
     background-color: #ffbb54;
     text-align: center;
     width: 15em;
     height: 1.5em;
     border-radius: 1em;
+
 }
 
 .date {
@@ -97,7 +105,9 @@ a {
 .articleContainer {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.5em;;
+    margin-top: 0.5em;
+    margin: auto;
+    width: 29em;
 }
 
 .verticalLine {
@@ -175,10 +185,10 @@ a {
 }
 
 .table {
-    width: 90%;
-    max-width: 100%;
     margin-left: 2em;
     margin-bottom: 0;
+    margin: auto;
+    width: 29em;
 }
 
 .impression {
@@ -193,13 +203,12 @@ a {
 .StarredContainer {
     display: flex;
     justify-content: space-between;
-    font-family: Montserrat;
-    font-size: 0.9em;
+    font-size: .9em;
     font-weight: 300;
-    width: 100%;
     height: 4em;
-    margin-top: 0.6em;
-    margin-left: 1em;
+    margin: auto;
+    width: 34em;
+    padding-left: 2em;
 }
 
 .one {
@@ -256,21 +265,25 @@ a {
 }
 
 .topWords {
-    margin-left: 2em;
     height: 3.5em;
+    margin: auto;
+    margin-bottom: 1em;
+    padding-left: 4em;
 }
 
 .importance {
+    width: 38em;
     font-family: Montserrat;
-    font-size: 0.8em;
+    font-size: .8em;
     text-align: right;
     color: black;
-    margin-top: 1em;
-    margin-bottom: -0.5em;
+    margin: auto;
 }
 
 .learnedWordsContainer {
     font-family: Montserrat;
+    width: 30em;
+    margin: auto;
 }
 
 .amount {
@@ -322,79 +335,90 @@ a {
 
 @media only screen and (max-width: 1024px) {
     
-    .pagesContainer {
-        font-size: .7em;
-    }
 
 }
 
-@media (min-width: 992px) {
-    
-    .mainWordsContainer{
-        margin-left: 3.5em;
-        float: left;
-        width: 100%;
-    
-    }
+@media only screen and (max-width: 768px) {
+
 }
 
 @media only screen and (max-width: 414px) {
 
     body {
-        margin: 0px !important;
+        position: fixed;
     }
 
-    .mainWordsContainer{
-        margin-left: 0em !important;
+    .mainWordsContainer {
+        top: 0;
+        bottom:0;
+        position:fixed;
+        overflow-y:scroll;
+        overflow-x:hidden;
     }
 
-    .wordsHeader {
-        padding-bottom: 0.5em;
-        position: relative;
+    .titleHeader {
+        width: 100vw;
+        font-size: 7vw;
     }
 
     .pagesContainer {
-        font-size: .62em;
-        margin-left: -5em;
-        margin-right: -5em;
+        width: 100vw;
+        padding-top: 1vh;
+        font-size: 3.1vw;
     }
 
-    .dateContainer {
-        margin: auto;
+    .wordpagesLinks {
+        margin: 0;
     }
 
-    .verticalLine {
-        margin-left: 0em;
-    }
-
-    .openArticle {
-        width: 7em;
-        margin-right: 0em;
-    }
-
-    .table {
-        margin-left: 1em;
-    }
-
-    .StarredContainer {
-        height: 3em;
-        margin-top: .8em;
-    }
-
-    .translation {
-        font-size: .8em;
-    }
-
-    .learnedDate {
-        font-size: .7em;
-    }
-
-    .learned {
-        height: 3.5em;
+    .topMessageContainer {
+        width: 96vw;
+        margin-left: 2vw;
+        margin-bottom: 4vw;
     }
 
     .topMessage {
-        font-size: .7em;
+        font-size: 0.75em;
+    }
+
+    .outerDate {
+        margin-left: 2vw;
+    }
+
+    .articleContainer {
+        width: 98vw;
+        margin-left: 1vw;    
+    }
+    
+    .openArticle {
+        width: 25vw;
+    }
+
+    .table {
+        width: 92vw;
+        margin-left: 4vw;
+    }
+
+    .StarredContainer {
+        width: 104vw;
+        margin-left: -6vw;
+    }
+
+    .amount {
+        width: 100vw;
+    }
+
+    .oneLearnedWord {
+        width: 100vw;
+    }
+
+    .topWords {
+        margin-left: -10vw;
+    }
+
+    .importance {
+        width: 87vw;
+        font-size: 3vw;
     }
 
     
@@ -402,153 +426,51 @@ a {
 
 @media only screen and (max-width: 375px) {
 
-    .titleHeader {
-        margin-top: 1em;
-    }
-
-    .pagesContainer {
-        margin-top: 2em;
-        margin-right: -1em;
-        margin-left: -1em;
-        font-size: 0.64em;
-    }
-
-    .wordpagesLinks {
-        margin-right: 0em;
-        margin-left: 0em;
-    }
-
-    .learnedWords {
-        margin-left: 0.4em;
-    }
-
-    .learnedDate {
-        font-size: .66em;
-    }
-
-    .StarredContainer {
-        margin-left: 1em;
-    }
-    
-    .rank {
-        margin-right: 3em;
-    }
-
-    .openArticle {
-        width: 8em;
-    }
-    
-    .articleTitle {
-        font-size: .8em;
-        margin-top: 0.7em;
-        margin-left: 0.5em;
-    }
-
-    .dateContainer {
-        margin-bottom: 1em;
-        width: 15em;
-    }
 
 }
 
 @media only screen and (max-width: 360px) {
 
-    .titleHeader {
-        font-size: 1.5em;
-    }
-
-    .pagesContainer {
-        font-size: 0.61em;
-    }
-
-    .topMessage {
-        font-size: .66em;
-    }
-    
-    .importance {
-        font-size: 0.6em;
-        margin-right: -0.7em;
-        margin-bottom: -1.5em;
-    }
-
-    .topWords {
-        margin-left: 0.5em;
-    }
-
-    .rank {
-        margin-right: 1.5em;
-    }
-
-    small {
-        font-weight: 400;
-        font-size: 75%;
-        color: black;
-    }
-
-    .verticalLine {
-        width: 4px;
-    }
-
-    .topMessage {
-        font-size: 0.65em;
-    }
-
-    .one {
-        width: 3px;
-    }
-
-    .top {
-        width: 3px;
-        margin-right: 0.5em;
-    }
-
-    .trash {
-        margin-right: 0.5em;
-    }
 
 }
 
 @media only screen and (max-width: 320px) {
 
-    .pagesContainer {
-        font-size: .54em;
-    }
-
-    .topMessage {
-        font-size: .58em;
-    }
-
-    .topWords {
-        height: 3em;
-    }
-
-    .learned {
-        width: 0.1em;
-        height: 4em;    
-    }
-    
-    .translation {
-        font-size: .7em;
-    }
-
-    .learnedDate {
-        font-size: 0.65em;
-    }
-
-    .deleteLearned {
-        margin-right: 0em;
-    }
-
-    .impression {
-        font-size: .8em;
-    }
-
-    .open {
-        font-size: .9em;
+    .titleHeader {
+        margin-top: 5vh;
     }
 
     .openArticle {
-        height: 1.8em;
+        width: 40vw;
+    }
+
+    .articleContainer {
+        width: 104vw;
+        margin-left: -2vw;
+    }
+
+    .table {
+        width: 95vw;
+        margin-left: 0vw;
+    }
+
+    .StarredContainer {    
+        width: 108vw;
+        margin-left: -9vw;
+    }
+
+    .oneLearnedWord {
+        width: 104vw;
+        margin-left: -2vw;    
+    }
+
+    .topWords {
+        width: 110vw;
+        margin-left: -15vw;    
+    }
+
+    .importance {
+        width: 84vw;
     }
 
 }
