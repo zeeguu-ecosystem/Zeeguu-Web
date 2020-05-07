@@ -53,6 +53,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a {
+    text-decoration: none;
+}
+
 .seperator {
     color: #ACACAC;
     font-size: 1.5em;
@@ -327,9 +331,9 @@ a:hover {
 @media (min-width: 992px) {
     
     .mainWordsContainer{
-        margin-left: 22em;
+        margin-left: 3.5em;
         float: left;
-        width: 50%;
+        width: 100%;
     
     }
 }

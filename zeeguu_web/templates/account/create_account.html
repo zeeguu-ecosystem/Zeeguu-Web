@@ -3,16 +3,10 @@
 {% set active_page = "create_account" %}
 
 {% block body %}
-<!-- 
-{% assets filters="cssmin", output="instance/create_account.css", "css/create_account.css"-%}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
-{% endassets -%}
--->
 
 {% assets filters="cssmin", output="instance/login.css", "css/login.css"-%}
 <link rel="stylesheet" href="{{ ASSET_URL }}" />
 {% endassets -%}
-
 
 <div>
     <div class="logoContainer">
@@ -20,7 +14,7 @@
             alt="Zeeguu Logo - The Elephant" />
     </div>
 
-    <form id="create_account" class="form-horizontal" action="" method="post" class="input-group">
+    <form id="create_account" class="form-horizontal" action="" method="post" class="inputField">
 
         <div>
 

@@ -67,10 +67,21 @@ select {
     text-transform: lowercase;
     font-weight: 600;
     background: #ffbb54;
+    outline: none;
 }
 
 .saveButton:hover {
     cursor: pointer;
 }
 
-  
+.saveButton:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
