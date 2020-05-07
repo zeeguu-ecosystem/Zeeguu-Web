@@ -1,7 +1,15 @@
 /*login page */
 
 .loginBody {
+  font-family: Montserrat;
   background: #ffbb54;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.whiteBody {
+  background: white;
   height: 100%;
   width: 100%;
   top: 0;
@@ -34,7 +42,6 @@ fieldset {
 }
 
 .authentificationBox {
-  font-family: Montserrat;
   background-color: white;
   padding: 2em 2em;
   margin-top: 1.5em;
@@ -53,7 +60,6 @@ label {
 }
 
 .field {
-  font-family: Montserrat;
   display: block;
   width: 100%;
   height: 34px;
@@ -68,6 +74,7 @@ label {
   text-transform: lowercase;
   box-shadow: none;
   border: 0.1em solid #ffbb54;
+  margin-bottom: 1em;
 }
 
 .field:focus {
@@ -81,7 +88,11 @@ label {
 }
 
 .inputField {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 
 label {
   font-size: 16px; 
@@ -89,16 +100,17 @@ label {
 }
 
 .loginButton {
+  font-family: Montserrat;
   line-height: 2em;
   font-size: 16px;
   margin-top: 30px;
   font-size: 16px;
   margin-top: 1em;
   background: #ffbb54;
-  border-color: #ffbb54;
+  border: none;
+  margin-bottom: 0.5em;
   border-radius: 2em;
-  width: 7em; 
-  font-family: Montserrat;
+  width: 7em;
 }
 
 .resetButton {
@@ -204,11 +216,13 @@ button:hover {
 
 @media screen and (max-width: 420px) {
   .authentificationBox {
-    width: 390px; 
+    width: 300px;
   } 
   
   #authentificationBoxTitle {
-    font-size: 30px; 
+    font-size: 25px;
+    margin-top: 0.25em;
+    margin-left: 1.5em; 
   }
 
   label {
@@ -217,7 +231,6 @@ button:hover {
   .loginButton {
     font-size: 15px;
     padding: 5px 5px; 
-    margin-left: 1em;
   }
 
   .field {
@@ -237,7 +250,7 @@ button:hover {
   
 @media screen and (max-width: 375px) {
   .authentificationBox {
-    width: 320px; 
+    width: 270px;
   } 
 
   .createAccount {
@@ -263,7 +276,7 @@ button:hover {
 
 @media screen and (max-width: 360px) {
   .authentificationBox {
-    width: 340px; 
+    width: 280px;
   } 
 
   .long, .custom {
@@ -278,25 +291,41 @@ button:hover {
   .createTitle {
     padding-top: 0.4em;
   }
+  
+  .loginButton {
+    margin-left: -0.5em;
+  }
 }  
 
 @media screen and (max-width: 320px) {
   .authentificationBox {
-    width: 300px; 
+    width: 230px;
   } 
 
   .long, .custom {
-    width: 12.5em;
-    height: 2em !important;
+    width: 11.5em;
+    margin-bottom: 0em;
+    height: 2em!important;
   }
 
   .createAccBtn {
     margin-left: 3em;
   }
 
+  #authentificationBoxTitle {
+    margin-top: 0em;
+    margin-left: 0.6em;
+    margin-bottom: 1em;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  .loginButton {
+    margin-left: -1em
+  }
+
 
 }    
 
-
-
-/*# sourceMappingURL=login.css.map */

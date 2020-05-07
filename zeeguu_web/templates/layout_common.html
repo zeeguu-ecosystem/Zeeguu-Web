@@ -30,19 +30,18 @@
 
     <title>{{ active_page }}</title>
 
-    <!--FONT LINK-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,300i,400,500,600&display=swap"
-        rel="stylesheet" />
+    <link href="{{ url_for('static', filename='fonts/montserrat.css') }}" type="text/css" rel="stylesheet" />
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
-    {% assets filters="cssmin", output="instance/style.css", "css/libs/select2.css", "css/libs/font-awesome.css", "css/libs/flippant.css", "css/style.css",  "css/homepage.css", "css/recognize.css", "css/layout.css", "css/newStyleWords.css", "css/newStyleStats.css"-%}
+    {% assets filters="cssmin", output="instance/style.css", "css/libs/select2.css",  "css/style.css",  "css/newStyleWords.css", "css/newStyleStats.css", "css/newStyleSettings.css"-%}
     <link rel="stylesheet" href="{{ ASSET_URL }}" />
     {% endassets -%}
 
-    {% assets "js/jquery.js", "js/jquery.validate.js", "js/bootstrap.js", "js/flippant.js", "js/select2.js", "js/sla.js" -%}
+    {% assets "js/jquery.js", "js/jquery.validate.js", "js/select2.js", "js/sla.js" -%}
     <script src="{{ ASSET_URL }}"></script>
     {% endassets -%}
+
     <link rel="chrome-webstore-item"
         href="https://chrome.google.com/webstore/detail/zeeguu/ckncjmaednfephhbpeookmknhmjjodcd">
 
@@ -50,6 +49,7 @@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89557275-2"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
