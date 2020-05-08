@@ -304,3 +304,69 @@ input:focus {
     margin-top: 3em;
 }  
 
+.icon-search {
+    cursor: pointer;
+    position: relative;
+    transform: scale(1);
+    margin: auto;
+    height: 4em;
+    width: 3em;
+    margin-bottom: 25px;
+    margin-top: 3em;
+  }
+  
+  svg {
+    overflow: visible;
+    position: absolute;
+    left: -15px;
+  }
+  
+  circle,
+  line,
+  path {
+    overflow: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: transparent;
+    stroke: #ffd047;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  
+  line {
+    position: absolute;
+  }
+  
+  .notFound {
+    animation: notFound 1s 1;
+    transform-origin: 37.4% 39.2%;
+    transform: rotate(0deg);
+  }
+  
+  @keyframes notFound {
+    0% {
+      transform: rotate(30deg);
+      opacity: 0;
+    }
+    8% {
+      opacity: 0;
+    }
+    16% {
+      transform: rotate(170deg);
+    }
+    24% {
+      opacity: 1;
+    }
+    40% {
+      transform: rotate(-90deg);
+    }
+    78% {
+      transform: rotate(20deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+
