@@ -15,5 +15,5 @@ def get_favicon():
 @static_pages.route("/")
 def index():
     if KEY__SESSION_ID in flask.session:
-        return flask.redirect(flask.url_for("account.whatnext"))
+        return flask.redirect(flask.url_for('reader_blueprint.articles'))
     return flask.render_template("static_pages/index.html")
