@@ -24,6 +24,10 @@ body {
 
 }
 
+.pleaseSelect {
+    font-family: Montserrat;
+}
+
 .inputField {
     font-size: 1em;
     font-family: Montserrat;
