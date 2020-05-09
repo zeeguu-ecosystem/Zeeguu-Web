@@ -6,6 +6,10 @@
     line-height: 0.8em;
 }
 
+#containerStats {
+    left: 16em;
+}
+
 .statsTitle {
     margin-top: 1.5em;
     font-weight: 400;
@@ -19,6 +23,9 @@
 
 .row {
     display: flex;
+    margin-right: -37px !important;
+    margin-left: -15px;
+    margin-top: 18em;
 }
 
 .col-xs-4.col-md-4 {
