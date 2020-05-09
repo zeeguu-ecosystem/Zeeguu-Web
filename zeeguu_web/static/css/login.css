@@ -21,10 +21,10 @@ fieldset {
 
 .innerContainer {
   display: block;
-  margin: 0px auto; 
+  margin: 0px auto;
 }
 
-.logoContainer{
+.logoContainer {
   width: 300px;
   margin: auto;
   text-align: center;
@@ -32,7 +32,7 @@ fieldset {
 }
 
 .outerContainer {
-  width: 100%; 
+  width: 100%;
 }
 
 #authentificationBoxTitle {
@@ -70,9 +70,8 @@ label {
   background-color: #fff;
   border-radius: 4px;
   height: 45px !important;
-  font-size: 16px !important; 
+  font-size: 16px !important;
   padding-left: 0.4em;
-  text-transform: lowercase;
   box-shadow: none;
   border: 0.1em solid #ffbb54;
   margin-bottom: 1em;
@@ -94,9 +93,8 @@ label {
   flex-direction: column;
 }
 
-
 label {
-  font-size: 16px; 
+  font-size: 16px;
   margin-bottom: 0.5em;
 }
 
@@ -122,7 +120,7 @@ label {
 
 .loginButton:hover {
   background: #ffbb54;
-  border-color: #ffbb54; 
+  border-color: #ffbb54;
 }
 
 .extraText {
@@ -130,16 +128,15 @@ label {
 }
 
 .links {
-  color: #ffbb54; 
+  color: #ffbb54;
 }
 
-
 .links:hover {
-  color: black; 
+  color: black;
 }
 
 .links:focus {
-  color: black; 
+  color: black;
 }
 
 .help-inline {
@@ -152,7 +149,7 @@ label {
   background-color: #ffe086;
   border-radius: 0.3em;
   padding: 1em;
-  font-size: .8em;
+  font-size: 0.8em;
   margin-bottom: 1em;
   margin-top: 1.3em;
   box-shadow: none;
@@ -172,8 +169,8 @@ label {
   text-shadow: none;
 }
 
-.createAccount{
-  width: 30em; 
+.createAccount {
+  width: 30em;
 }
 
 .custom {
@@ -218,47 +215,49 @@ button:hover {
 @media screen and (max-width: 420px) {
   .authentificationBox {
     width: 300px;
-  } 
-  
+  }
+
   #authentificationBoxTitle {
     font-size: 25px;
     margin-top: 0.25em;
-    margin-left: 1.5em; 
+    margin-left: 1.5em;
   }
 
   label {
-    font-size: 20px; }
+    font-size: 20px;
+  }
 
   .loginButton {
     font-size: 15px;
-    padding: 5px 5px; 
+    padding: 5px 5px;
   }
 
   .field {
     height: 50px !important;
-    font-size: 20px !important; 
+    font-size: 20px !important;
   }
-  
-  .long, .custom {
+
+  .long,
+  .custom {
     width: 15em;
   }
 
   .createAccBtn {
-    margin-left: 4em
+    margin-left: 4em;
   }
-
 }
-  
+
 @media screen and (max-width: 375px) {
   .authentificationBox {
     width: 270px;
-  } 
+  }
 
   .createAccount {
     padding: 1em 1em;
   }
 
-  .long, .custom {
+  .long,
+  .custom {
     width: 13.5em;
   }
 
@@ -273,16 +272,17 @@ button:hover {
   .createAccBtn {
     margin-left: 3.5em;
   }
-}   
+}
 
 @media screen and (max-width: 360px) {
   .authentificationBox {
     width: 280px;
-  } 
+  }
 
-  .long, .custom {
+  .long,
+  .custom {
     width: 14.5em;
-    height: 2em!important;
+    height: 2em !important;
   }
 
   .createAccBtn {
@@ -292,21 +292,22 @@ button:hover {
   .createTitle {
     padding-top: 0.4em;
   }
-  
+
   .loginButton {
     margin-left: -0.5em;
   }
-}  
+}
 
 @media screen and (max-width: 320px) {
   .authentificationBox {
     width: 230px;
-  } 
+  }
 
-  .long, .custom {
+  .long,
+  .custom {
     width: 11.5em;
     margin-bottom: 0em;
-    height: 2em!important;
+    height: 2em !important;
   }
 
   .createAccBtn {
@@ -324,9 +325,6 @@ button:hover {
   }
 
   .loginButton {
-    margin-left: -1em
+    margin-left: -1em;
   }
-
-
-}    
-
+}
