@@ -1,0 +1,61 @@
+@media screen and (max-width: 500px) {
+
+    body{
+        position: unset !important;
+    }
+    .teamMembers {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex: 1 2 3;
+        flex-flow: wrap;
+    }
+
+    .logoContainer h2 {
+         margin: 0em; 
+         margin-bottom: 2em; 
+    }
+
+    .howTo{
+        display: flex;
+        flex-direction: column;
+        /* width: 100vw; */
+        flex-wrap: wrap;
+    }
+
+    .containers{
+            flex: 1 2 3;
+            width: inherit;
+            display: inline-flex;
+            flex-wrap: wrap;
+    }
+
+    .htContainer {
+        background: white;
+        color: black;
+        width: fit-content;
+        height:fit-content; 
+        margin: 1em;
+        text-align: center;
+        border-radius: 3em;
+    } 
+
+    .other{
+        display: flex;
+        justify-content: center;
+        flex-flow: wrap;
+    }
+
+    .articleContain{
+        display: block;
+        text-align: center;
+    }
+
+    .article {
+        border: .05em solid black;
+        width: 82vw;
+        margin-left: auto;
+        margin-right: auto;
+    } 
+
+}
