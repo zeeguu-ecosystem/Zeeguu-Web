@@ -126,8 +126,8 @@ body {
 .htContainer {
     background: white;
     color: black;
-    width: 22em;
-    height: 18em;
+    width: fit-content;
+    height: auto;
     margin: 1em;
     text-align: center;
     border-radius: 3em;
