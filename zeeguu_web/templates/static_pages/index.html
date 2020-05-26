@@ -32,21 +32,8 @@ body %}
   </div>
 </nav>
 
-<div class="banner">
-  <h1 class="latestNews">Latest News</h1>
-  <p>
-    <span>
-      <span class="dateSpan">(August 20th)</span>
-
-      Mircea will talk about Zeeguu at
-      <a href="https://sites.uclouvain.be/eurocall2019/">EuroCALL</a> and
-      <a href="https://easeai.github.io">EASEAI</a> !
-    </span>
-  </p>
-</div>
-
 <div class="logoContainer">
-  <img class="logoElephant" src="../static/img/zeeguuLogo.svg" />
+  <img class="logoElephant swing" src="../static/img/zeeguuLogo.svg" />
   <h1>Zeeguu</h1>
   <h2>
     A research project designed to speed & fun up vocabulary learning in a new
@@ -56,6 +43,7 @@ body %}
   {% if not g.user %}
   <button class="becomeBeta">
     <a href="http://bit.ly/1UFL5GW">Become a Beta Tester</a>
+    </div>
   </button>
   {% endif %}
 </div>
@@ -66,7 +54,11 @@ body %}
   <h1>Our approach is designed around three fundamental principles</h1>
   <div class="containers">
     <div class="htContainer">
-      <h3>Only Read The Stuff You Like</h3>
+      <div class="hithere">
+        <img class="iconHowTo" src="../static/img/findArticle.svg" />
+      </div>
+      <h2>Read Articles</h2>
+      <h3>about only the stuff you like</h3>
       <p>
         Unlike most traditional learning materials based on pre-defined,
         standardized and let's admit it: boring texts, we think that you should
@@ -78,7 +70,11 @@ body %}
     </div>
 
     <div class="htContainer">
-      <h3>Have Your Words Everywhere With You</h3>
+      <div class="hithere">
+        <img class="iconHowTo" src="../static/img/click.svg" />
+      </div>
+      <h2>Translate Words</h2>
+      <h3>and have them everywhere with you</h3>
       <p>
         Words that you have once translated, will be available to you always
         (read as “from any of your devices”) and they will go into your own,
@@ -90,7 +86,11 @@ body %}
     </div>
 
     <div class="htContainer">
-      <h3>Practice with Personalized Exercices</h3>
+      <div class="hithere">
+        <img class="iconHowTo" src="../static/img/correct.svg" />
+      </div>
+      <h2>Practice Vocabulary</h2>
+      <h3>with Personalized Exercices</h3>
       <p>
         Based on the texts you read, the words you translate, and lists of word
         frequencies, Zeeguu will use machine learning to build a model of your
