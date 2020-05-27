@@ -130,8 +130,20 @@ body {
   color: #ffbb54;
 }
 
+.aboutZeeguu {
+  display: flex;
+  flex-direction: column;
+}
+
 .howTo {
   background: #ffbb54;
+  color: white;
+  font-family: Montserrat;
+  text-align: center;
+  padding-bottom: 3em;
+}
+
+.howToAbout {
   color: white;
   font-family: Montserrat;
   text-align: center;
@@ -308,7 +320,19 @@ body {
 }
 
 #aboutContainer h1 {
-  color: black;
+  adding-top: 0.3em;
+  font-family: Montserrat;
+  color: #ffbb54;
+  font-weight: 200;
+  font-size: 2.5em;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .aboutHt {
