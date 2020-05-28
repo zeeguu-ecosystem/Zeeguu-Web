@@ -100,9 +100,16 @@ label {
 }
 
 .inputField {
+  background-color: white;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+}
+
+input:-webkit-autofill {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
 }
 
 label {
