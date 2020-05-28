@@ -45,10 +45,12 @@
             <h2 class="articleTitle">{{ url.title }}</h2>
         </div>
         <div class="openArticle">
+
             <a class="open"
                 href="{{ url_for('reader_blueprint.get_article') + "?articleID="}}{{ article_ids_for_urls[url] }}">
                 <p class="customP">Open</p>
             </a>
+       
         </div>
 
     </div>
