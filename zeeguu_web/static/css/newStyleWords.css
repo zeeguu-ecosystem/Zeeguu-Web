@@ -7,10 +7,6 @@ a:hover {
     cursor: pointer;
 }
 
-.customP {
-    margin-block-start: .4em;
-}
-
 .wordsHeader {
     position: sticky;
     top: 0;
@@ -91,7 +87,6 @@ a {
     width: 15em;
     height: 1.5em;
     border-radius: 1em;
-
 }
 
 .date {
@@ -255,11 +250,6 @@ a {
     margin-right: 5em;
 }
 
-.rank p {
-    line-height: 1.5em;
-    margin-block-start: 0.1em;
-}
-
 .one.trash {
     margin-top: 1.16em;
 }
@@ -333,15 +323,6 @@ a {
     margin-left: 0em;
 }
 
-@media only screen and (max-width: 1024px) {
-    
-
-}
-
-@media only screen and (max-width: 768px) {
-
-}
-
 @media only screen and (max-width: 414px) {
 
     body {
@@ -351,9 +332,9 @@ a {
     .mainWordsContainer {
         top: 0;
         bottom:0;
-        position:fixed;
-        overflow-y:scroll;
-        overflow-x:hidden;
+        position: relative;;
+        overflow: scroll;
+        margin-left: 0em;
     }
 
     .titleHeader {
@@ -363,8 +344,8 @@ a {
 
     .pagesContainer {
         width: 100vw;
-        padding-top: 1vh;
-        font-size: 3.1vw;
+        padding-top: 1.5vh;
+        font-size: 3vw;
     }
 
     .wordpagesLinks {
@@ -392,6 +373,14 @@ a {
     
     .openArticle {
         width: 25vw;
+    }
+
+    .customP {
+        line-height: 2em;
+    }
+
+    .rank {
+        line-height: 1.5em;
     }
 
     .table {

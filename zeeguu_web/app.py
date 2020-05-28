@@ -61,5 +61,9 @@ def instance_path(app):
     return path
 
 
+@app.errorhandler(404)
+def error404(error):
+    return flask.render_template("404.html"), 404
+    
 instance = flask.Blueprint("instance", __name__, static_folder=instance_path(app))
 app.register_blueprint(instance)

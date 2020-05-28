@@ -8,10 +8,13 @@
 <link rel="stylesheet" href="{{ ASSET_URL }}" />
 {% endassets -%}
 
-<div>
-    <div class="logoContainer">
-        <img class="zeeguuLogo" src="{{ url_for('reader_blueprint.static',filename='images/zeeguuLogo.svg') }}"
-            alt="Zeeguu Logo - The Elephant" />
+<div class="loginPG">
+    <div class="logoContainer1">
+      <img
+        class="zeeguuLogo"
+        src="{{ url_for('reader_blueprint.static',filename='images/zeeguuLogo.svg') }}"
+        alt="Zeeguu Logo - The Elephant"
+      />
     </div>
 
     <form id="create_account" class="form-horizontal" action="" method="post" class="inputField">

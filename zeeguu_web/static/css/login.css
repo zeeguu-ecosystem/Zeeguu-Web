@@ -1,5 +1,16 @@
 /*login page */
 
+.loginPG {
+  display: flex;
+  height: 100vh;
+  margin: auto;
+  flex-direction: column;
+}
+.logoContainer1 {
+  text-align: center;
+  margin: 2em;
+}
+
 .loginBody {
   font-family: Montserrat;
   background: #ffbb54;
@@ -20,8 +31,9 @@ fieldset {
 }
 
 .innerContainer {
-  display: block;
-  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .logoContainer {
@@ -88,9 +100,16 @@ label {
 }
 
 .inputField {
+  background-color: white;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+}
+
+input:-webkit-autofill {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
 }
 
 label {
@@ -314,7 +333,7 @@ button:hover {
     margin-left: 3em;
   }
 
-  .zeeguuLogo{
+  .zeeguuLogo {
     width: 3em;
   }
 
@@ -323,7 +342,7 @@ button:hover {
     margin: auto;
     text-align: center;
     margin-top: 0.5em;
-}
+  }
 
   #authentificationBoxTitle {
     margin-top: 0em;
