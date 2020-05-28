@@ -47,6 +47,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
+    <script type="text/javascript"
+        src="{{ url_for('reader_blueprint.static',filename='scripts/app/helpers/MobileHelpers.js') }}"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89557275-2"></script>
 
@@ -56,6 +59,8 @@
         gtag('js', new Date());
         gtag('config', 'UA-89557275-2');
     </script>
+
+
 
 </head>
 
@@ -74,8 +79,8 @@
         </svg>
     </div>
 
-    <p class="noWordsYet" style="text-align: center;">You have no words. 
-        <br> 
+    <p class="noWordsYet" style="text-align: center;">You have no words.
+        <br>
         Start reading articles to expand your vocabulary!
     </p>
 
