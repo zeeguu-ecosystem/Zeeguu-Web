@@ -376,11 +376,11 @@ a {
     }
 
     .customP {
-        line-height: 0em;
+        line-height: 2em;
     }
 
     .rank {
-        line-height: 0em;
+        line-height: 1.5em;
     }
 
     .table {
