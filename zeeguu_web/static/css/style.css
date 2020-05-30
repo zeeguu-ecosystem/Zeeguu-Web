@@ -133,6 +133,7 @@ body {
 .aboutZeeguu {
   display: flex;
   flex-direction: column;
+  overflow-x:hidden; 
 }
 
 .howTo {
@@ -158,6 +159,8 @@ body {
 
 .containers {
   display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .htContainer {
@@ -168,6 +171,7 @@ body {
   margin: 1em;
   text-align: center;
   border-radius: 1em;
+  flex:1; 
 }
 
 .htContainer h3 {
@@ -177,7 +181,7 @@ body {
 }
 
 .htContainer p {
-  font-size: 0.7em;
+  font-size: 1em;
   font-weight: 400;
   line-height: 1.5em;
   padding-left: 1.2em;
@@ -316,7 +320,7 @@ body {
 #aboutContainer {
   background-color: white;
   height: 100%;
-  margin-left: 10em;
+  margin-left:10em; 
 }
 
 #aboutContainer h1 {

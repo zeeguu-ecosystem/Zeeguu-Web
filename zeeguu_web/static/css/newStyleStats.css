@@ -4,6 +4,8 @@
     margin-left: 14em;
     text-align: center;
     line-height: 0.8em;
+    position: relative;
+    overflow-x: hidden;
 }
 
 #containerStats {
@@ -14,6 +16,7 @@
     margin-top: 1.5em;
     font-weight: 400;
     font-size: 4em;
+    text-align: center;
 }
 
  h2, h3, h4 {

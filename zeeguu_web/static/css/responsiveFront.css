@@ -2,6 +2,7 @@
   body {
     position: unset !important;
   }
+
   .teamMembers {
     display: flex;
     justify-content: center;
@@ -21,12 +22,8 @@
     font-size: 1.6em;
     font-weight: 500;
   }
-
-  .howTo {
-    display: flex;
-    flex-direction: column;
-    /* width: 100vw; */
-    flex-wrap: wrap;
+  #aboutContainer{
+    margin-left:unset;
   }
 
   .howTo h1 {
@@ -76,5 +73,64 @@
     width: 82vw;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /***** ACCOUNT SETTINGS ***/ 
+  #settingsBody{
+    margin:unset; 
+    padding:unset; 
+    width: unset; 
+  }
+
+  .content{
+    margin-left: unset;
+    width: unset;
+    padding:unset; 
+
+  }
+
+  .formSettings{
+    width: unset;
+    margin:auto; 
+    padding: 1em 1em;
+  }
+
+  select{
+    border-radius: 4px;
+    padding: 1.5vw 0vw; 
+ 
+  }
+
+  /**** USER STATS ****/ 
+  .statsContainer{
+    margin-left: 0em !important;
+    height: 100vh;
+  }
+
+  #containerStats{
+    margin-left:0em !important; 
+    left:0em !important; 
+  }
+
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-right: -37px!important;
+    margin-left: unset;
+    margin-top: 18em;
+    line-height: unset;
+    text-align: left;
+    height: unset !important; 
+    padding: unset !important; 
+}
+
+.col-xs-4, .col-md-4 {
+  margin: unset;
+  float: unset;
+  padding: unset !important;
+  margin-left: 2em;
+}
+
   }
 }
