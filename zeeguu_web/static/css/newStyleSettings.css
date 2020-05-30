@@ -64,15 +64,19 @@ select {
 
 .saveButton {
   width: 10em;
+  border-radius: 2em;
+  border: none;
   float: left;
   margin-left: 31.5%;
   margin-top: 0.5em;
   height: 2em;
   font-size: 0.8em;
   text-transform: lowercase;
-  font-weight: 600;
+  font-weight: 400;
   background: #ffbb54;
   outline: none;
+  color: white;
+  font-family: Montserrat;
 }
 
 .saveButton:hover {
