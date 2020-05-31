@@ -75,6 +75,20 @@
     margin-right: auto;
   }
 
+  .newsItem {
+    margin-left: 0.3em;
+    flex-direction: column;
+  }
+
+  .new {
+    width: 15em;
+    line-height: 3.5em;
+  }
+
+  .dateSpan {
+    text-align: left;
+  }
+
   /***** ACCOUNT SETTINGS ***/ 
   #settingsBody{
     margin:unset; 
@@ -132,5 +146,5 @@
   margin-left: 2em;
 }
 
-  }
+  
 }
