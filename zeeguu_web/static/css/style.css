@@ -7,6 +7,7 @@ body {
 .whiteBody {
   width: 100% !important;
   padding: 0 !important;
+  scroll-behavior: smooth;
 }
 
 .loginHeader {
@@ -51,6 +52,8 @@ body {
   font-size: 0.7em;
   margin-right: 0.5em;
   font-family: Montserrat;
+  margin-top: -0.7em;
+  text-align: center;
 }
 
 .logoContainer {
@@ -133,7 +136,7 @@ body {
 .aboutZeeguu {
   display: flex;
   flex-direction: column;
-  overflow-x:hidden; 
+  /*overflow-x:hidden;*/ 
 }
 
 .howTo {
