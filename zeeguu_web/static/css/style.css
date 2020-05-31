@@ -163,7 +163,6 @@ body {
 .containers {
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
 }
 
 .htContainer {
@@ -178,7 +177,7 @@ body {
 }
 
 .htContainer h3 {
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 500;
   padding-top: 0em;
 }
