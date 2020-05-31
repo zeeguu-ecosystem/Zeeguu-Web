@@ -12,6 +12,12 @@
       href="../../static/css/newStyleSettings.css"
     />
 
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="../../static/css/responsiveFront.css"
+  />
+
     <!--FONT LINK-->
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400&display=swap"
@@ -29,6 +35,7 @@
     />
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="/static/js/MobileHelpers.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -46,7 +53,7 @@
     </script>
   </head>
 
-  <body>
+  <body id="settingsBody"  onload="sideBarLoad()">
     {% macro render_field(field) %}
     <dt class="inputLabel" style="margin-right: 10px; float: left;">
       {{ field.label }}
