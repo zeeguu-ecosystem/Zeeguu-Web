@@ -5,9 +5,10 @@
 function settingsFunction() {
     var box = document.getElementById("hidden");
     var boxstyle = box.style.display;
-    if (boxstyle == "block") {
+    
+    if (boxstyle == "flex") {
         box.style.display = "none";
     } else {
-        box.style.display = "block";
+        box.style.display = "flex";
     }
 }
